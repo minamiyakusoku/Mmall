@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by geely
  */
-@CrossOrigin
 @Controller
 @Api(value = "/product", description = "商品相关操作")
 @RequestMapping("/product/")
@@ -30,7 +29,6 @@ public class ProductController {
     @RequestMapping(value = "detail.do",method = RequestMethod.GET)
     @ResponseBody
 
-    @CrossOrigin
     public ServerResponse<ProductDetailVo> detail(Integer productId){
         return iProductService.getProductDetail(productId);
     }

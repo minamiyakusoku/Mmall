@@ -22,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableWebMvc
 @EnableSwagger2
-@ComponentScan(basePackages = {"com.mmall.controller.portal"})
+@ComponentScan(basePackages = {"com.mmall.common.swagger"})
 @Configuration
 public class RestApiConfig extends WebMvcConfigurationSupport{
 
