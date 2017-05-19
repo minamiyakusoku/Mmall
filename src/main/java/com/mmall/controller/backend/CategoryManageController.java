@@ -6,14 +6,9 @@ import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.ICategoryService;
 import com.mmall.service.IUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +18,6 @@ import javax.servlet.http.HttpSession;
  * Created by geely
  */
 @Controller
-@Api(value = "/manage/category", description = "【Web 管理端】 商品类型相关操作")
 @RequestMapping("/manage/category")
 public class CategoryManageController {
 
@@ -34,13 +28,7 @@ public class CategoryManageController {
     @Autowired
     private ICategoryService iCategoryService;
 
-
-
-    @ApiOperation(value = "新增分类")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryName", value = "类别名称", required = true, dataType = "String",paramType="query"),
-            @ApiImplicitParam(name = "parentId", value = "父级类别id", required = false, dataType = "int",paramType="query")})
-    @RequestMapping(value = "/add_category.do",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping("add_category.do")
     @ResponseBody
     public ServerResponse addCategory(HttpSession session,String categoryName,@RequestParam(value = "parentId",defaultValue = "0") int parentId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -57,11 +45,8 @@ public class CategoryManageController {
             return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
         }
     }
-    @ApiOperation(value = "修改类别名称")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryName", value = "类别名称", required = true, dataType = "String",paramType="query"),
-            @ApiImplicitParam(name = "categoryId", value = "类别Id", required = true, dataType = "int",paramType="query")})
-    @RequestMapping(value = "/set_category_name.do",method = {RequestMethod.GET,RequestMethod.POST})
+
+    @RequestMapping("set_category_name.do")
     @ResponseBody
     public ServerResponse setCategoryName(HttpSession session,Integer categoryId,String categoryName){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -76,10 +61,7 @@ public class CategoryManageController {
         }
     }
 
-    @ApiOperation(value = "获取类目")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryId", value = "类别ID（默认为查询全部一级类目）", required = false, dataType = "int",paramType="query")})
-    @RequestMapping(value = "/get_category.do",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping("get_category.do")
     @ResponseBody
     public ServerResponse getChildrenParallelCategory(HttpSession session,@RequestParam(value = "categoryId" ,defaultValue = "0") Integer categoryId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -94,10 +76,7 @@ public class CategoryManageController {
         }
     }
 
-    @ApiOperation(value = "获取指定类目下的全部类目")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryId", value = "类别ID（默认为查询全部一级类目）", required = false, dataType = "int",paramType="query")})
-    @RequestMapping(value = "/get_deep_category.do",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping("get_deep_category.do")
     @ResponseBody
     public ServerResponse getCategoryAndDeepChildrenCategory(HttpSession session,@RequestParam(value = "categoryId" ,defaultValue = "0") Integer categoryId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);

@@ -127,7 +127,7 @@ public class OrderController {
 
 
     @ApiOperation(value = "支付订单")
-    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long",paramType="query")
     @RequestMapping(value="pay.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse pay(HttpSession session, Long orderNo, HttpServletRequest request){
@@ -185,7 +185,7 @@ public class OrderController {
 
 
     @ApiOperation(value = "查询订单状态")
-    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long",paramType="query")
     @RequestMapping(value="query_order_pay_status.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<Boolean> queryOrderPayStatus(HttpSession session, Long orderNo){
