@@ -147,6 +147,8 @@ public class ProductManageController {
         }
     }
 
+    @ApiOperation(value = "上传文件")
+    @ApiImplicitParam(name = "upload_file", value = "文件", required = false, dataType = "file")
     @RequestMapping(value ="/upload.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse upload(HttpSession session,@RequestParam(value = "upload_file",required = false) MultipartFile file,HttpServletRequest request){
@@ -168,7 +170,8 @@ public class ProductManageController {
         }
     }
 
-
+    @ApiOperation(value = "富文本上传文件")
+    @ApiImplicitParam(name = "upload_file", value = "文件", required = false, dataType = "file")
     @RequestMapping(value ="/richtext_img_upload.do",method = RequestMethod.POST)
     @ResponseBody
     public Map richtextImgUpload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response){
