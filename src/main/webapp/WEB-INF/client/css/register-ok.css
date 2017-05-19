@@ -1,0 +1,58 @@
+
+.header .header-logo{
+    width: 100%;
+}
+.header .header-logo .logo_b {
+    margin: 0 auto;
+    width: 57px;
+    height: 57px;
+    background: url(../img/mi-logo.png) no-repeat center center #ff6700;
+}
+.header .header-logo .tittle{
+    margin-top: 21px;
+    margin-left: 20px;
+}
+.header .header-logo .tittle p{
+    text-align: center;
+}
+.footer{
+    height: 80px;
+}
+.footer .footer-are{
+    margin-bottom: 19px;
+}
+.footer .footer-are,.footer-info{
+    text-align: center;
+    color: #757575;
+    font-size: 14px;
+}
+.succ{
+    width: 358px;
+    margin: 0 auto;
+    height: 200px;
+}
+.succ p{
+    text-align: center;
+    color: #757575;
+}
+.login{
+    width: 358px;
+    margin: 0 auto;
+}
+.login a{
+    display: block;
+    background-color: #f56600;
+    color: #fff;
+    font-size: 18px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 358px;
+}
+.box{
+    width: 843px;
+    height: 550px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+

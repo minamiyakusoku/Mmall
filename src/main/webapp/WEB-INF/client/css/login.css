@@ -1,0 +1,85 @@
+.header{
+    height: 100px;
+}
+.header .header-logo{
+    width: 1130px;
+    height: 100%;
+    margin: 0 auto;
+}
+.header .header-logo .logo_b {
+    margin-top: 21px;
+    width: 57px;
+    height: 57px;
+    background: url(../img/mi-logo.png) no-repeat center center #ff6700;
+}
+.header .header-logo .tittle{
+    margin-top: 21px;
+    margin-left: 20px;
+}
+.logo-form{
+    width: 100%;
+    height: 540px;
+    background: gray;
+    position: relative;
+}
+.layout{
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    margin-top: -250px;
+    width: 400px;
+    height: 500px;
+    background: #fff;
+}
+.layout .tittle{
+    font-size: 21px;
+    height: 100px;
+    line-height: 100px;
+}
+.layout .tittle p{
+    text-align: center;
+    color: #ff6700;
+}
+.login_area input{
+    width: 326px;
+    height: 22px;
+    line-height: 22px;
+    padding: 13px 16px 13px 14px;
+    display: block;
+    outline: none;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 18px;
+    margin-left: 21px;
+}
+.login_area .hint{
+    color:  #f56600;
+    font-size: 14px;
+    margin-left: 21px;
+    margin-bottom: 4px;
+}
+.login_area .btn{
+    background-color: #f56600;
+    color: #fff;
+    font-size: 18px;
+    height: 50px;
+    width: 358px;
+}
+.zcwj{
+    font-size: 14px;
+    text-align: center;
+}
+.zcwj a:hover{
+    color: #f56600;
+}
+.footer{
+    height: 80px;
+    margin-top: 60px;
+}
+.footer .footer-are{
+    margin-bottom: 19px;
+}
+.footer .footer-are,.footer-info{
+    text-align: center;
+    color: #757575;
+    font-size: 14px;
+}

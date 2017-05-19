@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/user-address.css"/>
+    <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/city/Popt.js"></script>
+    <script src="them/city/cityJson.js"></script>
+    <script src="them/city/citySet.js"></script>
+
+</head>
+<body>
+<!--头部-->
+<div class="site-topbar">
+    <div class="container">
+        <div class="topbar-nav">
+            <a href="javascript:;">多看阅读</a>
+            <a href="javascript:;">云服务</a>
+            <a href="javascript:;">金融</a>
+            <a href="javascript:;">小米商城移动版</a>
+        </div>
+        <div class="topbar-cart">
+            <a href="javascript:;" class="cart-mini">
+                <span class="cart"></span>
+                <span>购物车</span>
+                <span>(0)</span>
+            </a>
+        </div>
+        <div class="topbar-info">
+            <a href="login.html">登录</a>
+            <a href="register.html">注册</a>
+            <a href="javascript:;">消息通知</a>
+            <div class="info_select">
+                <a href="personal-center.html">个人中心</a>
+                <a href="user-favorite.html">我的喜欢</a>
+                <a href="login.html">退出登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--导航-->
+<div class="site-header">
+    <div class="container">
+        <div class="header-logo">
+            <a href="javascript:;">
+                <span class="logo"></span>
+            </a>
+        </div>
+        <div class="header-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="javacsript:;" class="link">
+                        <span>小米手机</span>
+                    </a>
+
+                    <div class="header-nav-menu">
+                        <div class="container">
+                            <ul class="children-list clearfix">
+                                <li style="border-left: 0">
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="javacsript:;" class="link">
+                        <span>红米</span>
+                    </a>
+
+                    <div class="header-nav-menu">
+                        <div class="container">
+                            <ul class="children-list clearfix">
+                                <li style="border-left: 0">
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="javacsript:;" class="link">
+                        <span>平板·笔记本</span>
+                    </a>
+
+                    <div class="header-nav-menu">
+                        <div class="container">
+                            <ul class="children-list clearfix">
+                                <li style="border-left: 0">
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="javacsript:;" class="link">
+                        <span>电视</span>
+                    </a>
+
+                    <div class="header-nav-menu">
+                        <div class="container">
+                            <ul class="children-list clearfix">
+                                <li style="border-left: 0">
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="figure figure-thumb">
+                                        <a href="javascript:;">
+                                            <img src="http://c1.mifile.cn/f/i/g/2015/cn-index/hmn4xtb!160x110.jpg">
+
+                                            <p class="tittle">红米Note 4X</p>
+
+                                            <p class="price">999元</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="header-search">
+            <form class="search-form clearfix" method="get">
+                <input class="search-text" type="search" name="keyword" autocomplete="off">
+                <input type="submit" class="search-btn" value=" ">
+
+                <div class="search-hot-words">
+                    <a href="javasctipy:;">红米Note4X</a>
+                    <a href="javascript:;">红米4X</a>
+                </div>
+                <div class="keyword-list hide">
+                    <ul class="result-list"></ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--中间-->
+<div class="breadcrumbs">
+    <div class="container">
+        <a href="index.html">首页</a>
+        <span>&gt;</span>
+        <a href="javascript:;">收货地址</a>
+    </div>
+</div>
+<div class="user-main">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="left-box">
+                <div class="uc-sub-box">
+                    <div class="uc-nav-box">
+                        <div class="box-hd">
+                            <h3 class="tittle">个人中心</h3>
+                        </div>
+                        <div class="box-bd">
+                            <ul class="uc-nav-list">
+                                <li>
+                                    <a href="personal-center.html">我的个人中心</a>
+                                </li>
+                                <li class="active">
+                                    <a href="javascript:;">收货地址</a>
+                                </li>
+                                <li>
+                                    <a href="user-favorite.html">喜欢的商品</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-box">
+                <div class="uc-box">
+                    <div class="uc-content-box">
+                        <div class="box-hd">
+                            <h2 class="title">收获地址</h2>
+                        </div>
+                        <div class="box-bd">
+                            <div class="user-address-list clearfix">
+                                <div class="address-item address-item-new">
+                                    <div class="add">+</div>
+                                    <p>添加新地址</p>
+                                </div>
+                                <div class="address-item newadd" id="1">
+                                    <dl>
+                                        <dt>
+                                            <em class="uname">王哇</em>
+                                        </dt>
+                                        <dd class="utel">176****6602</dd>
+                                        <dd class="uaddress">北京 北京市 东城区 建国门街道 <br>东北街23-23号 (100011)</dd>
+                                    </dl>
+                                    <div class="actions">
+                                        <a href="javascript:;" class="modify revamp">修改</a>
+                                        <a href="javascript:;" class="modify del">删除</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div class="footer">
+    <div class="fuwu">
+        <ul>
+            <li>预约维修服务</li>
+            <li>7天无理由退货</li>
+            <li>15天免费换货</li>
+            <li>满150元包邮</li>
+            <li>520余家售后网点</li>
+        </ul>
+    </div>
+    <div class="fuwu_det clearfix">
+        <ul class="fl fuwu_det_item">
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="fl fuwu_det_tel">
+            <li class="fuwu_det_num">400-100-5678</li>
+            <li class="fuwu_det_time">周一至周日 8:00-18:00</li>
+            <li class="fuwu_det_time">（仅收市话费）</li>
+            <li class="fuwu_det_btn">24小时在线客服</li>
+        </ul>
+    </div>
+    <div class="bottom clearfix">
+        <div class="logo_b fl"></div>
+        <div class="bottom_text fl">
+            <ul>
+                <li>小米商城</li>
+                <li>MIUI</li>
+                <li>米聊</li>
+                <li>多看书城</li>
+                <li>小米路由器</li>
+                <li>视频电话</li>
+                <li>小米天猫店</li>
+                <li>小米淘宝直营店</li>
+                <li>Select Region</li>
+            </ul>
+            <p>mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</p>
+
+            <p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+        </div>
+        <div class="bottom_img fl">
+            <img src="img/truste.png" alt="">
+            <img src="img/v-logo-1.png" alt="">
+            <img src="img/v-logo-2.png" alt="">
+            <img src="img/v-logo-3.png" alt="">
+        </div>
+    </div>
+</div>
+<!--遮罩-->
+<div class="shade"></div>
+<!--弹层-->
+<div class="modal">
+    <div class="modal-header">
+        <span>添加收货地址</span>
+        <a href="javascript:;" class="close"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-box clearfix">
+            <form class="address" id="add">
+                <input type="text" placeholder="姓名" style="width: 228px;">
+                <input type="text" placeholder="手机号" style="width: 228px;">
+                <input type="text" id="city" placeholder="选择 省 / 市 / 区 / 街道" style="width: 508px;">
+                <textarea placeholder="详细地址"></textarea>
+                <input type="text" placeholder="邮政编码" style="width: 228px;">
+                <input type="text" placeholder="地址标签" style="width: 228px;">
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-primary">保存</a>
+        <a href="javascript:;" class="btn btn-gray">取消</a>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var _width=$(window).width();
+    $('.header-nav-menu').css('width',_width);
+    $('.header-nav-menu').css('left','-40px');
+    /*导航*/
+    $('.header-nav .nav-list li').mouseover(function () {
+        $(this).find($('.header-nav-menu')).css('display', 'block');
+    });
+    $('.header-nav .nav-list li').mouseout(function () {
+        $(this).find($('.header-nav-menu')).css('display', 'none');
+    });
+
+    $('.uc-nav-list li').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+    $('.close').click(function () {
+        $('.shade').css('display', 'none');
+        $('.modal').slideUp("fast");
+    });
+    $('.btn-gray').click(function () {
+        $('.shade').css('display', 'none');
+        $('.address').children().val('');
+        $('.modal').slideUp("fast");
+    });
+    $('.address-item-new').click(function () {
+        $('.address').children().val('');
+        $('.shade').css('display', 'block');
+        $('.modal').slideDown("fast");
+    });
+    /*地址*/
+    $("#city").click(function (e) {
+        SelCity(this, e);
+        console.log("inout", $(this).val(), new Date());
+    });
+    $('.del').click(function () {
+        $(this).parent().parent().remove();
+    });
+
+    $('.btn-primary').click(function(){
+        var content='<div class="address-item newadd" id="1"> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <br>'+$('#add input').eq(3).val()+' ('+$('#add input').eq(4).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> <a href="javascript:;" class="modify del">删除</a> </div> </div>';
+       $('.user-address-list').append(content);
+        $('.shade').css('display', 'none');
+        $('.modal').slideUp("fast");
+        $('.del').click(function () {
+            $(this).parent().parent().remove();
+        });
+    });
+
+</script>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/shopCart.css" />
+	<script src="them/jquery/jquery-1.7.2.js"></script>
+	
+	<style>
+	</style>
+</head>
+<body>
+	<header>
+		<div class="header clearfix">
+			<a class="fl" href="index.html">
+				<h1>
+					<div class="h1_box clearfix">
+						<img class="height_min fl" src="img/mi-home.png"  alt="">
+						<img class="fl" src="img/mi-logo.png" alt="">
+					</div>
+				</h1>	
+			</a>
+			<div class="title fl">
+				<h2 class="fl">
+					我的购物车
+				</h2>
+				<p class="hint fl">
+					温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算
+				</p>
+				<ul class="title_item fr">
+					<li class="userName fl">
+						123456789<span></span>
+						<ul class="user_menu">
+							<li><a href="#">个人中心</a></li>
+							<li><a href="#">评价晒单</a></li>
+							<li><a href="#">我的喜欢</a></li>
+							<li><a href="#">退出登录</a></li>
+						</ul>
+					</li>
+					<li class="indent fl">
+						我的订单
+					</li>
+				</ul> 
+			</div>
+		</div>
+	</header>
+	<div id="conetent_wrapper">
+		<div id="content">
+			<div class="control_box clearfix">
+				<div class="radio_box fl">
+					<input type="checkbox" id="quanxuan" name="sport" value="">
+					<span>全选</span>
+				</div>
+				<div class="sp_name fl">
+					商品名称
+				</div>
+				<div class="sp_price fl">
+					单价
+				</div>
+				<ul class="sp_det fr">
+					<li class="sp_det_item fl">数量</li>
+					<li class="sp_det_item fl">小计</li>
+					<li class="sp_det_item fl">操作</li>
+				</ul>
+			</div>
+			<div class="details">
+				<ul id="sp301" class="details_item clearfix">
+					<li class="check_sp fl">
+						<input type="checkbox" name="check_commodity" value="">
+						<div class="img_box">
+							<img src="img/top.jpg" height="60" width="60" alt="">
+						</div>
+					</li>
+					<li class="name_sp fl">
+						小米手机5s Plus 高配全网通版 6GB内存
+					</li>
+					<li class="price_sp fl">
+						<span class="commodity_price">2599</span>元
+					</li>
+					<li class="det_sp fl">
+						<ul>
+							<li class="det_sp_item fl">
+								<div class="count_box clearfix">
+									<span class="count_box_item fl count_j">-</span>
+									<span class="count_box_item fl count">1</span>
+									<span class="count_box_item fl count_z">+</span>
+								</div>
+							</li>
+							<li class="det_sp_item fl">
+								<span class="commodity_price_sum"> 2599元</span>
+							</li>
+							<li class="det_sp_item fl">
+								<span class="delete_sp"></span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="kxsp_box">
+				<ul>
+					<li id="tj302" class="kxsp_box_item">
+						<span class="add_sp"></span><span class="add_name">+249元得小米vr眼镜</span>
+					</li>
+				</ul>
+			</div>
+			<div class="cart_bar">
+				<div class="fl section_left">
+					<a href="#"><p class="jxgw">继续购物</p></a>
+					<p class="tongji">
+						共<span class="commodity_amount">1</span>件商品,已选择<span class="selected_amount">0</span>件
+					</p>
+				</div>
+				<div class="btn_disabled fr">
+					去结算
+					<div class="btn_disabled_ts">
+						请勾选需要结算的商品
+						<span></span>
+					</div>
+				</div>
+				<div class="fr total_prices">
+					<p class="fl total_prices_text">合计（不含运费）</p>
+					<p class="fl total_prices_count">0</p>元
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	<div class="footer">
+		<div class="fuwu">
+			<ul>
+				<li>预约维修服务</li>
+				<li>7天无理由退货</li>
+				<li>15天免费换货</li>
+				<li>满150元包邮</li>
+				<li>520余家售后网点</li>
+			</ul>
+		</div>
+		<div class="fuwu_det clearfix">
+			<ul class="fl fuwu_det_item">
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+					
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="fl fuwu_det_tel">
+				<li class="fuwu_det_num">400-100-5678</li>
+				<li class="fuwu_det_time">周一至周日 8:00-18:00</li>
+				<li class="fuwu_det_time">（仅收市话费）</li>
+				<li class="fuwu_det_btn">24小时在线客服</li>
+			</ul>
+		</div>
+		<div class="bottom clearfix">
+			<div class="logo_b fl"></div>
+			<div class="bottom_text fl">
+				<ul>
+					<li>小米商城</li>
+					<li>MIUI</li>
+					<li>米聊</li>
+					<li>多看书城</li>
+					<li>小米路由器</li>
+					<li>视频电话</li>
+					<li>小米天猫店</li>
+					<li>小米淘宝直营店</li>
+					<li>Select Region</li>
+				</ul>
+				<p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</p>
+				<p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+			</div>
+			<div class="bottom_img fl">
+				<img src="img/truste.png" alt="">
+				<img src="img/v-logo-1.png" alt="">
+				<img src="img/v-logo-2.png" alt="">
+				<img src="img/v-logo-3.png" alt="">
+			</div>
+		</div>
+	</div>
+
+
+		<div class="delete_box">
+			<div class="delete_box_children">
+				<span class="delete_box_close"></span>
+				<p class="delete_box_text">确定删除吗？</p>
+				<div class="delete_box_btnbox">
+					<div class="fl delete_box_btn delete_box_abolish">取消</div>
+					<div class="delete_box_btn delete_box_confirm fr">确定</div>
+				</div>
+			</div>
+		</div>
+		
+	<script>
+		//创建页面
+        function createPage(data){
+	      	// if(!data){
+	      	// 	$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
+	      	// 	return;
+	      	// }
+      		// image=data.mainImg;
+      		operate();
+        }
+        //推荐商品的添加函数
+        function recommend(){
+        	$('.add_sp').click(function(){
+	        	operate_id=$(this).parent().attr('id');
+	        	$(this).parent().remove();
+				$('.details').append('<ul id="'+operate_id+'" class="details_item clearfix"><li class="check_sp fl"><input type="checkbox" checked  disabled="disabled" name="check_commodity" value=""><div class="img_box"><img src="img/top.jpg" height="60" width="60" alt=""></div></li><li class="name_sp fl">小米vr眼镜</li><li class="price_sp fl"><span class="commodity_price">249</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">1</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> 249元</span></li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
+					//添加
+					operate();
+					check_all();
+			});
+        }
+        recommend();
+        
+        //操作函数
+        function operate(){
+        	//移入商品重置operate_id
+        	$('.details_item').mouseover(function(){
+        		operate_id=$(this).attr('id');
+        	});
+        	//点击删除商品弹出提示框
+      		$('.delete_sp').click(function(){
+      			$('.delete_box').css('display','block');
+      			
+      		});
+      		$('.delete_box_close').click(function(){
+      			$('.delete_box').css('display','none');
+      		});
+      		$('.delete_box_abolish').click(function(){
+      			$('.delete_box').css('display','none');
+      		});
+      		//点击确认按钮删除商品
+      		$('.delete_box_confirm').click(function(){
+      			$('.delete_box').css('display','none');
+      			$("#"+operate_id).remove();
+      			//如果details没有子级 就是 没有东西
+      			if($('.details').children().length==0){
+      				$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
+      			}
+      			//如果删除的是推荐商品
+      			if(operate_id.indexOf('tj')!=-1){
+      				$('.kxsp_box ul').append('<li id="'+operate_id+'" class="kxsp_box_item"><span class="add_sp"></span><span class="add_name">+249元得小米vr眼镜</span></li>');
+      				recommend();
+
+      			}
+      		});
+      		//商品个数操作
+      		var count=1;
+      		$('.count_j').click(function(){
+      			alert(operate_id);
+				count--;
+				if(count<=1){
+					count=1;
+				}
+				$('#'+operate_id+' .count').html(count);
+			});
+			$('.count_z').click(function(){
+				count++;
+				$('#'+operate_id+' .count').html(count);
+			});
+						
+        }
+        //选中个数
+     	var checkboxCount=0;
+        //选中函数
+        function check_all(){
+     		$('#quanxuan').unbind("click").click(function(){
+	     		if ($('#quanxuan').attr('checked')) {
+				    $("input:checkbox[name='check_commodity']").each(function() {
+					        $(this).attr('checked', true);
+					        checkboxCount++;
+					});
+				}else{
+					$("input:checkbox[name='check_commodity']").each(function () {
+					        $(this).attr('checked',false);
+					});
+					checkboxCount=0;
+				}
+				sp_count(checkboxCount);
+	     	});
+	     	$("input:checkbox[name='check_commodity']").unbind("click").click(function(){
+	     		if($(this).attr('checked')) {
+	     			checkboxCount++;
+	     		}else{
+	     			checkboxCount--;
+	     		}
+	     		if(checkboxCount==$("input:checkbox[name='check_commodity']").length){
+	     			$('#quanxuan').attr('checked',true)
+	     		}else{
+	     			$('#quanxuan').attr('checked',false)
+	     		}
+	     		sp_count(checkboxCount);
+	     	});
+     	}
+        //提示框的显示隐藏
+        function sp_count(checkboxCount){
+        	//提示框的显示隐藏
+        	$("input:checkbox[name='check_commodity']").each(function() {
+			        if($(this).attr('checked')) {
+		     			checkboxCount++;
+		     		}
+			});
+     		if(checkboxCount==0){
+     			$('.btn_disabled_ts').css('display','block');
+     		}else{
+     			$('.btn_disabled_ts').css('display','none');
+     		}
+     		//已选商品 的个数
+     		$('.selected_amount').html(checkboxCount);
+     		//购物车商品个数
+     		$('.commodity_amount').html($("input:checkbox[name='check_commodity']").length);
+        }
+	$(document).ready(function(){
+		var image=[];
+		var id=301;
+		//要操作商品的id
+      	var operate_id;
+      	createPage();
+		// $.ajax({
+  //        	url:'http://192.168.31.211:2333/store/get?id='+id,       
+  //        	type:'GET',                                
+  //       	dataType:'jsonp',                         
+  //       	jsonp:'callback',                          
+  //       	success:function(result){
+  //           	var data=result.data;
+  //           	//createPage(data);
+  //        	},
+  //        	error:function(msg){
+                          
+  //        	}
+  //    	}); 
+
+
+     	
+     	sp_count(checkboxCount);
+     	check_all();
+
+     	
+	})
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <script src="them/jquery/jquery-1.7.2.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="header-logo clearfix">
+        <div class="logo_b fl"></div>
+        <div class="tittle fl">
+            <p style="font-size: 32px;margin-bottom: 8px">小米商城</p>
+            <p style="color:#666; font-size: 12px">让每个人都能享受科技的乐趣</p>
+        </div>
+    </div>
+</div>
+<div class="logo-form">
+    <div class="layout">
+        <div class="tittle">
+            <p>账号登录</p>
+        </div>
+        <div class="login_area">
+            <form method="post" onsubmit = "return checkUser();">
+                <input type="text" name="use" placeholder="用户名" id="userid">
+                <input type="password" name="pass" placeholder="密码" id="passid">
+                <p class="hint"></p>
+                <input type="submit" value="立即登录" class="btn"/>
+            </form>
+        </div>
+        <div class="zcwj">
+            <a href="register.html">注册账号 </a>
+            <span> | </span>
+            <a href="reset-pass.html"> 忘记密码？</a>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer-are">
+        <a href="javascript:;">简体</a>
+        <span> | </span>
+        <a href="javascript:;">繁体</a>
+        <span> | </span>
+        <a href="javascript:;">English</a>
+        <span> | </span>
+        <a href="javascript:;">常见问题</a>
+    </div>
+    <div class="footer-info">
+        <p>小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    function checkUser(){
+        var result = document.getElementById("userid").value;
+        var password = document.getElementById("passid").value;
+
+        if(result == ""  ){
+            $('.hint').html('用户名不能为空')
+            return false;
+        }
+        if(password == ""  ){
+            $('.hint').html('密码不能为空')
+            return false;
+        }
+        alert('登陆成功');
+    }
+</script>

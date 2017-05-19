@@ -1,0 +1,759 @@
+.layout{
+    width: 960px;
+    position: relative;
+    margin: 0 auto;
+}
+.n-logo-area {
+    padding: 50px 0;
+    height: 31px;
+    line-height: 31px;
+}
+.logout {
+    font-size: 14px;
+    color: #ababab;
+}
+.n-main-nav {
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -1px;
+}
+.n-main-nav li {
+    float: left;
+    text-align: center;
+    max-width: 25%;
+    height: 44px;
+    overflow: hidden;
+}
+.n-main-nav li.current a, .n-main-nav li a:hover {
+    color: #ff7e00;
+}
+.n-main-nav li a {
+    display: block;
+    padding: 0 34px;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.n-main-nav li.current .n-nav-corner {
+    display: inline-block;
+}
+.n-nav-corner {
+    width: 23px;
+    height: 12px;
+    margin-top: 12px;
+    margin-bottom: -2px;
+    _margin-bottom: -5px;
+    display: none;
+    background: url(https://account.xiaomi.com/static/res/7c3e9b0/passport/acc-2014/img/n-layout-corner.png) 0 0 no-repeat;
+}
+.n-frame {
+    background: #fff;
+    padding: 34px 34px 0;
+    border: 1px solid #e6e6e6;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    min-height: 400px;
+}
+.title-item {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+    clear: both;
+}
+.dis-inb {
+    display: inline-block;
+}
+
+.title-big {
+    font-size: 20px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    font-weight: bold;
+}
+.font-normal {
+    font-size: 14px;
+    color: #9d9d9d;
+    line-height: 1.5;
+}
+.dis-inb {
+    display: inline-block;
+}
+.light-num {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff7e00;
+    padding: 0 2px;
+}
+.score_2 {
+    color: rgb(255,102,0);
+}
+em{
+    font-style: normal;
+}
+.slider-area {
+    position: relative;
+}
+.dis-inb {
+    display: inline-block;
+}
+.slider-bar-bg {
+    border: 1px solid #ddd;
+    background: #e6e6e6;
+    height: 2px;
+    overflow: hidden;
+}
+.score_bg_2 {
+    background-color: rgb(255,102,0);
+}
+.slider-bar-line {
+    background: #ec6a3d;
+    height: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+.font-normal {
+    font-size: 14px;
+}
+.font-default, .font-normal, .font-big {
+    color: #9d9d9d;
+    line-height: 1.5;
+}
+.security_level_txt {
+    margin-left: 20px;
+}
+.dis-inb {
+    display: inline-block;
+}
+.device-detail-area {
+    position: relative;
+    zoom: 1;
+    overflow: hidden;
+}
+.device-detail-area li {
+    padding: 30px 0;
+    position: relative;
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: -1px;
+    font-size: 14px;
+}
+.device-detail-area .font-img-item {
+    margin-left: -10px;
+}
+.font-img-item {
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 0 56px;
+    height: 42px;
+}
+.font-img-item .fi-ico {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.fi-ico-lock {
+    background-position: 0px 0;
+}
+.fi-ico {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(https://account.xiaomi.com/static/res/b52bef2/account-static/respassport/acc-2014/img/device-icos.png) 0 0 no-repeat;
+}
+.device-detail-area .title-normal {
+    vertical-align: middle;
+}
+.dis-inb {
+    display: inline-block;
+}
+.title-normal {
+    color: #555;
+}
+.title-big, .title-bigger, .title-biggest, .title-normal, .title_big30 {
+    font-size: 16px;
+    color: #333;
+    color: #333;
+    line-height: 1.5;
+    font-weight: bold;
+}
+.font-default {
+    white-space: nowrap;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 680px;
+}
+.font-default, .font-normal, .font-big {
+    color: #9d9d9d;
+    line-height: 1.5;
+}
+.device-detail-area .ada-btn-area {
+    position: absolute;
+    top: 40px;
+    right: 0px;
+}
+.n-btn {
+    display: inline-block;
+    line-height: normal !important;
+    color: #555;
+    border: 1px solid #e8e8e8;
+    padding: 7px 40px;
+    background: #fff;
+    overflow: visible;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.fi-ico-email {
+    background-position: -40px 0;
+}
+.fi-ico-phone {
+    background-position: -200px 0;
+}
+.device_recommend {
+    min-height: 120px;
+    margin-top: 20px;
+    _height: 120px;
+    margin-bottom: 10px;
+}
+.footer{
+    height: 80px;
+}
+.footer .footer-are{
+    margin-bottom: 19px;
+}
+.footer .footer-are,.footer-info{
+    text-align: center;
+    color: #757575;
+    font-size: 14px;
+}
+.shade {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 443;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.modal {
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 450;
+    width: 400px;
+    display: none;
+}
+
+.modal-header, .modal-hd {
+    position: relative;
+    height: 32px;
+    line-height: 32px;
+    padding: 14px 20px;
+    background-color: #f5f5f5;
+}
+
+.modal-header h3, .modal-header .title, .modal-hd h3, .modal-hd .title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #424242;
+}
+
+.modal-header .close {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    height: 32px;
+    width: 32px;
+    background: url("../img/close.png") no-repeat;
+    background-size: 32px;
+}
+
+.modal-body {
+    padding: 40px 50px 10px 50px;
+    max-height: none;
+    background: #fff;
+}
+
+.modal-body input{
+    height: 18px;
+    padding: 10px 16px;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    line-height: 18px;
+    outline: none;
+    margin: 6px;
+    width: 259px;
+}
+.modal-body label{
+    margin: 6px;
+}
+.verify-img{
+    width: 129px;
+    display: inline-block;
+    height: 40px;
+    vertical-align: middle;
+}
+.modal-body .ts{
+    color: #666;
+    font-size: 12px;
+    margin: 6px 0 6px 6px;
+}
+
+.modal-footer {
+    height: 40px;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+.btn {
+    display: inline-block;
+    width: 120px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #b0b0b0;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: center;
+    color: #b0b0b0;
+    cursor: pointer;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+.btn-primary {
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+
+.btn-gray {
+    background: #b0b0b0;
+    border-color: #b0b0b0;
+    color: #fff;
+}
+.hint {
+    color: #f56600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.password,.email{
+    display: none;
+}
+.n-frame{
+    background: #fff;
+    padding: 34px 34px 0;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+}
+.uinfo {
+    font-size: 14px;
+}
+
+.c_b {
+    zoom: 1;
+}
+.c_b:before, .c_b:after {
+    content: "";
+    display: block;
+}
+.c_b:after {
+    clear: both;
+}
+.main_l {
+    float: left;
+    width: 300px;
+}
+.naInfoImgBox {
+    padding: 80px 20px 0;
+}
+.t_c {
+    text-align: center;
+}
+.na-img-area {
+    cursor: default;
+}
+.na-img-area {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e3e3e3;
+    border-radius: 50%;
+    padding: 4px;
+    background: #fff;
+    position: relative;
+    z-index: 4;
+    cursor: pointer;
+}
+.marauto {
+    margin: 0 auto;
+}
+.na-img-bg-area:empty {
+    background: url(https://account.xiaomi.com/static/res/7c3e9b0/passport/acc-2014/img/n-avator-bg.png) 0 0 no-repeat !important;
+}
+.na-img-bg-area {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.na-edit {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+    display: none;
+    width: 43px;
+    height: 43px;
+}
+.naImgLink {
+    padding-top: 15px;
+}
+.color4a9 {
+    color: #4a90e3;
+}
+.main_r {
+    float: left;
+    width: 590px;
+}
+.framedatabox {
+    padding-top: 15px;
+}
+.fdata {
+    padding-left: 20px;
+    line-height: 40px;
+    border-bottom: 2px solid #e6e6e6;
+    overflow: hidden;
+}
+.fdata h3 {
+    font-size: 16px;
+    color: #333;
+}
+.fdata {
+    padding-left: 20px;
+    line-height: 40px;
+    border-bottom: 2px solid #e6e6e6;
+    overflow: hidden;
+}
+.logout_wap, .btn_editinfo {
+    display: none;
+}
+.bg_normal {
+    color: #fff;
+}
+.btnadpt {
+    width: 100%;
+    padding: 0;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    -webkit-box-shadow: 2px,2px,1px,rgba(0,0,0,0.3);
+    box-shadow: 2px,2px,1px,rgba(0,0,0,0.3);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+.popup_mask {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    _position: absolute;
+    _height: 1000px;
+    display: none;
+}
+.popup_mask .bkc {
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    left: 0;
+    top: 0;
+    background-color: #333;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+.popup_mask .mod_wrap {
+    height: 100%;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+.popup_mask .mod_acc_tip {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -206px;
+    top: 50%;
+    margin-top: -187px;
+    _top: 500px;
+}
+:root .mod_acc_tip {
+    border: 1px solid #838383;
+}
+.mod_acc_tip {
+    background: #fff;
+    width: 412px;
+    min-height: 300px;
+    height: auto;
+    padding: 0 14px 30px;
+    line-height: 20px;
+    border: 1px solid #838383;
+    border: 1px solid #d1d1d1 \9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    color: #666;
+    position: relative;
+    z-index: 4;
+}
+.mod_tip_hd {
+    height: 42px;
+    padding-top: 13px;
+    line-height: 42px;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+}
+.mod_tip_hd h4 {
+    font-size: 15px;
+    color: #1e1e1e;
+}
+.btn_mod_close {
+    width: 22px;
+    height: 22px;
+    overflow: hidden;
+    position: absolute;
+    top: 7px;
+    right: -7px;
+    cursor: pointer;
+    background: url(../img/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+}
+a {
+    color: #46639c;
+}
+.btn_mod_close span {
+    display: none;
+}
+.editbasicinfo {
+    padding: 40px 0 0 20px;
+}
+
+.infobox {
+    padding-bottom: 10px;
+    line-height: 42px;
+}
+
+
+.infobox dt {
+    float: left;
+    width: 80px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 42px;
+    overflow: hidden;
+    _clear: left;
+}
+.infobox dt, .infobox dd {
+    padding-bottom: 10px;
+    _display: inline;
+}
+.labelbox, .input_bg {
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+.labelbox, .input_bg, .tits_list, .borderbox {
+    border: 1px solid #e8e8e8;
+}
+a, label, :focus {
+    outline: 0 none;
+}
+label {
+    cursor: default;
+}
+.mod_acc_tip input {
+    display: inline-block;
+}
+.infobox input {
+    line-height: 20px;
+}
+.labelbox input, .input_bg input {
+    height: 20px;
+    line-height: 20px;
+    padding: 10px;
+    display: inline-block;
+}
+input {
+    color: #333;
+}
+.nickname {
+    width: 265px;
+}
+.infobox li {
+    float: left;
+    margin-right: 6px;
+    cursor: pointer;
+    position: relative;
+}
+.titsbirth {
+    width: 79px;
+    padding-left: 10px;
+    _height: 35px;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    cursor: pointer;
+    border: 1px solid #e8e8e8;
+}
+.birthcon {
+    float: left;
+    width: 48px;
+    border-right: 1px solid #e8e8e8;
+}
+.titsbirth .icon_cirarr {
+    margin: 12px 6px 0 0;
+}
+.icon_cirarr {
+    float: right;
+    background: url(https://account.xiaomi.com/static/res/0eeaaed/passport/oauth/images/icon_user.png);
+    width: 16px;
+    height: 16px;
+    margin: 11px 12px 0 12px;
+}
+.tits_list {
+    background: #fff;
+    width: 100%;
+    height: 156px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 41px;
+    z-index: 98;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.tits_list p {
+    padding-left: 10px;
+    line-height: 26px;
+}
+.tip_btns {
+    height: 35px;
+}
+.tip_btns {
+    padding-top: 25px;
+    text-align: center;
+}
+.btn_commom {
+    background: #ff6700;
+    border: 1px solid #ff6700;
+    color: #fff;
+}
+.btn_tip {
+    min-width: 100px;
+    _width: 100px;
+    height: 33px;
+    margin: 0 2px;
+    padding: 0 10px;
+    line-height: 33px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.btn_back {
+    border: 1px solid #e8e8e8;
+    color: #555;
+}
+.float-left {
+    float: left;
+}
+.form-group {
+    position: relative;
+    width: 140px;
+}
+.form-control, .simulation-input {
+    width: 100%;
+    line-height: 16px;
+    font-size: 12px;
+    color: #4b555b;
+    background: none;
+    outline: none;
+    border: 1px solid #d3dcdd;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 -1px;
+    padding: 7px 8px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+body{font-family:'microsoft yahei';}
+em{font-style:normal;font-size:14px;}
+.form-group {position: relative;width:140px;}
+.form-group-txt{height:32px;line-height:32px;padding:0 10px;}
+.form-group-select {/*padding-left: 1px;*/}
+.form-control,
+.simulation-input {
+    width: 100%;
+    line-height: 16px;
+    font-size: 12px;
+    color: #4b555b;
+    background: none;
+    outline: none;
+    border: 1px solid #d3dcdd;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 -1px;
+    padding: 7px 8px;
+    *padding-left: 0;
+    *padding-right: 0;
+    *text-indent: 8px;
+    *float: left;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.float-left{float:left;}
+#lq-datetimepick{
+    z-index: 100;
+}
+#editInfo{
+    cursor: pointer;
+}
