@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/personal-information.css"/>
+    <link rel="stylesheet" href="them/time/css/lq.datetimepick.css"/>
+    <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/time/js/data.js"></script>
+    <script src="them/time/js/selectUi.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="layout">
+        <div class="n-logo-area clearfix">
+            <a href="javascript:;" class="fl">
+                <img src="https://account.xiaomi.com/static/res/fa93d30/passport/acc-2014/img/n-logo.png">
+            </a>
+            <a href="javascxript:;" class="fr">退出</a>
+        </div>
+    </div>
+    <div class="layout">
+        <div class="n-main-nav clearfix">
+            <ul>
+                <li class="account current">
+                    <a href="javascript:;" title="帐号安全">帐号安全</a>
+                    <em class="n-nav-corner"></em>
+                </li>
+                <li class="information">
+                    <a href="javascript:;" title="个人信息">个人信息</a>
+                    <em class="n-nav-corner"></em>
+                </li>
+            </ul>
+        </div>
+        <div class="n-frame account-box">
+            <div class="title-item title_security_wap">
+                <h4 class="title-big dis-inb">安全等级</h4>
+
+                <p class="font-normal dis-inb wap_colb2">
+                    <em class="light-num" style="padding:0">
+                        <span class="score_2">65</span>
+                    </em>分
+                </p>
+
+                <div class="slider-area dis-inb vert-m" style="width:360px;">
+                    <div class="slider-bar-bg"></div>
+                    <div class="slider-bar-line score_bg_2" style="width:65%;"></div>
+                </div>
+                <p class="font-normal dis-inb security_level_txt">
+                    <span class="score_outer_2">存在<em class="light-num">2</em>项风险</span>
+                </p>
+            </div>
+            <ul class="device-detail-area">
+                <li>
+                    <div class="font-img-item clearfix">
+                        <em class="fi-ico fi-ico-lock"></em>
+
+                        <p class="title-normal dis-inb">帐号密码</p>
+
+                        <p class="font-default">
+                            用于保护帐号信息和登录安全
+                        </p>
+                    </div>
+                    <div class="ada-btn-area">
+                        <a href="javascript:;" class="n-btn changePass">修改</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="font-img-item clearfix">
+                        <em class="fi-ico fi-ico-email"></em>
+                        <p class="title-normal dis-inb">安全邮箱</p>
+                        <span class="warning-tip">&nbsp;</span>
+                        <span class="title-normal wap-desc">
+                             <span class="color-active">未绑定</span>
+                        </span>
+                        <p class="font-default color-active">安全邮箱将可用于登录小米帐号和重置密码，建议立即设置</p>
+                    </div>
+                    <div class="ada-btn-area">
+                        <!--无地址-->
+                        <a href="javascript:;" class="n-btn changeEmail">绑定</a>
+                    </div>
+                </li>
+                <li id="changeMobile" class="click-row">
+                    <div class="font-img-item clearfix">
+                        <em class="fi-ico fi-ico-phone"></em>
+                        <p class="title-normal dis-inb">安全手机</p>
+                        <span class="title-normal wap-desc">
+                                176******02<span class="ph_list_sum phone-list-sum" data-title="等<span class='ff6'>{phsum}</span>个"></span>
+                        </span>
+                        <p class="font-default">安全手机可以用于登录小米帐号，重置密码或其他安全验证</p>
+                    </div>
+                    <div class="ada-btn-area">
+                        <a class="n-btn btnBindMobile" href="javascript:;">添加</a>
+                        <a class="n-btn btnChangeMobile" href="javascript:;">修改</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="n-frame information-box" style="display: none">
+                <div class="uinfo c_b">
+                    <div class="">
+                        <div class="main_l">
+                            <div class="naInfoImgBox t_c">
+                                <div class="na-img-area marauto">
+                                    <!--na-img-bg-area不能插入任何子元素-->
+                                    <div class="na-img-bg-area"></div>
+                                    <em class="na-edit"></em>
+                                </div>
+                                <div class="naImgLink">
+
+                                    <a class="color4a9" href="" title="设置头像">设置头像</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main_r">
+                            <div class="framedatabox">
+                                <div class="fdata">
+                                    <p class="color4a9 fr" href="" title="编辑" id="editInfo"><i class="iconpencil"></i>编辑</p>
+
+                                    <h3>基础资料</h3>
+                                </div>
+                                <div class="fdata lblnickname">
+                                    <p><span>姓名：</span><span class="value" _empty>
+
+                        <span style="color:#999;">请设置名字</span>
+
+                  </span></p>
+                                </div>
+                                <div class="fdata lblbirthday">
+                                    <p><span>生日：</span><span class="value" _empty>
+
+
+
+                  </span></p>
+                                </div>
+                                <div class="fdata lblgender">
+                                    <p><span>性别：</span><span class="value" _empty>
+
+
+
+                  </span></p>
+                                </div>
+                                <div class="btn_editinfo"><a id="editInfoWap" class="btnadpt bg_normal" href="">编辑基础资料</a></div>
+                            </div>
+                            <div class="framedatabox">
+                                <div class="fdata">
+                                    <h3>高级设置</h3>
+                                </div>
+                                <div class="fdata click-row">
+
+                                    <p>
+                                        <span>银行卡</span>
+                                        <span class="arrow_r"></span>
+                                    </p>
+                                </div>
+                                <div class="fdata click-row">
+
+                                    <p>
+                                        <span>帐号地区：  </span>
+                                        <span class="box_center"><em id="region" _code="CN">中国</em><i class="arrow_r"></i></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+        <div class="n-frame device_recommend">
+            <div class="title-item title_security_wap">
+                <h4 class="title-big dis-inb">推荐使用</h4>
+            </div>
+            <ul class="device-detail-area">
+                <li class="click-row">
+                    <div class="font-img-item clearfix">
+                        <em class="fi-ico fi-ico-token"></em>
+                        <p class="title-normal dis-inb">小米安全令牌</p>
+                        <p class="font-default">在非信任设备上登录需要二次验证，防止他人恶意登录</p>
+                        <span class="title-normal wap-desc color-active">开启</span>
+                    </div>
+                    <div class="ada-btn-area">
+                        <a href="javascript:;" class="n-btn">开启</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-are">
+            <a href="javascript:;">简体</a>
+            <span> | </span>
+            <a href="javascript:;">繁体</a>
+            <span> | </span>
+            <a href="javascript:;">English</a>
+            <span> | </span>
+            <a href="javascript:;">常见问题</a>
+        </div>
+        <div class="footer-info">
+            <p>小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</p>
+        </div>
+    </div>
+</div>
+<!--遮罩-->
+<div class="shade"></div>
+<!--弹层修改密码-->
+<div class="modal password">
+    <div class="modal-header">
+        <span>修改密码</span>
+        <a href="javascript:;" class="close"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-box clearfix">
+            <form class="address">
+                <label>原始密码</label><br />
+                <input type="text" placeholder="输入原密码" />
+                <label>新密码</label><br />
+                <input type="password" placeholder="输入新密码" id="pass" />
+                <input type="password" placeholder="重复新密码" id="confirm" />
+                <p class="ts">密码长度8~16位，其中数字，字母和符号至少包含两种</p>
+                <label>验证码</label><br />
+                <input type="text" placeholder="输入验证码" style="width: 120px;"/>
+                <img class="verify-img" src="" tittle="点击换一张" alt="验证码">
+                <p class="hint verify-text"></p>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-primary save">确定</a>
+        <a href="javascript:;" class="btn btn-gray">取消</a>
+    </div>
+</div>
+<!--修改信息-->
+<div class="popup_mask">
+    <div class="bkc"></div>
+    <div class="mod_wrap">
+        <div class="mod_acc_tip layereditinfo">
+            <div class="mod_tip_hd">
+                <h4>编辑基础资料</h4>
+
+                <p class="btn_mod_close" href="" title=""><span>关闭</span></p>
+            </div>
+            <div class="mod_tip_bd">
+                <form action="" method="">
+                    <div class="wapbox editbasicinfo">
+                        <dl class="infobox c_b">
+                            <dt>姓名：</dt>
+                            <dd>
+                                <label class="labelbox"><input class="nickname" type="text" name="nickname"
+                                                               maxlength="20" placeholder="姓名"></label>
+                            </dd>
+                            <dt>生日：</dt>
+                            <dd>
+                                <ul class="birth-box c_b">
+                                    <div class="form-group float-left w140">
+                                        <input type="text" name="datepicker" id="datetimepicker3" class="form-control"
+                                               value="2015-5-20"/>
+                                    </div>
+                                </ul>
+                            </dd>
+                            <dt>性别：</dt>
+                            <dd class="checkbox infosex">
+                                <input type="radio" name="nannv" value="男">男
+                                <input type="radio" name="nannv" value="女">女
+                            </dd>
+                        </dl>
+
+                        <div class="tip_btns">
+                            <p class="btn_tip btn_commom" href="" title="保存">保存</p>
+                            <!-- <input class="btn_tip btn_commom" type="submit" value="保存"> -->
+                            <p class="btn_tip btn_back" href="" title="取消">取消</p>
+                        </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--绑定邮箱-->
+<div class="modal email">
+    <div class="modal-header">
+        <span>修改密码</span>
+        <a href="javascript:;" class="close"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-box clearfix">
+            <p style="font-size: 14px;margin-bottom: 30px">为了保护帐号安全，需要验证手机有效性</p>
+            <p style="font-size: 14px;color: #666; margin-bottom: 30px">点击发送短信按钮，将会发送一条有验证码的短信至手机 176******02</p>
+            <p style="text-align: center;font-size: 14px;color: #46639c;margin-bottom: 30px">换用其它验证方式</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-primary message">发送短信</a>
+    </div>
+</div>
+<!--发送短信-->
+<div class="modal code">
+    <div class="modal-header">
+        <span>修改密码</span>
+        <a href="javascript:;" class="close"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-box clearfix">
+            <p style="font-size: 14px;margin-bottom: 30px">为了保护帐号安全，需要验证手机有效性</p>
+            <input type="text" placeholder="输入验证码" style="width: 120px;"/>
+            <img class="verify-img" src="" tittle="点击换一张" alt="验证码">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-primary message">确定</a>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    var _width=$(window).width();
+    $('.header-nav-menu').css('width',_width);
+    $('.header-nav-menu').css('left','-40px');
+    $('.close').click(function () {
+        $('.shade').css('display', 'none');
+        $('.modal').slideUp("fast");
+    });
+    $('.btn-gray').click(function () {
+        $('.shade').css('display', 'none');
+        $('.address').children().val('');
+        $('.modal').slideUp("fast");
+    });
+    $('.save').click(function(){
+        if($('#pass').val()==$('#confirm').val()){
+        }else{
+            $('.verify-text').html('两次密码不一致');
+        }
+    });
+    $('.changePass').click(function(){
+        $('.shade').css('display', 'block');
+        $('.password').slideDown("fast");
+    })
+    $('.changeEmail').click(function(){
+        $('.shade').css('display', 'block');
+        $('.email').slideDown("fast");
+    });
+    $('.message').click(function(){
+        $('.email').css('display','none');
+        $('.code').css('display','block');
+    });
+    $('.account').click(function(){
+        $('.device_recommend').css('display','block');
+        $('.information .n-nav-corner').css('display','none');
+        $('.account .n-nav-corner').css('display','inline-block');
+        $('.information-box').css('display','none');
+        $('.account-box').css('display','block');
+    });
+    $('.information').click(function(){
+        $('.device_recommend').css('display','none');
+        $('.account .n-nav-corner').css('display','none');
+        $('.information .n-nav-corner').css('display','inline-block');
+        $('.account-box').css('display','none');
+        $('.information-box').css('display','block');
+    });
+    /*修改信息*/
+    $('#editInfo').click(function () {
+        $('.popup_mask').css('display', 'block');
+    });
+    $('.btn_commom').click(function () {
+        $('.popup_mask').css('display', 'none');
+        $('.lblnickname .value').html($('.nickname').val());
+        $('.lblbirthday .value').html($('#datetimepicker3').val());
+        $('.lblgender .value').html($('input[name="nannv"]:checked').val());
+    });
+    $('.btn_mod_close').click(function () {
+        $('.popup_mask').css('display', 'none');
+    });
+    $('.btn_back').click(function () {
+        $('.popup_mask').css('display', 'none');
+    });
+    $("#datetimepicker3").on("click", function (e) {
+        e.stopPropagation();
+        $(this).lqdatetimepicker({
+            css: 'datetime-day',
+            dateType: 'D',
+            selectback: function () {
+            }
+        });
+    });
+</script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/register.css"/>
+    <script src="them/jquery/jquery-1.7.2.js"></script>
+</head>
+<body>
+<div class="box">
+    <div class="header">
+        <div class="header-logo">
+            <div class="logo_b"></div>
+            <div class="tittle">
+                <p style="font-size: 32px;margin-bottom: 25px">重置密码</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="regbox">
+        <p class="look">请输入注册的邮箱地址、手机号或小米号</p>
+        <form method="post" >
+            <input type="text" name="use" placeholder="请输入注册时手机号" style="width: 334px;" id="phone">
+            <p class="hint phone-text"></p>
+            <div class="verify">
+                <input type="password" name="pass" placeholder="图片验证码" style="width: 197px;" id="verify">
+                <img src="" class="verify-img" title="点击换一张" alt="图片验证码">
+                <p class="hint verify-text"></p>
+            </div>
+        </form>
+        <a class="btn" href="javascript:;">下一步</a>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer-are">
+        <a href="javascript:;">简体</a>
+        <span> | </span>
+        <a href="javascript:;">繁体</a>
+        <span> | </span>
+        <a href="javascript:;">English</a>
+        <span> | </span>
+        <a href="javascript:;">常见问题</a>
+    </div>
+    <div class="footer-info">
+        <p>小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $('#phone').focus();
+    function verification(){
+        $('#phone').blur(function(){
+            if($(this).val()==''){
+                $('.phone-text').css('display','block');
+                $('.phone-text').html('手机号不能为空');
+                return false;
+            }
+            var reg=/^1\d{10}$/;
+            if(!reg.test($(this).val())){
+                $('.phone-text').css('display','block');
+                $('.phone-text').html('请输入正确的手机号');
+                return false;
+            }
+            $('.phone-text').css('display','none');
+        });
+        $('#verify').blur(function(){
+            if($(this).val()==''){
+                $('.verify-text').css('display','block');
+                $('.verify-text').html('图片验证码不能为空');
+                return false;
+            }
+            if($(this).val().length<4){
+                $('.verify-text').css('display','block');
+                $('.verify-text').html('图片验证码错误');
+                return false;
+            }
+            $('.verify-text').css('display','none');
+        });
+    }
+    verification();
+
+    $('.btn').click(function(){
+        if($('.verify-text').is(":hidden")&&$('.phone-text').is(":hidden")){
+            alert('成功');
+            $('.btn').attr('href','reset-verify.html');
+        }else{
+            return false;
+        }
+    });
+
+</script>
