@@ -7,6 +7,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * Created by akku on 2017/5/18.
+ * 测试类
  */
 @Controller
 @ApiIgnore

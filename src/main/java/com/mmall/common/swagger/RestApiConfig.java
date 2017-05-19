@@ -1,6 +1,7 @@
 package com.mmall.common.swagger;
 
 
+import com.mmall.pojo.Product;
 import com.mmall.pojo.Shipping;
 import com.mmall.pojo.User;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +38,7 @@ public class RestApiConfig extends WebMvcConfigurationSupport{
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
-                .build().ignoredParameterTypes(User.class, Shipping.class);
+                .build().ignoredParameterTypes(User.class, Shipping.class, Product.class);
     }
 
     private ApiInfo apiInfo() {
