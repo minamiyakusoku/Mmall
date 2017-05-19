@@ -31,8 +31,8 @@ public class UserManageController {
 
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String",paramType="query")})
     @RequestMapping(value="/login.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){

@@ -35,14 +35,14 @@ public class ShippingController {
 
     @ApiOperation(value = "添加收货地址")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "receiverName", value = "收货人", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverPhone", value = "电话", required = false, paramType = "String"),
-            @ApiImplicitParam(name = "receiverMobile", value = "手机", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverProvince", value = "省", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverCity", value = "市", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverDistrict", value = "区", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverAddress", value = "具体地址", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverZip", value = "邮编", required =false, paramType = "String")})
+            @ApiImplicitParam(name = "receiverName", value = "收货人", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverPhone", value = "电话", required = false, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverMobile", value = "手机", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverProvince", value = "省", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverCity", value = "市", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverDistrict", value = "区", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverAddress", value = "具体地址", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverZip", value = "邮编", required =false, dataType = "String",paramType="query")})
     @RequestMapping(value ="/add.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse add(HttpSession session,Shipping shipping){
@@ -54,7 +54,7 @@ public class ShippingController {
     }
 
     @ApiOperation(value = "删除收货地址")
-    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, paramType = "int")
+    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, dataType = "int",paramType="query")
     @RequestMapping(value="/del.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse del(HttpSession session,Integer shippingId){
@@ -66,14 +66,14 @@ public class ShippingController {
     }
     @ApiOperation(value = "添加收货地址")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "receiverName", value = "收货人", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverPhone", value = "电话", required = false, paramType = "String"),
-            @ApiImplicitParam(name = "receiverMobile", value = "手机", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverProvince", value = "省", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverCity", value = "市", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverDistrict", value = "区", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverAddress", value = "具体地址", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "receiverZip", value = "邮编", required =false, paramType = "String")})
+            @ApiImplicitParam(name = "receiverName", value = "收货人", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverPhone", value = "电话", required = false, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverMobile", value = "手机", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverProvince", value = "省", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverCity", value = "市", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverDistrict", value = "区", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverAddress", value = "具体地址", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "receiverZip", value = "邮编", required =false, dataType = "String",paramType="query")})
     @RequestMapping(value="/update.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse update(HttpSession session,Shipping shipping){
@@ -86,7 +86,7 @@ public class ShippingController {
 
 
     @ApiOperation(value = "查询收货地址")
-    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, paramType = "int")
+    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, dataType = "int",paramType="query")
     @RequestMapping(value="/select.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<Shipping> select(HttpSession session,Integer shippingId){
@@ -99,8 +99,8 @@ public class ShippingController {
 
     @ApiOperation(value = "查询收货地址列表")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, paramType = "int"),
-            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, paramType = "int")})
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
     @RequestMapping(value="/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<PageInfo> list(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
