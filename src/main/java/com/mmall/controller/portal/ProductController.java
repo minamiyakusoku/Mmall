@@ -6,6 +6,7 @@ import com.mmall.service.IProductService;
 import com.mmall.vo.ProductDetailVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
  * Created by geely
  */
 @Controller
-@Api(value = "/product", description = "商品相关操作")
-@RequestMapping("/product/")
+@Api(value = "/product", description = "【Web C端】 商品相关操作" )
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
@@ -26,14 +27,22 @@ public class ProductController {
 
     @ApiOperation(value = "获取商品详细信息", notes = "根据商品id来获取商品详细信息")
     @ApiImplicitParam(name = "productId", value = "商品id", required = true, dataType = "int")
-    @RequestMapping(value = "detail.do",method = RequestMethod.GET)
+    @RequestMapping(value = "/detail.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-
     public ServerResponse<ProductDetailVo> detail(Integer productId){
         return iProductService.getProductDetail(productId);
     }
 
-    @RequestMapping("list.do")
+
+
+    @ApiOperation(value = "根据关键字或商品类型查询商品详细信息", notes = "多条件查询（keyword和categoryId至少选择一个）")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword", value = "关键字", required = false, dataType = "String"),
+            @ApiImplicitParam(name = "categoryId", value = "商品类型ID", required = false, dataType = "int"),
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int"),
+            @ApiImplicitParam(name = "orderBy", value = "排序属性", required = false, dataType = "String")})
+    @RequestMapping(value = "/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<PageInfo> list(@RequestParam(value = "keyword",required = false)String keyword,
                                          @RequestParam(value = "categoryId",required = false)Integer categoryId,

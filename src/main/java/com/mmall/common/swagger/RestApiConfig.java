@@ -1,6 +1,8 @@
 package com.mmall.common.swagger;
 
 
+import com.mmall.pojo.Shipping;
+import com.mmall.pojo.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,34 +18,33 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /*
+ * @author akku
+ * swagger配置
  * Restful API 访问路径:
  * http://IP:port/{context-path}/swagger-ui.html
  * eg:http://localhost:8080/jd-config-web/swagger-ui.html
  */
 @EnableWebMvc
 @EnableSwagger2
-@ComponentScan(basePackages = {"com.mmall.common.swagger"})
+@ComponentScan(basePackages = {"com.mmall.controller"})
 @Configuration
 public class RestApiConfig extends WebMvcConfigurationSupport{
 
     @Bean
     public Docket createRestApi() {
-
-        System.out.print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
-                .build();
+                .build().ignoredParameterTypes(User.class, Shipping.class);
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring 中使用Swagger2构建RESTful APIs")
-                .termsOfServiceUrl("http://blog.csdn.net/he90227")
-                .contact("逍遥飞鹤")
-                .version("1.1")
+                .title("未来电商接口文档")
+                .contact("Akku")
+                .version("1.0")
                 .build();
     }
 }

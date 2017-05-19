@@ -9,11 +9,16 @@ import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IOrderService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,7 +32,8 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/order/")
+@Api(value = "/shipping", description = "【Web C端】 订单相关操作")
+@RequestMapping("/order")
 public class OrderController {
 
     private static  final Logger logger = LoggerFactory.getLogger(OrderController.class);
@@ -35,8 +41,9 @@ public class OrderController {
     @Autowired
     private IOrderService iOrderService;
 
-
-    @RequestMapping("create.do")
+    @ApiOperation(value = "创建订单")
+    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, paramType = "int")
+    @RequestMapping(value="/create.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse create(HttpSession session, Integer shippingId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -46,8 +53,9 @@ public class OrderController {
         return iOrderService.createOrder(user.getId(),shippingId);
     }
 
-
-    @RequestMapping("cancel.do")
+    @ApiOperation(value = "清除订单")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @RequestMapping(value="/cancel.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse cancel(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -57,8 +65,8 @@ public class OrderController {
         return iOrderService.cancel(user.getId(),orderNo);
     }
 
-
-    @RequestMapping("get_order_cart_product.do")
+    @ApiOperation(value = "获取当前用户订单列表")
+    @RequestMapping(value="/get_order_cart_product.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse getOrderCartProduct(HttpSession session){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -69,8 +77,9 @@ public class OrderController {
     }
 
 
-
-    @RequestMapping("detail.do")
+    @ApiOperation(value = "获取指定订单")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @RequestMapping(value="/detail.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse detail(HttpSession session,Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -80,7 +89,12 @@ public class OrderController {
         return iOrderService.getOrderDetail(user.getId(),orderNo);
     }
 
-    @RequestMapping("list.do")
+
+    @ApiOperation(value = "获取当前用户全部订单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, paramType = "int"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, paramType = "int")})
+    @RequestMapping(value="/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse list(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -112,8 +126,9 @@ public class OrderController {
 
 
 
-
-    @RequestMapping("pay.do")
+    @ApiOperation(value = "支付订单")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @RequestMapping(value="pay.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse pay(HttpSession session, Long orderNo, HttpServletRequest request){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -124,7 +139,9 @@ public class OrderController {
         return iOrderService.pay(orderNo,user.getId(),path);
     }
 
-    @RequestMapping("alipay_callback.do")
+
+    @ApiOperation(value = "支付宝回调")
+    @RequestMapping(value="alipay_callback.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object alipayCallback(HttpServletRequest request){
         Map<String,String> params = Maps.newHashMap();
@@ -167,7 +184,9 @@ public class OrderController {
     }
 
 
-    @RequestMapping("query_order_pay_status.do")
+    @ApiOperation(value = "查询订单状态")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @RequestMapping(value="query_order_pay_status.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<Boolean> queryOrderPayStatus(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);

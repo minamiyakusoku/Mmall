@@ -5,7 +5,7 @@ import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
-import com.sun.corba.se.spi.activation.Server;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,8 @@ import javax.servlet.http.HttpSession;
  * Created by geely
  */
 @Controller
-@RequestMapping("/user/")
+@Api(value = "/user", description = "【Web C端】 用户相关操作")
+@RequestMapping("/user")
 public class UserController {
 
 
@@ -33,7 +34,11 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "login.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do",method = RequestMethod.POST)
+    @ApiOperation(value = "登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "String")})
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username,password);
@@ -43,28 +48,44 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value = "logout.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/logout.do",method = RequestMethod.POST)
+    @ApiOperation(value = "注销")
     @ResponseBody
     public ServerResponse<String> logout(HttpSession session){
         session.removeAttribute(Const.CURRENT_USER);
         return ServerResponse.createBySuccess();
     }
 
-    @RequestMapping(value = "register.do",method = RequestMethod.POST)
+    @ApiOperation(value = "注册")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "phone", value = "手机号", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "question", value = "密保问题", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, paramType = "String")})
+    @RequestMapping(value = "/register.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> register(User user){
+    public ServerResponse<String> register( User user){
         return iUserService.register(user);
     }
 
-
+    @ApiOperation(value = "账号/邮箱可用检测")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "str", value = "账号或邮箱", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "type", value = "类型（username/email）", required = true, paramType = "String",
+                    examples = @Example({
+                            @ExampleProperty(mediaType = "a",value = "username"),
+                            @ExampleProperty(value = "email")
+                    }))})
     @RequestMapping(value = "check_valid.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> checkValid(String str,String type){
         return iUserService.checkValid(str,type);
     }
 
-
-    @RequestMapping(value = "get_user_info.do",method = RequestMethod.POST)
+    @ApiOperation(value = "获取当前登录的用户信息")
+    @RequestMapping(value = "/get_user_info.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> getUserInfo(HttpSession session){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
@@ -75,29 +96,43 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "forget_get_question.do",method = RequestMethod.POST)
+
+    @ApiOperation(value = "获取当前登录的用户信息")
+    @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String")
+    @RequestMapping(value = "/forget_get_question.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetGetQuestion(String username){
         return iUserService.selectQuestion(username);
     }
 
-
-    @RequestMapping(value = "forget_check_answer.do",method = RequestMethod.POST)
+    @ApiOperation(value = "账号/邮箱可用检测")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "question", value = "问题", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "answer", value = "答案", required = true, paramType = "String")})
+    @RequestMapping(value = "/forget_check_answer.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetCheckAnswer(String username,String question,String answer){
         return iUserService.checkAnswer(username,question,answer);
     }
 
-
-    @RequestMapping(value = "forget_reset_password.do",method = RequestMethod.POST)
+    @ApiOperation(value = "重置密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "passwordNew", value = "新密码", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "forgetToken", value = "密保验证成功返回的token", required = true, paramType = "String")})
+    @RequestMapping(value = "/forget_reset_password.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetRestPassword(String username,String passwordNew,String forgetToken){
         return iUserService.forgetResetPassword(username,passwordNew,forgetToken);
     }
 
 
-
-    @RequestMapping(value = "reset_password.do",method = RequestMethod.POST)
+    @ApiOperation(value = "修改密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "passwordOld", value = "旧密码", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "passwordNew", value = "新密码", required = true, paramType = "String")})
+    @RequestMapping(value = "/reset_password.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> resetPassword(HttpSession session,String passwordOld,String passwordNew){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -107,8 +142,13 @@ public class UserController {
         return iUserService.resetPassword(passwordOld,passwordNew,user);
     }
 
-
-    @RequestMapping(value = "update_information.do",method = RequestMethod.POST)
+    @ApiOperation(value = "修改当前用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "phone", value = "手机号", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "question", value = "密保问题", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, paramType = "String")})
+    @RequestMapping(value = "/update_information.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> update_information(HttpSession session,User user){
         User currentUser = (User)session.getAttribute(Const.CURRENT_USER);
@@ -124,8 +164,8 @@ public class UserController {
         }
         return response;
     }
-
-    @RequestMapping(value = "get_information.do",method = RequestMethod.POST)
+    @ApiOperation(value = "获取当前用户信息")
+    @RequestMapping(value = "/get_information.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> get_information(HttpSession session){
         User currentUser = (User)session.getAttribute(Const.CURRENT_USER);

@@ -1,8 +1,12 @@
 package com.mmall.pojo;
 
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.Date;
 public class User {
+
     private Integer id;
 
     private String username;
@@ -35,7 +39,6 @@ public class User {
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
-
     public User() {
         super();
     }
