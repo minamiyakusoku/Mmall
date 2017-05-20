@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/affirm-indent.css"/>
+    <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/city/Popt.js"></script>
+    <script src="them/city/cityJson.js"></script>
+    <script src="them/city/citySet.js"></script>
+
+</head>
+<body>
+<!--头部-->
+<div class="header">
+    <div class="headercontent clearfix">
+        <h1 class="fl"></h1>
+        <p class="fl title">
+            支付订单
+        </p>
+        <a class="to_indent fr" href="#">我的订单</a>
+        <div class="user_name_box fr" >
+            <span class="user_name">123458</span>
+            <p class="user_name_b">
+                <a href="#">个人中心</a>
+                <a href="#">我的喜欢</a>
+                <a href="#">退出登录</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!--中间-->
+<div class="user-main">
+    <div class="container">
+        <div class="right-box">
+                <div class="uc-box">
+                    <div class="uc-content-box">
+                        <div class="box-hd">
+                            <h2 class="title">收获地址</h2>
+                        </div>
+                        <div class="box-bd">
+                            <div class="user-address-list clearfix">
+                                <div class="address-item newadd active" id="1">
+                                    <dl>
+                                        <dt>
+                                            <em class="uname">王哇</em>
+                                        </dt>
+                                        <dd class="utel">176****6602</dd>
+                                        <dd class="uaddress">北京 北京市 东城区 建国门街道 <br>东北街23-23号 (100011)</dd>
+                                    </dl>
+                                    <div class="actions">
+                                        <a href="javascript:;" class="modify revamp">修改</a>
+                                    </div>
+                                </div>
+                                <div class="address-item address-item-new">
+                                    <div class="add">+</div>
+                                    <p>添加新地址</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box-list">
+                    <ul>
+                        <li class="clearfix">
+                            <div class="fl left">
+                                <p>支付方式</p>
+                            </div>
+                            <div class="fl right">
+                                <p>在线支付（支持微信支付、支付宝、银联、财付通等）</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="fl left">
+                                <p>配送方式</p>
+                            </div>
+                            <div class="fl right">
+                                <p>快递配送费（运费10元）</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="fl left">
+                                <p>配送时间</p>
+                            </div>
+                            <div class="fl right">
+                                <div class="select">
+                                    <a href="javascript:;" class="active">不限送货时间：周一至周日</a>
+                                    <a href="javascript:;">工作日送货：周一至周五</a>
+                                    <a href="javascript:;">双休日、假日送货</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="clearfix" style="height: 100%;border: none">
+                            <div class="fl left">
+                                <p>发票</p>
+                            </div>
+                            <div class="fl right">
+                                <div class="select">
+                                    <a href="javascript:;" class="active">电子发票（非纸质）</a>
+                                    <a href="javascript:;" class="border">普通发票（纸质）</a>
+                                </div>
+                                <input type="text" placeholder="个人/单位名称">
+                                <p class="tittle">发票内容：购买商品明细</p>
+                                <p class="fp">电子发票法律效力、就基本用途及使用规定用纸质发票。不随商品寄送<a href="javascipt:;" class="what"> 什么是电子发票?</a> </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="container_l">
+    <div class="indent_box">
+        <div class="title clearfix">
+            商品
+            <span class="fr">返回购物车 ></span>
+        </div>
+        <div class="indent clearfix">
+            <img class="fl" src="img/top.jpg" alt="">
+            <p class="fl indent_name">小米蓝牙耳机</p>
+            <ul class="fr">
+                <li >53元×2</li>
+                <li>有货</li>
+                <li class="indent_pri">106元</li>
+            </ul>
+        </div>
+        <ul class="inventory">
+            <li>商品件数:<span>2件</span></li>
+            <li>金额合计:<span>106元</span></li>
+            <li>活动优惠:<span>-0元</span></li>
+            <li>优惠券抵扣:<span>-0元</span></li>
+            <li>运费:<span>10元</span></li>
+            <li class="inventory_count">应付总额<span>10 <em>元</em></span></li>
+        </ul>
+        <div class="btn_box clearfix">
+            <div class="fl delivery_text ">
+                <p>李亚培  188****8888  </p>
+                <p>北京  <span>修改</span></p>
+            </div>
+            <div class="btn fr">去结算</div>
+        </div>
+    </div>
+</div>
+
+<!--底部-->
+<div class="footer">
+    <div class="fuwu">
+        <ul>
+            <li>预约维修服务</li>
+            <li>7天无理由退货</li>
+            <li>15天免费换货</li>
+            <li>满150元包邮</li>
+            <li>520余家售后网点</li>
+        </ul>
+    </div>
+    <div class="fuwu_det clearfix">
+        <ul class="fl fuwu_det_item">
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+            <li class="fuwu_det_i fl">
+                <p>帮助中心</p>
+                <ul>
+                    <li>账户管理</li>
+                    <li>购物指南</li>
+                    <li>订单操作</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="fl fuwu_det_tel">
+            <li class="fuwu_det_num">400-100-5678</li>
+            <li class="fuwu_det_time">周一至周日 8:00-18:00</li>
+            <li class="fuwu_det_time">（仅收市话费）</li>
+            <li class="fuwu_det_btn">24小时在线客服</li>
+        </ul>
+    </div>
+    <div class="bottom clearfix">
+        <div class="logo_b fl"></div>
+        <div class="bottom_text fl">
+            <ul>
+                <li>小米商城</li>
+                <li>MIUI</li>
+                <li>米聊</li>
+                <li>多看书城</li>
+                <li>小米路由器</li>
+                <li>视频电话</li>
+                <li>小米天猫店</li>
+                <li>小米淘宝直营店</li>
+                <li>Select Region</li>
+            </ul>
+            <p>mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</p>
+
+            <p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+        </div>
+        <div class="bottom_img fl">
+            <img src="img/truste.png" alt="">
+            <img src="img/v-logo-1.png" alt="">
+            <img src="img/v-logo-2.png" alt="">
+            <img src="img/v-logo-3.png" alt="">
+        </div>
+    </div>
+</div>
+<!--遮罩-->
+<div class="shade"></div>
+<!--弹层-->
+<div class="modal">
+    <div class="modal-header">
+        <span>添加收货地址</span>
+        <a href="javascript:;" class="close"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-box clearfix">
+            <form class="address" id="add">
+                <input type="text" placeholder="姓名" style="width: 228px;">
+                <input type="text" placeholder="手机号" style="width: 228px;">
+                <input type="text" id="city" placeholder="选择 省 / 市 / 区 / 街道" style="width: 508px;">
+                <textarea placeholder="详细地址"></textarea>
+                <input type="text" placeholder="邮政编码" style="width: 228px;">
+                <input type="text" placeholder="地址标签" style="width: 228px;">
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-primary">保存</a>
+        <a href="javascript:;" class="btn btn-gray">取消</a>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $('.close').click(function () {
+        $('.shade').css('display', 'none');
+        $('.modal').slideUp("fast");
+    });
+    $('.btn-gray').click(function () {
+        $('.shade').css('display', 'none');
+        $('.address').children().val('');
+        $('.modal').slideUp("fast");
+    });
+    $('.address-item-new').click(function () {
+        $('.address').children().val('');
+        $('.shade').css('display', 'block');
+        $('.modal').slideDown("fast");
+    });
+    /*地址*/
+    $("#city").click(function (e) {
+        SelCity(this, e);
+        console.log("inout", $(this).val(), new Date());
+    });
+    $('.user-address-list .newadd').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+    $('.btn-primary').click(function(){
+        var content='<div class="address-item newadd" id="1"> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <br>'+$('#add input').eq(3).val()+' ('+$('#add input').eq(4).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> </div> </div>';
+        $('.user-address-list').prepend(content);
+        $('.shade').css('display', 'none');
+        $('.modal').slideUp("fast");
+        $('.del').click(function () {
+            $(this).parent().parent().remove();
+        });
+        $('.user-address-list .newadd').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+    });
+    $('.select a').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+
+</script>
