@@ -145,7 +145,7 @@ public class UserController {
 
     @ApiOperation(value = "修改当前用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "email", value = "邮箱", required = false, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "phone", value = "手机号", required = true, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "question", value = "密保问题", required = true, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "answer", value = "密保答案", required = true, dataType = "String",paramType="query")})
