@@ -23,11 +23,11 @@
             <p>账号登录</p>
         </div>
         <div class="login_area">
-            <form method="post" onsubmit = "return checkUser();">
+            <form method="post">
                 <input type="text" name="use" placeholder="用户名" id="userid">
                 <input type="password" name="pass" placeholder="密码" id="passid">
                 <p class="hint"></p>
-                <input type="submit" value="立即登录" class="btn"/>
+                <input type="button" value="立即登录" class="btn" id="login"/>
             </form>
         </div>
         <div class="zcwj">
@@ -54,18 +54,34 @@
 </body>
 </html>
 <script>
-    function checkUser(){
-        var result = document.getElementById("userid").value;
-        var password = document.getElementById("passid").value;
 
-        if(result == ""  ){
-            $('.hint').html('用户名不能为空')
-            return false;
-        }
-        if(password == ""  ){
-            $('.hint').html('密码不能为空')
-            return false;
-        }
-        alert('登陆成功');
-    }
+        $('#login').click(function(){
+            var result = document.getElementById("userid").value;
+            var password = document.getElementById("passid").value;
+            if(result == ""  ){
+                $('.hint').html('用户名不能为空');
+                return false;
+            }
+            if(password == ""  ){
+                $('.hint').html('密码不能为空');
+                return false;
+            }
+            $.ajax({
+                url:'/user/login.do',
+                type:'post',
+                data:{
+                    'username':result,
+                    'password':password
+                },
+                success:function(result){
+                    if(!result.status){
+                        $('.hint').html('');
+                        window.location.href='index.html';
+                    }else{
+                        var msg=result.msg;
+                        $('.hint').html(msg);
+                    }
+                }
+            });
+        });
 </script>
