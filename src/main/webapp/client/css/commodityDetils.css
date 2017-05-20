@@ -128,7 +128,7 @@ html,body{
 			height: 100%;
 		}
 		.commodity_title{
-			width: calc(100%- 30px);
+			width: calc(100%-30px);
 			height: 73px;
 			padding-top:30px;
 			padding-left: 30px; 
@@ -146,7 +146,7 @@ html,body{
 			color: #e01d20;
 		}
 		.details{
-			width: calc(100% - 30px);
+			width: calc(100%-30px);
 			height: 171px;
 			padding-top:10px;
 			padding-left: 30px; 
@@ -179,7 +179,7 @@ html,body{
 			font-size: 12px;
 		}
 		.buy_option{
-			width: calc(100% - 30px);
+			width: calc(100%-30px);
 			padding-top:10px;
 			padding-left: 30px; 
 		}
@@ -325,7 +325,7 @@ html,body{
 			padding: 0 94px;
 		}
 		.commodity_nav_details img{
-			width: calc(100% - 188px);
+			width: calc(100%-188px);
 			background: #ccc;
 		}
 		.commodity_nav_appraise{
@@ -420,7 +420,7 @@ html,body{
 		}
 		.user_appraise{
 			width: 838px;
-			height: calc(100% - 25px);
+			height: calc(100%-25px);
 			padding-top: 25px;
 			border-bottom: 1px dashed #ccc;
 		}
