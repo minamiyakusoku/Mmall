@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的订单</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/payindent.css" />
+	<script src="them/jquery/jquery-1.7.2.js"></script>
+	
+	<style>
+		
+	</style>
+</head>
+<body>
+	<!--头部-->
+	<div class="header">
+		<div class="headercontent clearfix">
+			<h1 class="fl"></h1>
+			<p class="fl title">
+				支付订单
+			</p>
+			<a class="to_indent fr" href="#">我的订单</a>
+			<div class="user_name_box fr" >
+				<span class="user_name">123458</span>
+				<p class="user_name_b">
+					<a href="#">个人中心</a>
+					<a href="#">我的喜欢</a>
+					<a href="#">退出登录</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	<div id="conetent_wrapper">
+		<div id="content">
+			<div class="section section-order">
+                <div class="order-info clearfix">
+                    <div class="fl">
+                        <h2 class="title">订单提交成功！去付款咯～</h2>
+                        <p class="order-time" id="J_deliverDesc">预计5天内发货</p>
+                        <p class="order-time">请在<span class="pay-time-tip">1小时59分</span>内完成支付, 超时后将取消订单</p>
+                        <p class="post-info" id="J_postInfo">
+                                                            收货信息：李亚培 183****2118 &nbsp;&nbsp;
+                            北京&nbsp;&nbsp;北京市&nbsp;&nbsp;海淀区&nbsp;&nbsp;中关村街道&nbsp;&nbsp;知春路 盈都大厦 C座 3单元16D                                                </p>
+                    </div>
+                    <div class="fr">
+                        <p class="total">
+                            应付总额：<span class="money"><em>3799.00</em>元</span>
+                        </p>
+                        <p class="show-detail fr" id="J_showDetail">订单详情</p>
+                    </div>
+                </div>
+                <i class="iconfont icon-right">&#x221a;</i>
+                <div class="order-detail">
+                    <ul>
+                        <li class="clearfix">
+                            <div class="label">订单号：</div>
+                            <div class="content">
+                                <span class="order-num">
+                                    1170520982402892                                </span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="label">收货信息：</div>
+                            <div class="content">
+                            李亚培 183****2118&nbsp;&nbsp;
+                            北京&nbsp;&nbsp;北京市&nbsp;&nbsp;海淀区&nbsp;&nbsp;中关村街道&nbsp;&nbsp;知春路 盈都大厦 C座 3单元16D </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="label">商品名称：</div>
+                            <div class="content">
+                                小米MIX 尊享版 全面屏概念手机 256GB容量 6GB内存 黑金色 256G<br/>小米移动电源5000mAh 银色 </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="label">配送时间：</div>
+                            <div class="content">
+                                不限送货时间</div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="label">发票信息：</div>
+                            <div class="content">
+                                电子发票 个人</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section section-payment">
+            	<div class="cash-title" id="J_cashTitle">
+                    选择以下支付方式付款
+                </div>
+                <div class="payment-box ">
+                    <div class="payment-header clearfix">
+                        <h3 class="title">支付平台</h3>
+                        <span class="desc"></span>
+                    </div>
+                    <div class="payment-body">
+                        <ul class="clearfix payment-list J_paymentList J_linksign-customize">
+                            <li id="J_weixin">
+                            	<img src="img/wechat0715.jpg" height="60" width="174" alt="微信支付" style="margin-left: 0;"/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="alipay" value="alipay" /> 
+                            	<img src="img/event-alipay20160718.jpg" alt="支付宝" style="margin-left: 0;"/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="unionpay" value="unionpay" /> 
+                            	<img src="img/unionpay.png" alt="银联" style="margin-left: 0;"/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="cft" value="cft" /> 
+                            	<img src="img/cft.png" alt="财付通" style="margin-left: 0;"/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="micash" value="micash" /> 
+                            	<img src="img/event-mipay20170427.jpg" alt="小米钱包" style="margin-left: 0;"/>
+                            </li>
+                        </ul>
+                                                
+                    </div>
+                </div>
+                <div class="payment-box ">
+                    <div class="payment-header clearfix">
+                        <h3 class="title">银行借记卡及信用卡</h3>
+                    </div>
+                    <div class="payment-body">
+                        <ul class="clearfix payment-list payment-list-much J_paymentList J_linksign-customize">
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" value="CMB" />
+                            	<img src="img/payOnline_zsyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" value="ICBCB2C" />
+                            	<img src="img/payOnline_gsyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="CCB" />
+                            	<img src="img/payOnline_jsyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="COMM" />
+                            	<img src="img/payOnline_jtyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="ABC" />
+                            	<img src="img/payOnline_nyyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="BOCB2C" />
+                            	<img src="img/payOnline_zgyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="PSBC-DEBIT" />
+                            	<img src="img/payOnline_youzheng.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="GDB" />
+                            	<img src="img/payOnline_gfyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" value="SPDB" />
+                            	<img src="img/payOnline_pufa.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" value="CEBBANK" />
+                            	<img src="img/payOnline_gdyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank"  value="CIB" />
+                            	<img src="img/payOnline_xyyh.png" alt=""/>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="payment-box ">
+                    <div class="payment-header clearfix">
+                        <h3 class="title">快捷支付</h3>
+                    </div>
+                    <div class="payment-body">
+                        <ul class="clearfix payment-list payment-list-much J_paymentList J_linksign-customize">
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="CMB" value="CMB" /> 
+                            	<img src="img/payOnline_zsyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="ICBCB2C" value="ICBCB2C" /> 
+                            	<img src="img/payOnline_gsyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="CCB" value="CCB" /> 
+                            	<img src="img/payOnline_jsyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="COMM" value="COMM" /> 
+                            	<img src="img/payOnline_jtyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="ABC" value="ABC" /> 
+                            	<img src="img/payOnline_nyyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="BOCB2C" value="BOCB2C" /> 
+                            	<img src="img/payOnline_zgyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="PSBC-DEBIT" value="PSBC-DEBIT" /> 
+                            	<img src="img/payOnline_youzheng.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="GDB" value="GDB" /> 
+                            	<img src="img/payOnline_gfyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="SPDB" value="SPDB" /> 
+                            	<img src="img/payOnline_pufa.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="CEBBANK" value="CEBBANK" /> 
+                            	<img src="img/payOnline_gdyh.png" alt=""/>
+                            </li>
+                            <li class="J_bank">
+                            	<input type="radio" name="payOnlineBank" id="CIB" value="CIB" /> 
+                            	<img src="img/payOnline_xyyh.png" alt=""/>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="fuwu">
+			<ul>
+				<li>预约维修服务</li>
+				<li>7天无理由退货</li>
+				<li>15天免费换货</li>
+				<li>满150元包邮</li>
+				<li>520余家售后网点</li>
+			</ul>
+		</div>
+		<div class="fuwu_det clearfix">
+			<ul class="fl fuwu_det_item">
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+					
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+				<li class="fuwu_det_i fl">
+					<p>帮助中心</p>
+					<ul>
+						<li>账户管理</li>
+						<li>购物指南</li>
+						<li>订单操作</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="fl fuwu_det_tel">
+				<li class="fuwu_det_num">400-100-5678</li>
+				<li class="fuwu_det_time">周一至周日 8:00-18:00</li>
+				<li class="fuwu_det_time">（仅收市话费）</li>
+				<li class="fuwu_det_btn">24小时在线客服</li>
+			</ul>
+		</div>
+		<div class="bottom clearfix">
+			<div class="logo_b fl"></div>
+			<div class="bottom_text fl">
+				<ul>
+					<li>小米商城</li>
+					<li>MIUI</li>
+					<li>米聊</li>
+					<li>多看书城</li>
+					<li>小米路由器</li>
+					<li>视频电话</li>
+					<li>小米天猫店</li>
+					<li>小米淘宝直营店</li>
+					<li>Select Region</li>
+				</ul>
+				<p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</p>
+				<p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+			</div>
+			<div class="bottom_img fl">
+				<img src="img/truste.png" alt="">
+				<img src="img/v-logo-1.png" alt="">
+				<img src="img/v-logo-2.png" alt="">
+				<img src="img/v-logo-3.png" alt="">
+			</div>
+		</div>
+	</div>
+		
+	<script>
+		$('#J_showDetail').click(function(){
+			if($('.order-detail').css('display')=='none'){
+				$('.order-detail').css('display','block')
+			}else{
+				$('.order-detail').css('display','none')
+			}
+		})
+	</script>
+	
+</body>
+</html>
