@@ -148,11 +148,12 @@ public class ProductManageController {
     }
 
     @ApiOperation(value = "上传文件")
-    @ApiImplicitParam(name = "upload_file", value = "文件", required = false, dataType = "file",paramType="query")
+    @ApiImplicitParam(name = "upload_file", value = "文件", required = false, dataType = "file",paramType="form")
     @RequestMapping(value ="/upload.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse upload(HttpSession session,@RequestParam(value = "upload_file",required = false) MultipartFile file,HttpServletRequest request){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
+        System.out.println(file);
         if(user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录管理员");
         }
