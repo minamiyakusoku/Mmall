@@ -7,12 +7,12 @@ import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * Created by akku on 2017/5/18.
- * 测试类
+ * 测试用Controller
  */
 @Controller
 @ApiIgnore
-@RequestMapping("/page")
-public class PageController {
+@RequestMapping("/test")
+public class TestController {
     @RequestMapping("/test")
     public ModelAndView test(){
         return new ModelAndView("web_client/test");

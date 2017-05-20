@@ -37,8 +37,9 @@ public class UserController {
     @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     @ApiOperation(value = "登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String",paramType="query")})
+    @ApiResponse(code =201,message = "akkkkuuu")
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username,password);
@@ -58,12 +59,12 @@ public class UserController {
 
     @ApiOperation(value = "注册")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "email", value = "邮箱", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "phone", value = "手机号", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "question", value = "密保问题", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "phone", value = "手机号", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "question", value = "密保问题", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, dataType = "String",paramType="query")})
     @RequestMapping(value = "/register.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> register( User user){
@@ -72,8 +73,8 @@ public class UserController {
 
     @ApiOperation(value = "账号/邮箱可用检测")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "str", value = "账号或邮箱", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "type", value = "类型（username/email）", required = true, paramType = "String",
+            @ApiImplicitParam(name = "str", value = "账号或邮箱", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "type", value = "类型（username/email）", required = true, dataType = "String",paramType="query",
                     examples = @Example({
                             @ExampleProperty(mediaType = "a",value = "username"),
                             @ExampleProperty(value = "email")
@@ -98,7 +99,7 @@ public class UserController {
 
 
     @ApiOperation(value = "获取当前登录的用户信息")
-    @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String")
+    @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query")
     @RequestMapping(value = "/forget_get_question.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetGetQuestion(String username){
@@ -107,9 +108,9 @@ public class UserController {
 
     @ApiOperation(value = "账号/邮箱可用检测")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "question", value = "问题", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "answer", value = "答案", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "question", value = "问题", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "answer", value = "答案", required = true, dataType = "String",paramType="query")})
     @RequestMapping(value = "/forget_check_answer.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetCheckAnswer(String username,String question,String answer){
@@ -118,9 +119,9 @@ public class UserController {
 
     @ApiOperation(value = "重置密码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "passwordNew", value = "新密码", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "forgetToken", value = "密保验证成功返回的token", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "passwordNew", value = "新密码", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "forgetToken", value = "密保验证成功返回的token", required = true, dataType = "String",paramType="query")})
     @RequestMapping(value = "/forget_reset_password.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetRestPassword(String username,String passwordNew,String forgetToken){
@@ -130,8 +131,8 @@ public class UserController {
 
     @ApiOperation(value = "修改密码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "passwordOld", value = "旧密码", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "passwordNew", value = "新密码", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "passwordOld", value = "旧密码", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "passwordNew", value = "新密码", required = true, dataType = "String",paramType="query")})
     @RequestMapping(value = "/reset_password.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> resetPassword(HttpSession session,String passwordOld,String passwordNew){
@@ -144,10 +145,10 @@ public class UserController {
 
     @ApiOperation(value = "修改当前用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "email", value = "邮箱", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "phone", value = "手机号", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "question", value = "密保问题", required = true, paramType = "String"),
-            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, paramType = "String")})
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "phone", value = "手机号", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "question", value = "密保问题", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, dataType = "String",paramType="query")})
     @RequestMapping(value = "/update_information.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> update_information(HttpSession session,User user){

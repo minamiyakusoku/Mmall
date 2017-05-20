@@ -10,10 +10,15 @@ import com.mmall.service.IFileService;
 import com.mmall.service.IProductService;
 import com.mmall.service.IUserService;
 import com.mmall.util.PropertiesUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +33,7 @@ import java.util.Map;
  */
 
 @Controller
+@Api(value = "/manage/product", description = "【Web 管理端】 商品相关操作")
 @RequestMapping("/manage/product")
 public class ProductManageController {
 
@@ -38,7 +44,17 @@ public class ProductManageController {
     @Autowired
     private IFileService iFileService;
 
-    @RequestMapping("save.do")
+    @ApiOperation(value = "添加商品")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "categoryId", value = "商品类型ID", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "name", value = "商品名称", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "subtitle", value = "商品副标题", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "subImages", value = "商品展示图片集（如\"a.jpg,b.jpg,c.jpg\"）", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "detail", value = "商品详情", required = true, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "price", value = "商品标价", required = true, dataType = "BigDecimal",paramType="query"),
+            @ApiImplicitParam(name = "stock", value = "商品库存", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "status", value = "商品状态", required = true, dataType = "int",paramType="query")})
+    @RequestMapping(value ="/save.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse productSave(HttpSession session, Product product){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -53,8 +69,11 @@ public class ProductManageController {
             return ServerResponse.createByErrorMessage("无权限操作");
         }
     }
-
-    @RequestMapping("set_sale_status.do")
+    @ApiOperation(value = "修改商品状态")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "productId", value = "商品Id", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "status", value = "商品状态", required = true, dataType = "int",paramType="query")})
+    @RequestMapping(value = "/set_sale_status.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse setSaleStatus(HttpSession session, Integer productId,Integer status){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -68,8 +87,9 @@ public class ProductManageController {
             return ServerResponse.createByErrorMessage("无权限操作");
         }
     }
-
-    @RequestMapping("detail.do")
+    @ApiOperation(value = "查询商品详情")
+    @ApiImplicitParam(name = "productId", value = "商品Id", required = true, dataType = "int",paramType="query")
+    @RequestMapping(value ="/detail.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse getDetail(HttpSession session, Integer productId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -85,8 +105,11 @@ public class ProductManageController {
             return ServerResponse.createByErrorMessage("无权限操作");
         }
     }
-
-    @RequestMapping("list.do")
+    @ApiOperation(value = "查询全部商品")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
+    @RequestMapping(value ="/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse getList(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,@RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -102,7 +125,13 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping("search.do")
+    @ApiOperation(value = "查询商品",notes = "多条件查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "productName", value = "商品名称", required = false, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "productId", value = "商品id", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
+    @RequestMapping(value ="/search.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse productSearch(HttpSession session,String productName,Integer productId, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,@RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -118,7 +147,9 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping("upload.do")
+    @ApiOperation(value = "上传文件")
+    @ApiImplicitParam(name = "upload_file", value = "文件", required = false, dataType = "file",paramType="query")
+    @RequestMapping(value ="/upload.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse upload(HttpSession session,@RequestParam(value = "upload_file",required = false) MultipartFile file,HttpServletRequest request){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -139,8 +170,9 @@ public class ProductManageController {
         }
     }
 
-
-    @RequestMapping("richtext_img_upload.do")
+    @ApiOperation(value = "富文本上传文件")
+    @ApiImplicitParam(name = "upload_file", value = "文件", required = false, dataType = "file",paramType="query")
+    @RequestMapping(value ="/richtext_img_upload.do",method = RequestMethod.POST)
     @ResponseBody
     public Map richtextImgUpload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response){
         Map resultMap = Maps.newHashMap();

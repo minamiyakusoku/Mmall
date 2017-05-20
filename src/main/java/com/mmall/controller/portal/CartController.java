@@ -43,8 +43,8 @@ public class CartController {
 
     @ApiOperation(value = "添加商品到购物车")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "count", value = "数量", required = true, paramType = "int"),
-            @ApiImplicitParam(name = "productId", value = "商品Id", required = true, paramType = "int")})
+            @ApiImplicitParam(name = "count", value = "数量", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "productId", value = "商品Id", required = true, dataType = "int",paramType="query")})
     @RequestMapping(value = "/add.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<CartVo> add(HttpSession session, Integer count, Integer productId){
@@ -58,8 +58,8 @@ public class CartController {
 
     @ApiOperation(value = "修改商品数量")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "count", value = "数量", required = true, paramType = "int"),
-            @ApiImplicitParam(name = "productId", value = "商品Id", required = true, paramType = "int")})
+            @ApiImplicitParam(name = "count", value = "数量", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "productId", value = "商品Id", required = true, dataType = "int",paramType="query")})
     @RequestMapping(value = "/update.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<CartVo> update(HttpSession session, Integer count, Integer productId){
@@ -70,7 +70,7 @@ public class CartController {
         return iCartService.update(user.getId(),productId,count);
     }
     @ApiOperation(value = "删除购物车内的商品")
-    @ApiImplicitParam(name = "productIds", value = "商品Id集合(如\"1,2,3,4,5\")", required = true, paramType = "String")
+    @ApiImplicitParam(name = "productIds", value = "商品Id集合(如\"1,2,3,4,5\")", required = true, dataType = "String",paramType="query")
     @RequestMapping(value = "/delete_product.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<CartVo> deleteProduct(HttpSession session,String productIds){
@@ -105,7 +105,7 @@ public class CartController {
 
 
     @ApiOperation(value = "选中购物车内的商品")
-    @ApiImplicitParam(name = "productId", value = "商品Id", required = true, paramType = "String")
+    @ApiImplicitParam(name = "productId", value = "商品Id", required = true, dataType = "String",paramType="query")
     @RequestMapping(value = "/select.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<CartVo> select(HttpSession session,Integer productId){
@@ -118,7 +118,7 @@ public class CartController {
 
 
     @ApiOperation(value = "反选购物车内的商品")
-    @ApiImplicitParam(name = "productId", value = "商品Id", required = true, paramType = "String")
+    @ApiImplicitParam(name = "productId", value = "商品Id", required = true, dataType = "String",paramType="query")
     @RequestMapping(value = "/un_select.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<CartVo> unSelect(HttpSession session,Integer productId){

@@ -42,7 +42,7 @@ public class OrderController {
     private IOrderService iOrderService;
 
     @ApiOperation(value = "创建订单")
-    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, paramType = "int")
+    @ApiImplicitParam(name = "shippingId", value = "收货地址id", required = true, dataType = "int",paramType="query")
     @RequestMapping(value="/create.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse create(HttpSession session, Integer shippingId){
@@ -54,7 +54,7 @@ public class OrderController {
     }
 
     @ApiOperation(value = "清除订单")
-    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long",paramType="query")
     @RequestMapping(value="/cancel.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse cancel(HttpSession session, Long orderNo){
@@ -78,7 +78,7 @@ public class OrderController {
 
 
     @ApiOperation(value = "获取指定订单")
-    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long",paramType="query")
     @RequestMapping(value="/detail.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse detail(HttpSession session,Long orderNo){
@@ -92,8 +92,8 @@ public class OrderController {
 
     @ApiOperation(value = "获取当前用户全部订单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, paramType = "int"),
-            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, paramType = "int")})
+            @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
     @RequestMapping(value="/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse list(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
@@ -127,7 +127,7 @@ public class OrderController {
 
 
     @ApiOperation(value = "支付订单")
-    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long",paramType="query")
     @RequestMapping(value="pay.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse pay(HttpSession session, Long orderNo, HttpServletRequest request){
@@ -185,7 +185,7 @@ public class OrderController {
 
 
     @ApiOperation(value = "查询订单状态")
-    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, paramType = "long")
+    @ApiImplicitParam(name = "orderNo", value = "订单编号", required = true, dataType = "long",paramType="query")
     @RequestMapping(value="query_order_pay_status.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<Boolean> queryOrderPayStatus(HttpSession session, Long orderNo){
