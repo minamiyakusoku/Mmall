@@ -98,7 +98,7 @@ public class UserController {
 
 
 
-    @ApiOperation(value = "获取当前登录的用户信息")
+    @ApiOperation(value = "获取指定用户密保问题")
     @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query")
     @RequestMapping(value = "/forget_get_question.do",method = RequestMethod.POST)
     @ResponseBody
@@ -106,7 +106,7 @@ public class UserController {
         return iUserService.selectQuestion(username);
     }
 
-    @ApiOperation(value = "账号/邮箱可用检测")
+    @ApiOperation(value = "验证密保答案")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "question", value = "问题", required = true, dataType = "String",paramType="query"),
