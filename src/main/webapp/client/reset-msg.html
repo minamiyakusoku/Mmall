@@ -19,17 +19,16 @@
         </div>
     </div>
     <div class="mes">
-        <p>请使用安全手机<span class="phone">18711013323</span>获取验证码短信 </p>
+        <p>密保问题：<span class="phone"></span></p>
     </div>
     <div class="regbox">
         <form method="post">
             <div class="verify">
-                <input type="password" name="pass" placeholder="请输入验证码" style="width: 197px;" id="verify">
-                <span class="verify-img">重新发送</span>
+                <input type="password" name="pass" placeholder="请输入答案" id="verify">
                 <p class="hint verify-text"></p>
             </div>
         </form>
-        <a class="btn" href="javascript:;">确定</a>
+        <p class="btn">确定</p>
     </div>
 </div>
 <div class="footer">
@@ -49,28 +48,51 @@
 </body>
 </html>
 <script>
-    function verification(){
-        $('#verify').blur(function(){
-            if($(this).val()==''){
-                $('.verify-text').css('display','block');
-                $('.verify-text').html('图片验证码不能为空');
-                return false;
-            }
-            if($(this).val().length<4){
-                $('.verify-text').css('display','block');
-                $('.verify-text').html('验证码错误');
-                return false;
-            }
-            $('.verify-text').css('display','none');
-        });
+    var user_question=$.cookie("user_question");
+    var user_name=$.cookie("user_name");
+
+    if(user_question){
+        $('.phone').html(user_question);
+    }else{
+        $('.verify-text').html('您停留的时间太长，请返回上一页');
     }
-    verification();
-    $('.btn').click(function(){
-        if($('.verify-text').is(":hidden")){
-            alert('成功');
-            $('.btn').attr('href','reset-password.html');
+
+    $('#verify').focus();
+    $('#verify').blur(function(){
+        if($(this).val()==''){
+            $('.verify-text').html('答案不能为空');
         }else{
-            return false;
+            $('.verify-text').html('');
         }
+    });
+
+
+    $('.btn').click(function(){
+        var answer=$('#verify').val();
+        $.ajax({
+            url:'/user/forget_check_answer.do',
+            data:{
+                'username':user_name,
+                'question':user_question,
+                'answer':answer
+            },
+            type:'post',
+            success:function(res){
+                if(res.status){
+                    $('.verify-text').html(res.msg);
+                }else{
+                    var forgetToken=res.data;
+                    var cookietime = new Date();
+                    var date = new Date();
+                    cookietime.setTime(date.getTime() + (10 * 60 * 1000));//coockie保存10分钟
+                    $.cookie("forgetToken", forgetToken,{expires:cookietime});
+                    window.location.href = "reset-password.html";
+                }
+            },
+            error:function(){
+
+            }
+        });
+//
     });
 </script>

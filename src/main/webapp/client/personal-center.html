@@ -25,14 +25,16 @@
             </a>
         </div>
         <div class="topbar-info">
-            <a href="login.html">登录</a>
-            <a href="register.html">注册</a>
+            <div class="login" style="display: inline-block">
+                <a href="login.html">登录</a>
+                <a href="register.html">注册</a>
+            </div>
             <a href="javascript:;">消息通知</a>
-            <div class="info_select">
+            <!--<div class="info_select">
                 <a href="personal-center.html">个人中心</a>
                 <a href="user-favorite.html">我的喜欢</a>
                 <a href="login.html">退出登录</a>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -293,7 +295,7 @@
                                 <div class="user-card">
                                     <h3 class="username">671234567</h3>
                                     <p class="tip">早上好～</p>
-                                    <a class="link" href="personal-information.html">修改个人信息 ></a>
+                                    <a class="link"  target="_blank" href="personal-information.html">修改个人信息 ></a>
                                     <img class="avatar" src="https://account.xiaomi.com/static/img/passport/photo.jpg">
                                 </div>
                                 <div class="user-actions">
@@ -450,6 +452,31 @@
 </body>
 </html>
 <script>
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            var name=result.data.username;
+            if(!result.status){
+                $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
     var _width=$(window).width();
     $('.header-nav-menu').css('width',_width);
     $('.header-nav-menu').css('left','-40px');

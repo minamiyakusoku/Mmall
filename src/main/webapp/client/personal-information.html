@@ -214,14 +214,12 @@
         <div class="form-box clearfix">
             <form class="address">
                 <label>原始密码</label><br />
-                <input type="text" placeholder="输入原密码" />
+                <input type="password" placeholder="输入原密码" id="oldpass"/>
+                <p class="hint old-text"></p>
                 <label>新密码</label><br />
                 <input type="password" placeholder="输入新密码" id="pass" />
                 <input type="password" placeholder="重复新密码" id="confirm" />
-                <p class="ts">密码长度8~16位，其中数字，字母和符号至少包含两种</p>
-                <label>验证码</label><br />
-                <input type="text" placeholder="输入验证码" style="width: 120px;"/>
-                <img class="verify-img" src="" tittle="点击换一张" alt="验证码">
+                <!--<p class="ts">密码长度8~16位，其中数字，字母和符号至少包含两种</p>-->
                 <p class="hint verify-text"></p>
             </form>
         </div>
@@ -327,10 +325,44 @@
         $('.address').children().val('');
         $('.modal').slideUp("fast");
     });
+    $('#oldpass').blur(function(){
+        if(!$(this).val()){
+            $('.old-text').html('密码不能为空');
+        }else{
+            $('.old-text').html('');
+        }
+    });
     $('.save').click(function(){
+        if(!$('#pass').val()||!$('#confirm').val()||!$('#oldpass').val()){
+            $('.verify-text').html('请填写完整');
+        }else{
+            $('.verify-text').html('');
+        }
         if($('#pass').val()==$('#confirm').val()){
+            $('.verify-text').html('');
+            $.ajax({
+                url:'/user/reset_password.do',
+                data:{
+                    'passwordOld':$('#oldpass').val(),
+                    'passwordNew':$('#confirm').val()
+                },
+                type:'post',
+                success:function(str){
+                    if(!str.status){
+                        alert("修改成功");
+                        $('.shade').css('display', 'none');
+                        $('.address').children().val('');
+                        $('.modal').slideUp("fast");
+                    }else{
+                        $('.verify-text').html(str.msg);
+                    }
+                },
+                error:function(){
+                }
+            });
         }else{
             $('.verify-text').html('两次密码不一致');
+            return;
         }
     });
     $('.changePass').click(function(){
