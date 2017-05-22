@@ -48,6 +48,25 @@ public class Const {
             return code;
         }
     }
+    public enum AdvStatusEnum{
+        OFF(0,"已删除"),
+        ON(1,"在线");
+
+        private String value;
+        private int code;
+        AdvStatusEnum(int code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+    }
 
 
     public enum OrderStatusEnum{

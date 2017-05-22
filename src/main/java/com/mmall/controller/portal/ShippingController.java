@@ -64,8 +64,9 @@ public class ShippingController {
         }
         return iShippingService.del(user.getId(),shippingId);
     }
-    @ApiOperation(value = "添加收货地址")
+    @ApiOperation(value = "修改收货地址")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "地址id", required = true, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "receiverName", value = "收货人", required = true, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "receiverPhone", value = "电话", required = false, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "receiverMobile", value = "手机", required = true, dataType = "String",paramType="query"),
