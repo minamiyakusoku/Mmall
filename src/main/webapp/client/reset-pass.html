@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/register.css"/>
     <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/jquery/jquery.cookie.js"></script>
 </head>
 <body>
 <div class="box">
@@ -19,17 +20,12 @@
     </div>
 
     <div class="regbox">
-        <p class="look">请输入注册的邮箱地址、手机号或小米号</p>
+        <p class="look">请输入用户名</p>
         <form method="post" >
-            <input type="text" name="use" placeholder="请输入注册时手机号" style="width: 334px;" id="phone">
+            <input type="text" name="use" placeholder="请输入用户名" style="width: 334px;" id="phone">
             <p class="hint phone-text"></p>
-            <div class="verify">
-                <input type="password" name="pass" placeholder="图片验证码" style="width: 197px;" id="verify">
-                <img src="" class="verify-img" title="点击换一张" alt="图片验证码">
-                <p class="hint verify-text"></p>
-            </div>
         </form>
-        <a class="btn" href="javascript:;">下一步</a>
+        <p class="btn">下一步</p>
     </div>
 </div>
 
@@ -51,44 +47,39 @@
 </html>
 <script>
     $('#phone').focus();
-    function verification(){
-        $('#phone').blur(function(){
-            if($(this).val()==''){
-                $('.phone-text').css('display','block');
-                $('.phone-text').html('手机号不能为空');
-                return false;
-            }
-            var reg=/^1\d{10}$/;
-            if(!reg.test($(this).val())){
-                $('.phone-text').css('display','block');
-                $('.phone-text').html('请输入正确的手机号');
-                return false;
-            }
-            $('.phone-text').css('display','none');
-        });
-        $('#verify').blur(function(){
-            if($(this).val()==''){
-                $('.verify-text').css('display','block');
-                $('.verify-text').html('图片验证码不能为空');
-                return false;
-            }
-            if($(this).val().length<4){
-                $('.verify-text').css('display','block');
-                $('.verify-text').html('图片验证码错误');
-                return false;
-            }
-            $('.verify-text').css('display','none');
-        });
-    }
-    verification();
-
-    $('.btn').click(function(){
-        if($('.verify-text').is(":hidden")&&$('.phone-text').is(":hidden")){
-            alert('成功');
-            $('.btn').attr('href','reset-verify.html');
+    $('#phone').blur(function(){
+        if($(this).val()==''){
+            $('.phone-text').html('用户名不能为空');
         }else{
-            return false;
+            $('.phone-text').html('');
         }
     });
+    $('.btn').click(function(){
+        var name=$('#phone').val();
+        $.ajax({
+            url:'/user/forget_get_question.do',
+            data:{
+                'username':name
+            },
+            type:'post',
+            success:function(res){
+                console.log(res);
+                if(res.status){
+                    $('.phone-text').html(res.msg);
+                }else{
+                    var user_question=res.data;
+                    var user_name=name;
+                    var cookietime = new Date();
+                    var date = new Date();
+                    cookietime.setTime(date.getTime() + (10 * 60 * 1000));//coockie保存10分钟
+                    $.cookie("user_question", user_question,{expires:cookietime});
+                    $.cookie("user_name", user_name,{expires:cookietime});
+                    window.location.href = "reset-msg.html";
+                }
+            },
+            error:function(){
 
+            }
+        });
+    });
 </script>
