@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmall.dao.AdvMapper" >
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Adv" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="product_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="page_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="main_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_images" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="position" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, subtitle, category_id, product_id, page_url, main_image, sub_images, position, status,
+    create_time, update_time
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mmall_adv
+  </select>
+  <select id="get" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from mmall_adv
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getByPosition" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from mmall_adv
+    where position = #{position,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.mmall.pojo.Adv" >
+    insert into mmall_product (
+    id, title, subtitle, category_id, product_id, page_url, main_image, sub_images, position, status,
+    create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
+      #{category_id,jdbcType=INTEGER}, #{product_id,jdbcType=INTEGER}, #{page_url,jdbcType=VARCHAR},
+      #{main_image,jdbcType=VARCHAR}, #{sub_images,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from mmall_adv
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <update id="updateById" parameterType="com.mmall.pojo.Adv" >
+    update mmall_adv
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        subtitle = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category_id != null" >
+        category_id = #{category_id,jdbcType=INTEGER},
+      </if>
+      <if test="product_id != null" >
+        product_id = #{mainImage,jdbcType=INTEGER},
+      </if>
+      <if test="page_url != null" >
+        page_url = #{page_url,jdbcType=VARCHAR},
+      </if>
+      <if test="main_image != null" >
+        main_image = #{main_image,jdbcType=VARCHAR},
+      </if>
+      <if test="sub_images != null" >
+        sub_images = #{sub_images,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = now(),
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
