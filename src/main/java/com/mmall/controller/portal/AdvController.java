@@ -27,7 +27,7 @@ public class AdvController {
     IAdvService iAdvService;
 
 
-    @ApiOperation(value = "获取全部广告信息")
+    @ApiOperation(value = "获取全部广告信息",notes = "如果categoryId不为空或0，跳转到对应商品分类的商品列表页面；如果productId不为空或0，跳转到对应的商品详情页面；否则根据pageUrl跳转页面")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
@@ -40,9 +40,9 @@ public class AdvController {
 
 
 
-    @ApiOperation(value = "根据广告位置获取全部广告信息")
+    @ApiOperation(value = "根据广告位置获取全部广告信息",notes = "如果categoryId不为空或0，跳转到对应商品分类的商品列表页面；如果productId不为空或0，跳转到对应的商品详情页面；否则根据pageUrl跳转页面")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "position", value = "广告位置", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "position", value = "广告位置（目前只有1，为首页轮播广告）", required = true, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
     @RequestMapping(value = "/list_by_position.do",method = {RequestMethod.GET,RequestMethod.POST})
