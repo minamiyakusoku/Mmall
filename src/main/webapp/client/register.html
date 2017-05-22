@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/register.css"/>
     <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/jquery/jquery.cookie.js"></script>
 </head>
 <body>
 <div class="box">
@@ -84,6 +85,11 @@
     $('.btn').click(function(){
         if($('.verify-text').is(":hidden")&&$('.phone-text').is(":hidden")){
             alert('成功');
+            var user_phone=$('#phone').val();
+            var cookietime = new Date();
+            var date = new Date();
+            cookietime.setTime(date.getTime() + (5 * 60 * 1000));//coockie保存5分钟
+            $.cookie("user_phone", user_phone,{expires:cookietime});
             $('.btn').attr('href','register-verify.html');
         }else{
             return false;

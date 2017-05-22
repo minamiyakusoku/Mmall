@@ -101,12 +101,9 @@
     position: absolute;
     left: 0;
     top: 40px;
-    width: 150px;
+    width: 90px;
     background: #fff;
     display: none;
-}
-.topbar-info:hover .info_select{
-    display: block;
 }
 .topbar-info .info_select a{
     display: block;

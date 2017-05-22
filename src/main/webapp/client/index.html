@@ -18,7 +18,7 @@
     <video id="my-video" class="video-js" controls preload="auto" width="880" height="536" data-setup="{}">
         <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
     </video>
-    <script src="http://vjs.zencdn.net/5.18.4/video.min.js"></script>
+    <script src="them/video/js/video.min.js"></script>
     <script type="text/javascript">
         var myPlayer = videojs('my-video');
         videojs("my-video").ready(function(){
@@ -46,14 +46,12 @@
             </a>
         </div>
         <div class="topbar-info">
-            <a href="login.html">登录</a>
-            <a href="register.html">注册</a>
-            <a href="javascript:;">消息通知</a>
-            <div class="info_select">
-                <a href="personal-center.html">个人中心</a>
-                <a href="user-favorite.html">我的喜欢</a>
-                <a href="login.html">退出登录</a>
+            <div class="login" style="display: inline-block">
+                <a href="login.html">登录</a>
+                <a href="register.html">注册</a>
             </div>
+            <a href="javascript:;">消息通知</a>
+
         </div>
     </div>
 </div>
@@ -2500,6 +2498,37 @@
 </body>
 </html>
 <script>
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            var name=result.data.username;
+            if(!result.status){
+                $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
+    $('.login').mouseover(function(){
+        $('.info_select').css('display','block');
+    });
+    $('.login').mouseout(function(){
+        $('.info_select').css('display','none');
+    });
     var _width=$(window).width();
     $('.header-nav-menu').css('width',_width);
     $('.header-nav-menu').css('left','-40px');
@@ -2613,143 +2642,5 @@
         $('.shade').css('display','block');
         $('.video').css('display','block');
     });
-    /*$.ajax({
-     url:'http://192.168.31.211:2333/store/getall',
-     type:'GET',
-     dataType:'jsonp',
-     jsonp:'callback',
-     success:function(result){
-     /!* console.log(result)*!/
-     },
-     error:function(msg){
 
-     }
-     });
-     /!*为你推荐 #recommend*!/
-     $.ajax({
-     url:'http://192.168.31.211:2333/store/getall?p=1&s=11',
-     type:'GET',
-     dataType:'jsonp',
-     jsopn:'callback',
-     success:function(result){
-     for(var i=0;i<result.data.length;i++){
-     var count='<li class="item">' +
-     '<a href="javascript:;">' +
-     '<img class="item-img" src='+result.data[i].mainImg+'>' +
-     '<p class="tittle">'+result.data[i].shortName+'</p>' +
-     '<p class="price">'+result.data[i].price.toFixed(2)+'元</p>' +
-     '<p class="rank">'+result.data[i].description+'</p>' +
-     ' </a>' +
-     '</li>';
-     $('#recommend .content-list').append(count);
-     var oRight=document.getElementById('right');
-     var oLeft=document.getElementById('left');
-     var oBox=document.getElementsByClassName('content')[0];
-     var oUl=oBox.getElementsByTagName('ul')[0];
-     var aLi=oUl.children;
-     oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
-     var W=oBox.offsetWidth;
-     var left=0;
-     oRight.onclick=function() {
-     if (left == 1) {
-     return;
-     }
-     left += 1;
-     oUl.style.transition = "0.5s ease"
-     oUl.style.left = -(W+14)*left + 'px';
-     }
-     oLeft.onclick=function(){
-     if(left==0){
-     return;
-     }
-     left-=1;
-     oUl.style.transition="0.5s ease"
-     oUl.style.left=-(W-14)*left+'px';
-     }
-     }
-     }
-     });
-     /!*为你推荐 #recommend  end *!/
-     /!*智能硬件 #capacity*!/
-     $.ajax({
-     url:'http://192.168.31.211:2333/store/getbysalecount?count=1',
-     type:'GET',
-     dataType:'jsonp',
-     jsopn:'callback',
-     success:function(result){
-     for(var i=0;i<result.data.length;i++){
-     var count='<li class="item"style="height:614px;">' +
-     '<a href="javascript:;">' +
-     '<img src='+result.data[i].imgs[1]+'>'+
-     ' </a>' +
-     '</li>';
-     $('#capacity .list-left ul').append(count);
-
-     }
-     }
-     });
-     $.ajax({
-     url:'http://192.168.31.211:2333/store/getbysalecount?count=9',
-     type:'GET',
-     dataType:'jsonp',
-     jsopn:'callback',
-     success:function(result){
-     for(var i=1;i<result.data.length;i++){
-     var count='<li class="item">' +
-     '<a href="javascript:;">' +
-     '<img class="item-img" src='+result.data[i].mainImg+'>' +
-     '<p class="tittle">'+result.data[i].shortName+'</p>' +
-     '<p class="price">'+result.data[i].price.toFixed(2)+'元</p>' +
-     '<p class="rank">'+result.data[i].description+'</p>' +
-     ' </a>' +
-     '</li>';
-     $('#capacity .list-right ul').append(count);
-
-     }
-     }
-     });
-     /!*智能硬件 #capacity   end*!/
-
-     /!*搭配 #match*!/
-     $.ajax({
-     url:'http://192.168.31.211:2333/store/getbykey?key=冰箱&o=true&p=1&s=9',
-     type:'GET',
-     dataType:'jsonp',
-     jsopn:'callback',
-     success:function(result){
-     for(var i=1;i<result.data.length;i++){
-     var count='<li class="item">' +
-     '<a href="javascript:;">' +
-     '<img class="item-img" src='+result.data[i].mainImg+'>' +
-     '<p class="tittle">'+result.data[i].shortName+'</p>' +
-     '<p class="price">'+result.data[i].price.toFixed(2)+'元</p>' +
-     '<p class="rank">'+result.data[i].description+'</p>' +
-     ' </a>' +
-     '</li>';
-     $('#match #one-box .list-right ul').append(count);
-
-     }
-     }
-     });
-     $.ajax({
-     url:'http://192.168.31.211:2333/store/getbykey?key=鸡腿&o=true&p=1&s=9',
-     type:'GET',
-     dataType:'jsonp',
-     jsopn:'callback',
-     success:function(result){
-     for(var i=1;i<result.data.length;i++){
-     var count='<li class="item">' +
-     '<a href="javascript:;">' +
-     '<img class="item-img" src='+result.data[i].mainImg+'>' +
-     '<p class="tittle">'+result.data[i].shortName+'</p>' +
-     '<p class="price">'+result.data[i].price.toFixed(2)+'元</p>' +
-     '<p class="rank">'+result.data[i].description+'</p>' +
-     ' </a>' +
-     '</li>';
-     $('#match #two-box .list-right ul').append(count);
-
-     }
-     }
-     });*/
-    /*搭配 #match   end*/
 </script>
