@@ -85,7 +85,7 @@ public class UserController {
         return iUserService.checkValid(str,type);
     }
 
-    @ApiOperation(value = "获取当前登录的用户信息")
+    @ApiOperation(value = "获取当前登录的用户信息(来自session)")
     @RequestMapping(value = "/get_user_info.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> getUserInfo(HttpSession session){
@@ -165,7 +165,7 @@ public class UserController {
         }
         return response;
     }
-    @ApiOperation(value = "获取当前用户信息")
+    @ApiOperation(value = "调取当前登录的用户信息")
     @RequestMapping(value = "/get_information.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> get_information(HttpSession session){
