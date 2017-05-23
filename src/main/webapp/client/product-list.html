@@ -648,7 +648,7 @@
             var sp_id=$(this).parents().parents().attr('id');
             // alert(sp_id);
             $.ajax({
-                url:'user/get_information.do',
+                url:'/user/get_user_info.do',
                 type:'post',
                 success:function(res){
                     console.log(res);
