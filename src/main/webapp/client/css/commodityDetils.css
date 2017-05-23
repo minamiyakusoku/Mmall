@@ -230,6 +230,7 @@ html,body{
 			color: #fff;
 			font-size: 16px;
 			background: #e01d20;
+			cursor: pointer;
 		}
 		.shopping_cart{
 			background: #ff6700;
