@@ -635,6 +635,7 @@
     background: #fff;
     -webkit-transition: -webkit-box-shadow .5s linear;
     transition: box-shadow .5s linear;
+    cursor: pointer;
 }
 .goods-item .figure-img {
     width: 200px;

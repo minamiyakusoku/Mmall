@@ -1760,7 +1760,8 @@
             var goods_id=$(this).attr('id');
             var cookietime = new Date();
             var date = new Date();
-            cookietime.setTime(date.getTime() + (24 * 60 * 1000));//coockie保存5分钟
+            cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+            //coockie保存时间
             $.cookie("goods_id", goods_id,{expires:cookietime});
             window.location.href = "product-list.html";
         });
@@ -1772,7 +1773,7 @@
             $(this).find($('.children-list ')).html('');
             var list1_id=$(this).attr('id');
             $.ajax({
-                url:'/manage/category/get_category.do',
+                url:'/category/get_category.do',
                 data:{
                     'categoryId':list1_id
                 },
@@ -1802,7 +1803,7 @@
     }
     //获取一级分类
     $.ajax({
-        url:'/manage/category/get_category.do',
+        url:'/category/get_category.do',
         type:'post',
         success:function(res){
             //console.log(res.data);

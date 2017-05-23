@@ -616,6 +616,48 @@
 </body>
 </html>
 <script>
+    //点击存储商品id
+    function good_cl(){
+        $('.goods-item').click(function(){
+            var good_det_id=$(this).attr('id');
+            var cookietime = new Date();
+            var date = new Date();
+            cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+            $.cookie("good_det_id", good_det_id,{expires:cookietime});
+            window.location.href = "commodityDetils.html";
+        });
+    }
+    //喜欢与加入购物车
+    function like(){
+        $('.goods-item').mouseover(function(){
+            $(this).find('.actions').css('display','block');
+        });
+        $('.goods-item').mouseout(function(){
+            $(this).find('.actions').css('display','none');
+        });
+        $('.btn-like').toggle(
+            function(){
+                $(this).find($('span')).css('color','#e53935');
+                $(this).find($('i')).addClass('active');
+            },function(){
+                $(this).find($('span')).css('color','#424242');
+                $(this).find($('i')).removeClass('active');
+            }
+        );
+        $('.btn-buy').click(function(){
+            var sp_id=$(this).parents().parents().attr('id');
+            // alert(sp_id);
+
+
+
+            var notice=$(this).parent().siblings('.notice');
+            notice.css('display','block');
+            setTimeout(function(){
+                notice.css('display','none');
+            },1000);
+            return false;
+        });
+    }
     var goods_id=$.cookie("goods_id");
     var goods_length;
     if(!goods_id){
@@ -639,6 +681,8 @@
                 $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
             });
             page_num();
+            like();
+            good_cl();
         },
         error:function(){
 
@@ -678,6 +722,8 @@
                         //val每一项的值
                         $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
                     });
+                    like();
+                    good_cl();
                 },
                 error:function(){
 
@@ -715,6 +761,8 @@
                         //val每一项的值
                         $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
                     });
+                    like();
+                    good_cl();
                 },
                 error:function(){
 
@@ -750,6 +798,8 @@
                         //val每一项的值
                         $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
                     });
+                    like();
+                    good_cl();
                 },
                 error:function(){
 
@@ -797,28 +847,7 @@
                 $(this).find($('.checkbox')).css('background','#fff');
             }
     );
-    $('.goods-item').mouseover(function(){
-        $(this).find('.actions').css('display','block');
-    });
-    $('.goods-item').mouseout(function(){
-        $(this).find('.actions').css('display','none');
-    });
-    $('.btn-like').toggle(
-            function(){
-                $(this).find($('span')).css('color','#e53935');
-                $(this).find($('i')).addClass('active');
-            },function(){
-                $(this).find($('span')).css('color','#424242');
-                $(this).find($('i')).removeClass('active');
-            }
-    );
-    $('.btn-buy').click(function(){
-        var notice=$(this).parent().siblings('.notice');
-        notice.css('display','block');
-        setTimeout(function(){
-            notice.css('display','none');
-        },1000);
-    });
+
 //    $('.thumb-list img')[0].src;
 //    $('.thumb-list img').mouseover(function(){
 //        var getSrc=$(this).attr('src');
