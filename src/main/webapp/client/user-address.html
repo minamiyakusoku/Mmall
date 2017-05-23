@@ -29,14 +29,16 @@
             </a>
         </div>
         <div class="topbar-info">
-            <a href="login.html">登录</a>
-            <a href="register.html">注册</a>
+            <div class="login" style="display: inline-block">
+                <a href="login.html">登录</a>
+                <a href="register.html">注册</a>
+            </div>
             <a href="javascript:;">消息通知</a>
-            <div class="info_select">
+            <!--<div class="info_select">
                 <a href="personal-center.html">个人中心</a>
                 <a href="user-favorite.html">我的喜欢</a>
                 <a href="login.html">退出登录</a>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -337,7 +339,7 @@
                                     <div class="add">+</div>
                                     <p>添加新地址</p>
                                 </div>
-                                <div class="address-item newadd" id="1">
+                                <!--<div class="address-item newadd" id="1">
                                     <dl>
                                         <dt>
                                             <em class="uname">王哇</em>
@@ -349,7 +351,7 @@
                                         <a href="javascript:;" class="modify revamp">修改</a>
                                         <a href="javascript:;" class="modify del">删除</a>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
 
                         </div>
@@ -470,19 +472,45 @@
                 <input type="text" placeholder="手机号" style="width: 228px;">
                 <input type="text" id="city" placeholder="选择 省 / 市 / 区 / 街道" style="width: 508px;">
                 <textarea placeholder="详细地址"></textarea>
-                <input type="text" placeholder="邮政编码" style="width: 228px;">
+                <input type="text" placeholder="邮政编码" class="zipCode" style="width: 228px;">
                 <input type="text" placeholder="地址标签" style="width: 228px;">
+                <p class="text" style="font-size: 14px;color: red"></p>
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="javascript:;" class="btn btn-primary">保存</a>
+        <a href="javascript:;" class="btn btn-primary save">保存</a>
         <a href="javascript:;" class="btn btn-gray">取消</a>
     </div>
 </div>
 </body>
 </html>
 <script>
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            var name=result.data.username;
+            if(!result.status){
+                $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
     var _width=$(window).width();
     $('.header-nav-menu').css('width',_width);
     $('.header-nav-menu').css('left','-40px');
@@ -498,10 +526,12 @@
         $(this).addClass('active').siblings().removeClass('active');
     });
     $('.close').click(function () {
+        $('.text').html('');
         $('.shade').css('display', 'none');
         $('.modal').slideUp("fast");
     });
     $('.btn-gray').click(function () {
+        $('.text').html('');
         $('.shade').css('display', 'none');
         $('.address').children().val('');
         $('.modal').slideUp("fast");
@@ -510,24 +540,147 @@
         $('.address').children().val('');
         $('.shade').css('display', 'block');
         $('.modal').slideDown("fast");
+        _str='add';
     });
     /*地址*/
     $("#city").click(function (e) {
         SelCity(this, e);
-        console.log("inout", $(this).val(), new Date());
-    });
-    $('.del').click(function () {
-        $(this).parent().parent().remove();
     });
 
-    $('.btn-primary').click(function(){
-        var content='<div class="address-item newadd" id="1"> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <br>'+$('#add input').eq(3).val()+' ('+$('#add input').eq(4).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> <a href="javascript:;" class="modify del">删除</a> </div> </div>';
-       $('.user-address-list').append(content);
-        $('.shade').css('display', 'none');
-        $('.modal').slideUp("fast");
+    $.ajax({
+        url:'/shipping/list.do',
+        data:{
+            'pageNum':1,
+            'pageSize':20
+        },
+        success:function(str){
+            if(!str.status){
+                for(var i=0;i<str.data.list.length;i++){
+                    var content='<div class="address-item newadd" id='+str.data.list[i].id+'> <dl> <dt> <em class="uname">'+str.data.list[i].receiverName+'</em> </dt> <dd class="utel">'+str.data.list[i].receiverMobile+'</dd> <dd class="uaddress">'+str.data.list[i].receiverProvince+'- '+str.data.list[i].receiverCity+'-'+str.data.list[i].receiverDistrict+'<p style="text-overflow: ellipsis; overflow: hidden;white-space:nowrap;">'+str.data.list[i].receiverAddress+'</p>('+str.data.list[i].receiverZip+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> <a href="javascript:;" class="modify del">删除</a> </div> </div>';
+                    $('.user-address-list').append(content);
+                }
+                delect();
+                modification();
+            }
+        },error:function(){
+        }
+    });
+    function delect(){
         $('.del').click(function () {
-            $(this).parent().parent().remove();
+            var del=$(this).parent().parent();
+            var shId=parseInt($(this).parent().parent().attr('id'));
+            $.ajax({
+                url:'/shipping/del.do',
+                data:{
+                    'shippingId':shId
+                },
+                success:function(str){
+                    if(!str.status){
+                        del.remove();
+                        alert(str.data);
+                    }
+                },
+                error:function(){
+                }
+            });
         });
+    };
+    var shId_reva;
+    function modification(){
+        $('.revamp').click(function(){
+            _str='revamp';
+            $('.text').html('');
+            shId_reva=parseInt($(this).parent().parent().attr('id'));
+            $.ajax({
+                url:'/shipping/select.do',
+                data:{
+                    'shippingId':shId_reva
+                },
+                success:function(str){
+                    if(!str.status){
+                        $('.shade').css('display', 'block');
+                        $('.modal').slideDown("fast");
+                        $('.modal-header span').html('修改收货地址');
+                        $('#add input').eq(0).val(str.data.receiverName);
+                        $('#add input').eq(1).val(str.data.receiverMobile);
+                        $("#city").val(str.data.receiverProvince+'-'+str.data.receiverCity+'-'+str.data.receiverDistrict);
+                        $('#add textarea').val(str.data.receiverAddress);
+                        $('#add input').eq(3).val(str.data.receiverZip);
+                    }
+                }
+            });
+
+        });
+    };
+    var _str;
+    $('.save').click(function(){
+        if(!$('#add input').eq(0).val()||!$('#add input').eq(1).val()||!$('#city').val()||!$('.zipCode').val()||!$('#add textarea').val()){
+            $('.text').html('填写完整');
+            return;
+        }
+        if($('.zipCode').val().length!=6){
+            $('.text').html('填入正确的邮政编码');
+            return false;
+        }
+        var reg=/^1\d{10}$/;
+        if(!reg.test($('#add input').eq(1).val())){
+            $('.text').html('填入正确的手机号');
+            return false;
+        }
+       if(_str=='add'){
+           $.ajax({
+               url:'/shipping/add.do',
+               data:{
+                   'receiverName':$('#add input').eq(0).val(),
+                   'receiverMobile':$('#add input').eq(1).val(),
+                   'receiverProvince':$('#add input').eq(5).val(),
+                   'receiverCity':$('#add input').eq(4).val(),
+                   'receiverDistrict':$('#add input').eq(3).val(),
+                   'receiverAddress':$('#add textarea').val(),
+                   'receiverZip':$('#add input').eq(6).val()
+               },
+               success:function(str){
+                   if(!str.status){
+                       var shippingId=str.data.shippingId;
+                       var content='<div class="address-item newadd" id='+shippingId+'> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <p style="text-overflow: ellipsis; overflow: hidden;white-space:nowrap;">'+$('#add textarea').val()+' ('+$('#add input').eq(6).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> <a href="javascript:;" class="modify del">删除</a> </div> </div>';
+                       $('.user-address-list').append(content);
+                       $('.shade').css('display', 'none');
+                       $('.modal').slideUp("fast");
+                       delect();
+                       modification();
+                   }else{
+                       alert("添加失败");
+                   }
+               },
+               error:function(){
+               }
+           });
+       }else{
+           var address= $("#city").val();
+           var arr=address.split('-');
+           $.ajax({
+               url:'/shipping/update.do',
+               data:{
+                   id:shId_reva,
+                   'receiverName':$('#add input').eq(0).val(),
+                   'receiverMobile':$('#add input').eq(1).val(),
+                   'receiverProvince':arr[0],
+                   'receiverCity':arr[1],
+                   'receiverDistrict':arr[2],
+                   'receiverAddress':$('#add textarea').val(),
+                   'receiverZip':$('.zipCode').val()
+               },
+               success:function(str){
+                   console.log(str);
+                   if(!str.status){
+                       $('.shade').css('display', 'none');
+                       $('.modal').slideUp("fast");
+                       location.reload();
+                   }
+               }
+           });
+       }
+
     });
 
 </script>
