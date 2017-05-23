@@ -647,7 +647,16 @@
         $('.btn-buy').click(function(){
             var sp_id=$(this).parents().parents().attr('id');
             // alert(sp_id);
+            $.ajax({
+                url:'user/get_information.do',
+                type:'post',
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(){
 
+                }
+            });
 
 
             var notice=$(this).parent().siblings('.notice');
