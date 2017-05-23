@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="css/reset.css" />
 	<link rel="stylesheet" href="css/payindent.css" />
 	<script src="them/jquery/jquery-1.7.2.js"></script>
+	<script src="them/jquery/jquery.cookie.js"></script>
 	
 	<style>
 		
@@ -40,12 +41,11 @@
                         <p class="order-time" id="J_deliverDesc">预计5天内发货</p>
                         <p class="order-time">请在<span class="pay-time-tip">1小时59分</span>内完成支付, 超时后将取消订单</p>
                         <p class="post-info" id="J_postInfo">
-                                                            收货信息：李亚培 183****2118 &nbsp;&nbsp;
-                            北京&nbsp;&nbsp;北京市&nbsp;&nbsp;海淀区&nbsp;&nbsp;中关村街道&nbsp;&nbsp;知春路 盈都大厦 C座 3单元16D                                                </p>
+                                                            收货信息：<span class="address"></span></p>
                     </div>
                     <div class="fr">
                         <p class="total">
-                            应付总额：<span class="money"><em>3799.00</em>元</span>
+                            应付总额：<span class="money"><em></em>元</span>
                         </p>
                         <p class="show-detail fr" id="J_showDetail">订单详情</p>
                     </div>
@@ -56,20 +56,18 @@
                         <li class="clearfix">
                             <div class="label">订单号：</div>
                             <div class="content">
-                                <span class="order-num">
-                                    1170520982402892                                </span>
+                                <span class="order-num orderNo">  </span>
                             </div>
                         </li>
                         <li class="clearfix">
                             <div class="label">收货信息：</div>
-                            <div class="content">
-                            李亚培 183****2118&nbsp;&nbsp;
-                            北京&nbsp;&nbsp;北京市&nbsp;&nbsp;海淀区&nbsp;&nbsp;中关村街道&nbsp;&nbsp;知春路 盈都大厦 C座 3单元16D </div>
+                            <div class="content address">
+                           </div>
                         </li>
                         <li class="clearfix">
                             <div class="label">商品名称：</div>
-                            <div class="content">
-                                小米MIX 尊享版 全面屏概念手机 256GB容量 6GB内存 黑金色 256G<br/>小米移动电源5000mAh 银色 </div>
+                            <div class="content productName">
+                                 </div>
                         </li>
                         <li class="clearfix">
                             <div class="label">配送时间：</div>
@@ -98,7 +96,7 @@
                             <li id="J_weixin">
                             	<img src="img/wechat0715.jpg" height="60" width="174" alt="微信支付" style="margin-left: 0;"/>
                             </li>
-                            <li class="J_bank">
+                            <li class="J_bank zfb">
                             	<input type="radio" name="payOnlineBank" id="alipay" value="alipay" /> 
                             	<img src="img/event-alipay20160718.jpg" alt="支付宝" style="margin-left: 0;"/>
                             </li>
@@ -323,7 +321,24 @@
 			</div>
 		</div>
 	</div>
-		
+	<!--遮罩-->
+	<div class="shade"></div>
+	<!--弹层-->
+	<div class="modal">
+		<div class="modal-header">
+			<span>扫一扫付款</span>
+			<a href="javascript:;" class="close"></a>
+		</div>
+		<div class="modal-body">
+			<div class="form-box">
+				<img src="" class="qrUrl">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="javascript:;" class="btn btn-primary save">保存</a>
+			<a href="javascript:;" class="btn btn-gray">取消</a>
+		</div>
+	</div>
 	<script>
 		$('#J_showDetail').click(function(){
 			if($('.order-detail').css('display')=='none'){
@@ -331,7 +346,61 @@
 			}else{
 				$('.order-detail').css('display','none')
 			}
-		})
+		});
+        var orderNo=$.cookie("payment");
+        $.ajax({
+            url:'/order/detail.do',
+            data:{
+                'orderNo':parseInt(orderNo)
+            },
+            success:function(str){
+                if(!str.status){
+                    var total_prices=parseFloat(str.data.postage)+parseFloat(str.data.payment);
+                    $('.money em').html(total_prices+'元');
+                    $('.orderNo').html(str.data.orderNo);
+                    $('.productName').html(str.data.orderItemVoList[0].productName)
+                    $('.address').html(str.data.receiverName+'&nbsp;'+str.data.shippingVo.receiverMobile+'&nbsp;'+str.data.shippingVo.receiverProvince+'&nbsp;'+str.data.shippingVo.receiverCity+'&nbsp;'+str.data.shippingVo.receiverDistrict+'&nbsp;'+str.data.shippingVo.receiverAddress);
+
+                    var orderItemVoList=str.data.orderItemVoList;
+                    for(var i=0;i<orderItemVoList.length;i++){
+                        var cont='<li> <div class="figure"> <a href=""> <img src="'+str.data.imageHost+orderItemVoList[i].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+orderItemVoList[i].productName+'</p> <p class="goods_pric">'+orderItemVoList[i].currentUnitPrice+'元×'+orderItemVoList[i].quantity+'</p> </li>';
+                        $('.goods_list').append(cont);
+                    }
+                    if($('.statusDesc').html()=="已付款"){
+                        $('.bar').css('width','40%');
+                    }
+                    if($('.statusDesc').html()=="未支付"){
+                        $('.bar').css('width','20%');
+                    }
+
+                }
+            }
+        });
+        $('.zfb').click(function(){
+            $('.shade').css('display', 'block');
+            $('.modal').slideDown("fast");
+            $.ajax({
+                url:'/order/pay.do',
+                data:{
+                    'orderNo':parseInt(orderNo)
+                },
+                success:function(res){
+                    console.log(res);
+                    $('.qrUrl').attr('src',res.data.qrUrl);
+                }
+            });
+		});
+        $('.close').click(function () {
+            $('.text').html('');
+            $('.shade').css('display', 'none');
+            $('.modal').slideUp("fast");
+        });
+        $('.btn-gray').click(function () {
+            $('.text').html('');
+            $('.shade').css('display', 'none');
+            $('.address').children().val('');
+            $('.modal').slideUp("fast");
+        });
 	</script>
 	
 </body>

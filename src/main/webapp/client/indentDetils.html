@@ -300,28 +300,28 @@
 			</div>
 			<div class="clearfix indent_num_box">
 				<div class="indent_num fl">
-					订单号：<span class="indent_num_i">555525651515</span>
+					订单号：<span class="indent_num_i"></span>
 				</div>
 				<div class="fr pay_box">
-					<a href="#" class="fr pay">立即支付</a>
+					<a href="payindent.html" class="fr pay">立即支付</a>
 					<a href="#" class="fr cancel">取消订单</a>
 				</div>
 
 			</div>
 			<div class="indent_details">
-				<p class="indent_status">等待付款</p>
+				<p class="indent_status statusDesc">等待付款</p>
 				<p class="indent_predict">1小时52分后订单将被关闭</p>
 			</div>
 			<ul class="progress_bar">
-				<li>下单 <span class="progress_time">5月17日 09:05</span></li>
-				<li>付款</li>
+				<li>下单 <span class="progress_time createTime"></span></li>
+				<li>付款<span class="progress_time paymentTime"></span></li>
 				<li>配货</li>
 				<li>出库</li>
 				<li>交易完成</li>
 				<p class="bar"></p>
 			</ul>
 			<ul class="goods_list">
-				<li>
+				<!--<li>
 					<div class="figure">
 						<a href="">
 							<img src="img/top.jpg" height="80" width="80" alt="">
@@ -329,30 +329,21 @@
 					</div>
 					<p class="goods_name">小米手机</p>
 					<p class="goods_pric">95元×1</p>
-				</li>
-				<li>
-					<div class="figure">
-						<a href="">
-							<img src="img/top.jpg" height="80" width="80" alt="">
-						</a>
-					</div>
-					<p class="goods_name">小米手机</p>
-					<p class="goods_pric">95元×1</p>
-				</li>
+				</li>-->
 			</ul>
 			<div class="site_box">
 				<div class="site_title">收货信息
-					<p class="site_modification">修改</p>
+					<!--<p class="site_modification">修改</p>-->
 				</div>
 				<ul>
 					<li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：
-						<span class="site_name">李亚培</span>
+						<span class="site_name name"></span>
 					</li>
 					<li>联系电话：
-						<span class="site_tell">188****8888</span>
+						<span class="site_tell phone">188****8888</span>
 					</li>
 					<li>收货地址：
-						<span class="site_site">北京市</span>
+						<span class="site_site address">北京市</span>
 					</li>
 				</ul>
 			</div>
@@ -389,13 +380,12 @@
 			</div>
 			<div class="billing_information">
 				<ul>
-					<li>商品总价：<span>3594元</span></li>
-					<li>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 费：<span>0元</span></li>
-					<li>订单金额：<span>3594元</span></li>
+					<li>商品总价：<span class="payment"></span></li>
+					<li>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 费：<span class="postage">0元</span></li>
 				</ul>
 				<div class="practical_money">
 					<p class="practical_money_text">实付金额：</p>
-					<p class="practical_money_num">3594元</p>
+					<p class="practical_money_num"></p>
 				</div>
 			</div>
 		</div>
@@ -554,34 +544,10 @@
 	var _width=$(window).width();
 	$('.header-nav-menu').css('width',_width);
 	$('.header-nav-menu').css('left','-40px');
-	//创建页面
-	function createPage(data){
-		// if(!data){
-		// 	$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
-		// 	return;
-		// }
-		// image=data.mainImg;
-	}
 
-$(document).ready(function(){
-	var image=[];
-	var id=301;
-	//要操作商品的id
-	var operate_id;
-	createPage();
-	// $.ajax({
-//        	url:'http://192.168.31.211:2333/store/get?id='+id,
-//        	type:'GET',
-//       	dataType:'jsonp',
-//       	jsonp:'callback',
-//       	success:function(result){
-//           	var data=result.data;
-//           	//createPage(data);
-//        	},
-//        	error:function(msg){
 
-//        	}
-//    	});
+
+
 	$('.header-nav .nav-list li').mouseover(function(){
 	   $(this).find($('.header-nav-menu')).css('display','block');
 	});
@@ -623,8 +589,71 @@ $(document).ready(function(){
 		$('.site_time').html(html);
 		$('.delivery_verification_box').css('display','none');
 	});
+    var orderNo=$.cookie("orderNo");
+    $.ajax({
+        url:'/order/detail.do',
+        data:{
+            'orderNo':parseInt(orderNo)
+        },
+        success:function(str){
+            if(!str.status){
+                var total_prices=parseFloat(str.data.postage)+parseFloat(str.data.payment);
+                $('.postage').html(str.data.postage+'元');
+				$('.payment').html(str.data.payment+'元');
+				$('.practical_money_num').html(total_prices+'元');
+				$('.indent_num_i').html(str.data.orderNo);
+				$('.statusDesc').html(str.data.statusDesc);
+				$('.createTime').html(str.data.createTime);
+				$('.paymentTime').html(str.data.paymentTime);
+				$('.name').html(str.data.receiverName);
+				$('.phone').html(str.data.shippingVo.receiverMobile);
+				$('.address').html(str.data.shippingVo.receiverProvince+'&nbsp;'+str.data.shippingVo.receiverCity+'&nbsp;'+str.data.shippingVo.receiverDistrict+'&nbsp;'+str.data.shippingVo.receiverAddress);
 
-})
+				 var orderItemVoList=str.data.orderItemVoList;
+				 for(var i=0;i<orderItemVoList.length;i++){
+					  var cont='<li> <div class="figure"> <a href=""> <img src="'+str.data.imageHost+orderItemVoList[i].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+orderItemVoList[i].productName+'</p> <p class="goods_pric">'+orderItemVoList[i].currentUnitPrice+'元×'+orderItemVoList[i].quantity+'</p> </li>';
+					  $('.goods_list').append(cont);
+				 }
+				 if($('.statusDesc').html()=="已付款"){
+				     $('.bar').css('width','40%');
+				     $('.pay_box').css('display','none');
+				 }
+                if($('.statusDesc').html()=="未支付"){
+                    $('.bar').css('width','20%');
+                }
+                if($('.statusDesc').html()=="已取消"){
+                    $('.indent_predict').html('');
+                    $('.progress_bar').remove();
+                    $('.pay_box').css('display','none');
+                }
+
+            }
+        }
+    });
+    $('.pay').attr('id',orderNo);
+    $('.pay').click(function(){
+        var cookietime = new Date();
+        var date = new Date();
+        cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+        $.cookie('payment', $(this).attr('id') , { path: '/', expires: cookietime});
+	});
+    $('.cancel').click(function(){
+        $.ajax({
+            url:'/order/cancel.do',
+            data:{
+                'orderNo':parseInt(orderNo)
+            },
+            success:function(res){
+                console.log(res);
+                if(res.msg==null){
+                    alert("取消成功");
+                    location.reload();
+				}else{
+                    alert(res.msg);
+				}
+            }
+        });
+	});
 </script>
 	
 </body>
