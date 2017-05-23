@@ -29,14 +29,16 @@
             </a>
         </div>
         <div class="topbar-info">
-            <a href="login.html">登录</a>
-            <a href="register.html">注册</a>
+            <div class="login" style="display: inline-block">
+                <a href="login.html">登录</a>
+                <a href="register.html">注册</a>
+            </div>
             <a href="javascript:;">消息通知</a>
-            <div class="info_select">
+            <!--<div class="info_select">
                 <a href="personal-center.html">个人中心</a>
                 <a href="user-favorite.html">我的喜欢</a>
                 <a href="login.html">退出登录</a>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -484,6 +486,31 @@
 </body>
 </html>
 <script>
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            var name=result.data.username;
+            if(!result.status){
+                $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
     var _width=$(window).width();
     $('.header-nav-menu').css('width',_width);
     $('.header-nav-menu').css('left','-40px');
@@ -562,6 +589,7 @@
     function modification(){
         $('.revamp').click(function(){
             _str='revamp';
+            $('.text').html('');
             shId_reva=parseInt($(this).parent().parent().attr('id'));
             $.ajax({
                 url:'/shipping/select.do',
@@ -575,7 +603,7 @@
                         $('.modal-header span').html('修改收货地址');
                         $('#add input').eq(0).val(str.data.receiverName);
                         $('#add input').eq(1).val(str.data.receiverMobile);
-                        $('#add input').eq(2).val(str.data.receiverProvince+'-'+str.data.receiverCity+'-'+str.data.receiverDistrict);
+                        $("#city").val(str.data.receiverProvince+'-'+str.data.receiverCity+'-'+str.data.receiverDistrict);
                         $('#add textarea').val(str.data.receiverAddress);
                         $('#add input').eq(3).val(str.data.receiverZip);
                     }
@@ -586,20 +614,20 @@
     };
     var _str;
     $('.save').click(function(){
-       /* if(!$('#add input').eq(0).val()||$('#add input').eq(1).val()||$('#add input').eq(3).val()||$('#add input').eq(4).val()||$('#add input').eq(5).val()||$('#add input').eq(6).val()||$('#add textarea').val()){
+        if(!$('#add input').eq(0).val()||!$('#add input').eq(1).val()||!$('#city').val()||!$('.zipCode').val()||!$('#add textarea').val()){
             $('.text').html('填写完整');
             return;
-        }*/
+        }
+        if($('.zipCode').val().length!=6){
+            $('.text').html('填入正确的邮政编码');
+            return false;
+        }
+        var reg=/^1\d{10}$/;
+        if(!reg.test($('#add input').eq(1).val())){
+            $('.text').html('填入正确的手机号');
+            return false;
+        }
        if(_str=='add'){
-           if($('.zipCode').val().length!=6){
-               $('.text').html('填入正确的邮政编码');
-               return false;
-           }
-           var reg=/^1\d{10}$/;
-           if(!reg.test($('#add input').eq(1).val())){
-               $('.text').html('填入正确的手机号');
-               return false;
-           }
            $.ajax({
                url:'/shipping/add.do',
                data:{
@@ -628,7 +656,7 @@
                }
            });
        }else{
-           var address= $('#add input').eq(2).val();
+           var address= $("#city").val();
            var arr=address.split('-');
            $.ajax({
                url:'/shipping/update.do',
