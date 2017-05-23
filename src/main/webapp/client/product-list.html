@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/product-list.css"/>
     <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/jquery/jquery.cookie.js"></script>
 </head>
 <body>
 <!--头部-->
@@ -371,127 +372,51 @@
         </div>
         <div class="goods-list-box">
             <div class="goods-list clearfix">
-                <div class="goods-item">
-                    <div class="figure figure-img">
-                        <a href="javascript:;">
-                            <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                        </a>
-                    </div>
-                    <p class="title">小米IXM</p>
-                    <p class="price">3499元 起</p>
-                    <div class="thumbs">
-                        <ul class="thumb-list clearfix">
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                            </li>
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="actions clearfix">
-                            <a href="javascript:;" class="btn-like">
-                                <i class="like"></i>
-                                <span>喜欢</span>
-                            </a>
-                            <a href="javascript:;" class="btn-buy">
-                                <span>加入购物车</span>
-                                <i class="buy"></i>
-                            </a>
-                    </div>
-                    <div class="flags">
-                        <div class="flag flag-saleoff">9.6折促销</div>
-                    </div>
-                    <div class="notice">成功加入购物车</div>
-                </div>
-                <div class="goods-item">
-                    <div class="figure figure-img">
-                        <a href="javascript:;">
-                            <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                        </a>
-                    </div>
-                    <p class="title">小米IXM</p>
-                    <p class="price">3499元 起</p>
-                    <div class="thumbs">
-                        <ul class="thumb-list clearfix">
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                            </li>
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/T1ZdhjByxv1RXrhCrK!200x200.jpg">
-                            </li>
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/T1T2AjBybv1RXrhCrK!200x200.jpg">
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="actions clearfix">
-                        <a href="javascript:;" class="btn-like">
-                            <i class="like"></i>
-                            <span>喜欢</span>
-                        </a>
-                        <a href="javascript:;" class="btn-buy">
-                            <span>加入购物车</span>
-                            <i class="buy"></i>
-                        </a>
-                    </div>
-                    <div class="flags">
-                        <div class="flag flag-saleoff">9.6折促销</div>
-                    </div>
-                    <div class="notice">成功加入购物车</div>
-                </div>
-                <div class="goods-item">
-                    <div class="figure figure-img">
-                        <a href="javascript:;">
-                            <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                        </a>
-                    </div>
-                    <p class="title">小米IXM</p>
-                    <p class="price">3499元 起</p>
-                    <div class="thumbs">
-                        <ul class="thumb-list clearfix">
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                            </li>
-                            <li>
-                                <img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="actions clearfix">
-                        <a href="javascript:;" class="btn-like">
-                            <i class="like"></i>
-                            <span>喜欢</span>
-                        </a>
-                        <a href="javascript:;" class="btn-buy">
-                            <span>加入购物车</span>
-                            <i class="buy"></i>
-                        </a>
-                    </div>
-                    <div class="flags">
-                        <div class="flag flag-saleoff">9.6折促销</div>
-                    </div>
-                    <div class="notice">成功加入购物车</div>
-                </div>
+                <!--<div class="goods-item">-->
+                    <!--<div class="figure figure-img">-->
+                        <!--<a href="javascript:;">-->
+                            <!--<img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<p class="title">小米IXM</p>-->
+                    <!--<p class="price">3499元 起</p>-->
+                    <!--<div class="thumbs">-->
+                        <!--<ul class="thumb-list clearfix">-->
+                            <!--<li>-->
+                                <!--<img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<img src="http://i1.mifile.cn/a1/pms_1477962926.56487493!200x200.jpg">-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="actions clearfix">-->
+                            <!--<a href="javascript:;" class="btn-like">-->
+                                <!--<i class="like"></i>-->
+                                <!--<span>喜欢</span>-->
+                            <!--</a>-->
+                            <!--<a href="javascript:;" class="btn-buy">-->
+                                <!--<span>加入购物车</span>-->
+                                <!--<i class="buy"></i>-->
+                            <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="flags">-->
+                        <!--<div class="flag flag-saleoff">9.6折促销</div>-->
+                    <!--</div>-->
+                    <!--<div class="notice">成功加入购物车</div>-->
+                <!--</div>-->
             </div>
             <div class="xm-pagenavi">
-                <span class="numbers" style="font-weight: 900"><</span>
-                <span class="numbers current">1</span>
-                <span class="numbers">2</span>
-                <span class="numbers">3</span>
-                <span class="numbers">4</span>
-                <span class="numbers">5</span>
-                <span class="numbers">6</span>
-                <span class="numbers">...</span>
-                <span class="numbers" style="font-weight: 900">></span>
+                <span class=" num_l" style="font-weight: 900"><</span>
+
+                <span class=" num_r" style="font-weight: 900">></span>
             </div>
         </div>
     </div>
 </div>
 <div class="page-main">
     <div class="container">
-        <div class="container-box" style="height: 378px" id="recommend">
+        <div class="container-box" id="recommend">
             <!--导航列表-->
             <div class="box-hd">
                 <h2 class="tittle">为你推荐</h2>
@@ -691,6 +616,148 @@
 </body>
 </html>
 <script>
+    var goods_id=$.cookie("goods_id");
+    var goods_length;
+    if(!goods_id){
+        window.location.href = "index.html";
+    }
+    $.ajax({
+        url:'/product/list.do',
+        data:{
+            'categoryId':goods_id,
+            'pageNum':1,
+            'pageSize':16
+        },
+        type:'post',
+        success:function(res){
+            var goods_list=res.data.list;
+
+            goods_length=res.data.total;
+            $.each(goods_list,function(index,val){
+                //index 索引
+                //val每一项的值
+                $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
+            });
+            page_num();
+        },
+        error:function(){
+
+        }
+    });
+//分页：
+    var num_id;
+    function page_num(){
+        var pageNum=Math.ceil(goods_length/16);
+        var num_lr=0;
+
+        for (var i=0;i<pageNum;i++){
+            if(i==0){
+                $(".num_r").before('<span class="numbers current" id="1">1</span>');
+            }else{
+                $(".num_r").before('<span class="numbers" id="'+(i+1)+'">'+(i+1)+'</span>');
+            }
+
+        }
+        $(".numbers").click(function(){
+            num_id=$(this).attr('id');
+            $('.goods-list').html('');
+            $.ajax({
+                url:'/product/list.do',
+                data:{
+                    'categoryId':goods_id,
+                    'pageNum':num_id,
+                    'pageSize':16
+                },
+                type:'post',
+                success:function(res){
+                    var goods_list=res.data.list;
+
+                    goods_length=res.data.total;
+                    $.each(goods_list,function(index,val){
+                        //index 索引
+                        //val每一项的值
+                        $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
+                    });
+                },
+                error:function(){
+
+                }
+            });
+        });
+        $('.xm-pagenavi .numbers').click(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+            num_lr=$(this).index()-1;
+        });
+        $('.num_l').click(function(){
+            if(num_lr<=0){
+                num_lr=0;
+                return;
+            }
+            num_lr--;
+            $('.xm-pagenavi .numbers').removeClass('current');
+            $('.xm-pagenavi .numbers').eq(num_lr).addClass('current');
+            num_id=num_lr+1;
+            $('.goods-list').html('');
+            $.ajax({
+                url:'/product/list.do',
+                data:{
+                    'categoryId':goods_id,
+                    'pageNum':num_id,
+                    'pageSize':16
+                },
+                type:'post',
+                success:function(res){
+                    var goods_list=res.data.list;
+
+                    goods_length=res.data.total;
+                    $.each(goods_list,function(index,val){
+                        //index 索引
+                        //val每一项的值
+                        $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
+                    });
+                },
+                error:function(){
+
+                }
+            });
+        });
+        $('.num_r').click(function(){
+
+            num_lr++;
+            if(num_lr>=$('.xm-pagenavi .numbers').length){
+                num_lr=$('.xm-pagenavi .numbers').length-1;
+                return;
+            }
+            $('.xm-pagenavi .numbers').removeClass('current');
+            $('.xm-pagenavi .numbers').eq(num_lr).addClass('current');
+
+            num_id=num_lr+1;
+            $('.goods-list').html('');
+            $.ajax({
+                url:'/product/list.do',
+                data:{
+                    'categoryId':goods_id,
+                    'pageNum':num_id,
+                    'pageSize':16
+                },
+                type:'post',
+                success:function(res){
+                    var goods_list=res.data.list;
+
+                    goods_length=res.data.total;
+                    $.each(goods_list,function(index,val){
+                        //index 索引
+                        //val每一项的值
+                        $('.goods-list').append('<div class="goods-item" id="'+val.id+'" ><div class="figure figure-img"><a href="javascript:;"><img src="'+val.imageHost+val.mainImage+'"></a></div><p class="title">'+val.name+'</p><p class="price">'+val.price+'元 起</p><div class="actions clearfix"><a href="javascript:;" class="btn-like"><i class="like"></i><span>喜欢</span></a><a href="javascript:;" class="btn-buy"><span>加入购物车</span><i class="buy"></i></a></div><div class="flags"><div class="flag flag-saleoff">'+val.subtitle+'</div></div><div class="notice">成功加入购物车</div></div>');
+                    });
+                },
+                error:function(){
+
+                }
+            });
+        });
+    }
+
     var _width=$(window).width();
     $('.header-nav-menu').css('width',_width);
     $('.header-nav-menu').css('left','-40px');
@@ -752,12 +819,12 @@
             notice.css('display','none');
         },1000);
     });
-    $('.thumb-list img')[0].src;
-    $('.thumb-list img').mouseover(function(){
-        var getSrc=$(this).attr('src');
-        var figure=$(this).parent().parent().parent().siblings('.figure').children().children();
-        figure.attr('src',getSrc);
-    });
+//    $('.thumb-list img')[0].src;
+//    $('.thumb-list img').mouseover(function(){
+//        var getSrc=$(this).attr('src');
+//        var figure=$(this).parent().parent().parent().siblings('.figure').children().children();
+//        figure.attr('src',getSrc);
+//    });
     /*为你推荐 #recommend*/
     var oRight = document.getElementById('right');
     var oLeft = document.getElementById('left');
@@ -784,7 +851,5 @@
         oUl.style.left = -(W - 14) * left + 'px';
     }
     /*为你推荐 #recommend  end */
-    $('.xm-pagenavi span').click(function(){
-        $(this).addClass('current').siblings().removeClass('current');
-    });
+
 </script>
