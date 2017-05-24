@@ -109,7 +109,7 @@ public class AdvServiceImpl implements IAdvService {
         AdvDetailVo advDetailVo = new AdvDetailVo();
         advDetailVo.setId(adv.getId());
         advDetailVo.setTitle(adv.getTitle());
-        advDetailVo.setSubTitle(adv.getSubTitle());
+        advDetailVo.setSubtitle(adv.getSubtitle());
         advDetailVo.setCategoryId(adv.getCategoryId());
         advDetailVo.setProductId(adv.getProductId());
         advDetailVo.setPageUrl(adv.getPageUrl());
@@ -130,7 +130,7 @@ public class AdvServiceImpl implements IAdvService {
         AdvListVo advListVo = new AdvListVo();
         advListVo.setId(adv.getId());
         advListVo.setTitle(adv.getTitle());
-        advListVo.setSubTitle(adv.getSubTitle());
+        advListVo.setSubtitle(adv.getSubtitle());
         advListVo.setCategoryId(adv.getCategoryId());
         advListVo.setProductId(adv.getProductId());
         advListVo.setPageUrl(adv.getPageUrl());

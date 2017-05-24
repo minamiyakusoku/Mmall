@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/login.css"/>
     <script src="them/jquery/jquery-1.7.2.js"></script>
+    <script src="them/jquery/jquery.cookie.js"></script>
 </head>
 <body>
 <div class="header">
@@ -54,6 +55,9 @@
 </body>
 </html>
 <script>
+        //获取路径信息
+        var path=$.cookie("location_index");
+       // alert(path);
 
         $('#login').click(function(){
             var result = document.getElementById("userid").value;
@@ -76,7 +80,11 @@
                 success:function(result){
                     if(!result.status){
                         $('.hint').html('');
-                        window.location.href='index.html';
+                        if(path){
+                            window.location.href=path;
+                        }else{
+                            window.location.href='index.html';
+                        }
                     }else{
                         var msg=result.msg;
                         $('.hint').html(msg);

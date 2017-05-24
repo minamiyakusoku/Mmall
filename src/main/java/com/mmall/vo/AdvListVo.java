@@ -9,7 +9,7 @@ public class AdvListVo {
 
     private String title;
 
-    private String subTitle;
+    private String subtitle;
 
     private Integer categoryId;
 
@@ -29,11 +29,11 @@ public class AdvListVo {
         super();
     }
 
-    public AdvListVo(Integer id, String title, String subTitle, Integer categoryId, Integer productId, String pageUrl, String mainImage, Integer position, Integer status,String imageHost) {
+    public AdvListVo(Integer id, String title, String subtitle, Integer categoryId, Integer productId, String pageUrl, String mainImage, Integer position, Integer status,String imageHost) {
         super();
         this.id = id;
         this.title = title;
-        this.subTitle = subTitle;
+        this.subtitle = subtitle;
         this.categoryId = categoryId;
         this.productId = productId;
         this.pageUrl = pageUrl;
@@ -59,12 +59,12 @@ public class AdvListVo {
         this.title = title;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
     public Integer getCategoryId() {

@@ -1,6 +1,7 @@
 package com.mmall.common.swagger;
 
 
+import com.mmall.pojo.Adv;
 import com.mmall.pojo.Product;
 import com.mmall.pojo.Shipping;
 import com.mmall.pojo.User;
@@ -38,7 +39,7 @@ public class RestApiConfig extends WebMvcConfigurationSupport{
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
-                .build().ignoredParameterTypes(User.class, Shipping.class, Product.class);
+                .build().ignoredParameterTypes(User.class, Shipping.class, Product.class,Adv.class);
     }
 
     private ApiInfo apiInfo() {
