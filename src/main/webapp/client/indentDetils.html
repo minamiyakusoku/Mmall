@@ -28,14 +28,16 @@
 			</a>
 		</div>
 		<div class="topbar-info">
-			<a href="login.html">登录</a>
-			<a href="register.html">注册</a>
+			<div class="login" style="display: inline-block">
+				<a href="login.html">登录</a>
+				<a href="register.html">注册</a>
+			</div>
 			<a href="javascript:;">消息通知</a>
-			<div class="info_select">
+			<!--<div class="info_select">
 				<a href="personal-center.html">个人中心</a>
 				<a href="user-favorite.html">我的喜欢</a>
 				<a href="login.html">退出登录</a>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>
@@ -545,9 +547,31 @@
 	$('.header-nav-menu').css('width',_width);
 	$('.header-nav-menu').css('left','-40px');
 
-
-
-
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            var name=result.data.username;
+            if(!result.status){
+                $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
 	$('.header-nav .nav-list li').mouseover(function(){
 	   $(this).find($('.header-nav-menu')).css('display','block');
 	});
@@ -608,16 +632,10 @@
 				$('.name').html(str.data.receiverName);
 				$('.phone').html(str.data.shippingVo.receiverMobile);
 				$('.address').html(str.data.shippingVo.receiverProvince+'&nbsp;'+str.data.shippingVo.receiverCity+'&nbsp;'+str.data.shippingVo.receiverDistrict+'&nbsp;'+str.data.shippingVo.receiverAddress);
-
-				 var orderItemVoList=str.data.orderItemVoList;
-				 for(var i=0;i<orderItemVoList.length;i++){
-					  var cont='<li> <div class="figure"> <a href=""> <img src="'+str.data.imageHost+orderItemVoList[i].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+orderItemVoList[i].productName+'</p> <p class="goods_pric">'+orderItemVoList[i].currentUnitPrice+'元×'+orderItemVoList[i].quantity+'</p> </li>';
-					  $('.goods_list').append(cont);
-				 }
-				 if($('.statusDesc').html()=="已付款"){
-				     $('.bar').css('width','40%');
-				     $('.pay_box').css('display','none');
-				 }
+                if($('.statusDesc').html()=="已付款"){
+                    $('.bar').css('width','40%');
+                    $('.pay_box').css('display','none');
+                }
                 if($('.statusDesc').html()=="未支付"){
                     $('.bar').css('width','20%');
                 }
@@ -626,7 +644,11 @@
                     $('.progress_bar').remove();
                     $('.pay_box').css('display','none');
                 }
-
+				 var orderItemVoList=str.data.orderItemVoList;
+				 for(var i=0;i<orderItemVoList.length;i++){
+					  var cont='<li> <div class="figure"> <a href=""> <img src="'+str.data.imageHost+orderItemVoList[i].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+orderItemVoList[i].productName+'</p> <p class="goods_pric">'+orderItemVoList[i].currentUnitPrice+'元×'+orderItemVoList[i].quantity+'</p> </li>';
+					  $('.goods_list').append(cont);
+				 }
             }
         }
     });

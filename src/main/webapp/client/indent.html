@@ -46,7 +46,7 @@
 	<div class="site-header">
 	    <div class="container">
 	        <div class="header-logo">
-	            <a href="javascript:;">
+	            <a href="index.html">
 	                <span class="logo"></span>
 	            </a>
 	        </div>
@@ -474,19 +474,21 @@
             $(this).addClass('active').siblings().removeClass('active');
 	    });
 		allOrders();
+		var Allsize;
 		$('.all').click(function(){
-		    $('.main').html('');
-		   allOrders();
-		   var length=$('.main').children().length;
-		   if(length==0){
-               $('.content_blank').css('display','block');
-		   }
+            $('.paging_box ul').html('');
+            allOrders();
+            if(Allsize>=0){
+                $('.content_blank').css('display','none');
+                $('.paging_box ul').css('display','block');
+			}
 		});
         $('.wzf').click(function(){
             $('.main').html('');
             var length=$('.main').children().length;
             if(length==0){
                 $('.content_blank').css('display','block');
+                $('.paging_box ul').css('display','none');
             }
         });
         $('.yfk').click(function(){
@@ -494,6 +496,7 @@
             var length=$('.main').children().length;
             if(length==0){
                 $('.content_blank').css('display','block');
+                $('.paging_box ul').css('display','none');
             }
         });
         $('.ygb').click(function(){
@@ -501,6 +504,7 @@
             var length=$('.main').children().length;
             if(length==0){
                 $('.content_blank').css('display','block');
+                $('.paging_box ul').css('display','none');
             }
         });
 	  	/*获取全部订单*/
@@ -515,21 +519,24 @@
                     if(!str.status){
                         var arr;
                         var page=str.data.pages;
+                        Allsize=str.data.size;
                         for(var i=0;i<str.data.list.length;i++){
 							/*console.log(str.data.list[i]);*/
                             arr=str.data.list[i].orderItemVoList;
                             var total_prices=parseFloat(str.data.list[i].postage)+parseFloat(str.data.list[i].payment);
                             var cont=' <div class="indent_detailsbox"><div class="indent_details"><p class="indent_status">'+str.data.list[i].statusDesc+'</p> <p class="indent_predict"></p> <ul class="indent_recipients clearfix"> <li class="fl indent_time">'+str.data.list[i].createTime+'</li> <li class="fl indent_name">'+str.data.list[i].receiverName+'</li> <li class="fl indent_number">订单号：'+str.data.list[i].orderNo+'</li> <li class="fl indent_pay">'+str.data.list[i].statusDesc+'</li> </ul> <p class="indent_money"> 订单金额 <span class="indent_money_num"> '+total_prices+' 元</span> </p> </div> <div class="indent_indent clearfix">   <div class="order_items fl"> <ul class="goods_list"></ul> </div>   <div class="order_actions"> <a href="payindent.html" class="btn_primary payment" id="'+str.data.list[i].orderNo+'">立即支付</a> <a href="indentDetils.html" class="details" id="'+str.data.list[i].orderNo+'">查看详情</a> </div> </div> </div>';
                             $('.main').append(cont);
-                            if($('.indent_status').html()=="已取消"){
-                                $('.payment').css('display','none');
+
+                            if($('.indent_status').eq(i).html()=="已取消"){
+                                $('.payment').eq(i).css('display','none');
+                            }
+                            if($('.indent_status').eq(i).html()=="已付款"){
+                                $('.payment').eq(i).css('display','none');
                             }
                             for(var j=0;j<arr.length;j++){
                                 var cont2='<li> <div class="figure"> <a href=""> <img src="'+str.data.list[i].imageHost+arr[j].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+arr[j].productName+'</p> <p class="goods_pric">'+arr[j].currentUnitPrice+'元×'+arr[j].quantity+'</p> </li>';
                                 $('.goods_list').eq(i).append(cont2);
                             }
-
-
                         }
                         details();
 						payment();
@@ -560,6 +567,12 @@
 
                                             var cont=' <div class="indent_detailsbox"><div class="indent_details"><p class="indent_status">'+str.data.list[i].statusDesc+'</p> <p class="indent_predict"></p> <ul class="indent_recipients clearfix"> <li class="fl indent_time">'+str.data.list[i].createTime+'</li> <li class="fl indent_name">李亚培</li> <li class="fl indent_number">订单号：'+str.data.list[i].orderNo+'</li> <li class="fl indent_pay">'+str.data.list[i].statusDesc+'</li> </ul> <p class="indent_money"> 订单金额 <span class="indent_money_num"> '+str.data.list[i]. payment+' 元</span> </p> </div> <div class="indent_indent clearfix">   <div class="order_items fl"> <ul class="goods_list">   </ul> </div>   <div class="order_actions"> <a href="payindent.html" class="btn_primary payment" id="'+str.data.list[i].orderNo+'">立即支付</a> <a class="details" id="'+str.data.list[i].orderNo+'" href="indentDetils.html">查看详情</a> </div> </div> </div>';
                                             $('.main').append(cont);
+                                            if($('.indent_status').eq(i).html()=="已取消"){
+                                                $('.payment').eq(i).css('display','none');
+                                            }
+                                            if($('.indent_status').eq(i).html()=="已付款"){
+                                                $('.payment').eq(i).css('display','none');
+                                            }
                                             for(var j=0;j<arr.length;j++){
                                                 var cont2='<li> <div class="figure"> <a href=""> <img src="'+str.data.list[i].imageHost+arr[j].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+arr[j].productName+'</p> <p class="goods_pric">'+arr[j].currentUnitPrice+'元×'+arr[j].quantity+'</p> </li>';
                                                 $('.goods_list').eq(i).append(cont2);
