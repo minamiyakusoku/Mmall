@@ -39,13 +39,13 @@
     where position = #{position,jdbcType=INTEGER}
   </select>
   <insert id="insert" parameterType="com.mmall.pojo.Adv" >
-    insert into mmall_product (
+    insert into mmall_adv (
     id, title, subtitle, category_id, product_id, page_url, main_image, sub_images, position, status,
     create_time, update_time
       )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
-      #{category_id,jdbcType=INTEGER}, #{product_id,jdbcType=INTEGER}, #{page_url,jdbcType=VARCHAR},
-      #{main_image,jdbcType=VARCHAR}, #{sub_images,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER},
+      #{categoryId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{pageUrl,jdbcType=VARCHAR},
+      #{mainImage,jdbcType=VARCHAR}, #{subImages,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER},
       #{status,jdbcType=INTEGER}, now(), now()
       )
   </insert>
@@ -62,22 +62,22 @@
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="subtitle != null" >
-        subtitle = #{name,jdbcType=VARCHAR},
+        subtitle = #{subtitle,jdbcType=VARCHAR},
       </if>
-      <if test="category_id != null" >
-        category_id = #{category_id,jdbcType=INTEGER},
+        category_id = #{categoryId,jdbcType=INTEGER},
+
+
+
+        product_id = #{productId,jdbcType=INTEGER},
+
+
+        page_url = #{pageUrl,jdbcType=VARCHAR},
+
+      <if test="mainImage != null" >
+        main_image = #{mainImage,jdbcType=VARCHAR},
       </if>
-      <if test="product_id != null" >
-        product_id = #{mainImage,jdbcType=INTEGER},
-      </if>
-      <if test="page_url != null" >
-        page_url = #{page_url,jdbcType=VARCHAR},
-      </if>
-      <if test="main_image != null" >
-        main_image = #{main_image,jdbcType=VARCHAR},
-      </if>
-      <if test="sub_images != null" >
-        sub_images = #{sub_images,jdbcType=VARCHAR},
+      <if test="subImages != null" >
+        sub_images = #{subImages,jdbcType=VARCHAR},
       </if>
       <if test="position != null" >
         position = #{position,jdbcType=INTEGER},

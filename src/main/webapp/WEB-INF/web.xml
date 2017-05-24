@@ -8,6 +8,9 @@
     <welcome-file-list>
         <welcome-file>client/index.html</welcome-file>
     </welcome-file-list>
+    <session-config>   <!--分钟为单位-->
+        <session-timeout>360</session-timeout>
+    </session-config>
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

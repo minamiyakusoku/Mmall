@@ -39,7 +39,6 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String",paramType="query"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String",paramType="query")})
-    @ApiResponse(code =201,message = "akkkkuuu")
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username,password);
