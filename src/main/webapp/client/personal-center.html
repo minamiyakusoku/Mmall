@@ -296,8 +296,8 @@
                         <div class="box-bd">
                             <div class="portal-main clearfix">
                                 <div class="user-card">
-                                    <h3 class="username">671234567</h3>
-                                    <p class="tip">早上好～</p>
+                                    <h3 class="username"></h3>
+                                    <p class="tip"></p>
                                     <a class="link"  target="_blank" href="personal-information.html">修改个人信息 ></a>
                                     <img class="avatar" src="https://account.xiaomi.com/static/img/passport/photo.jpg">
                                 </div>
@@ -308,11 +308,11 @@
                                             <span class="levl">普通</span>
                                         </li>
                                         <li>绑定手机：
-                                            <span class="tel">176********02</span>
+                                            <span class="tel phone"></span>
                                         </li>
                                         <li>
                                             绑定邮箱：
-                                            <span class="tel"></span>
+                                            <span class="tel email"></span>
                                             <a class="btn" href="personal-information.html">绑定</a>
                                         </li>
                                     </ul>
@@ -461,6 +461,9 @@
         success:function(result){
             var name=result.data.username;
             if(!result.status){
+                $('.username').html(name);
+                $('.phone').html(result.data.phone);
+                $('.email').html(result.data.email);
                 $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
                 $('.quit').click(function(){
                     $.ajax({
