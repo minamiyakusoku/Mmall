@@ -9,7 +9,7 @@
     <script src="them/city/Popt.js"></script>
     <script src="them/city/cityJson.js"></script>
     <script src="them/city/citySet.js"></script>
-
+    <script src="them/jquery/jquery.cookie.js"></script>
 </head>
 <body>
 <!--头部-->
@@ -17,7 +17,7 @@
     <div class="headercontent clearfix">
         <h1 class="fl"></h1>
         <p class="fl title">
-            支付订单
+            确认订单信息
         </p>
         <a class="to_indent fr" href="#">我的订单</a>
         <div class="user_name_box fr" >
@@ -41,18 +41,6 @@
                         </div>
                         <div class="box-bd">
                             <div class="user-address-list clearfix">
-                                <div class="address-item newadd active" id="1">
-                                    <dl>
-                                        <dt>
-                                            <em class="uname">王哇</em>
-                                        </dt>
-                                        <dd class="utel">176****6602</dd>
-                                        <dd class="uaddress">北京 北京市 东城区 建国门街道 <br>东北街23-23号 (100011)</dd>
-                                    </dl>
-                                    <div class="actions">
-                                        <a href="javascript:;" class="modify revamp">修改</a>
-                                    </div>
-                                </div>
                                 <div class="address-item address-item-new">
                                     <div class="add">+</div>
                                     <p>添加新地址</p>
@@ -118,29 +106,32 @@
             商品
             <span class="fr">返回购物车 ></span>
         </div>
-        <div class="indent clearfix">
-            <img class="fl" src="img/top.jpg" alt="">
-            <p class="fl indent_name">小米蓝牙耳机</p>
-            <ul class="fr">
-                <li >53元×2</li>
-                <li>有货</li>
-                <li class="indent_pri">106元</li>
-            </ul>
+        <div class="indent_box_i">
+            <!--<div class="indent clearfix">-->
+                <!--<img class="fl" src="img/top.jpg" alt="">-->
+                <!--<p class="fl indent_name">小米蓝牙耳机</p>-->
+                <!--<ul class="fr">-->
+                    <!--<li >53元×2</li>-->
+                    <!--<li>有货</li>-->
+                    <!--<li class="indent_pri">106元</li>-->
+                <!--</ul>-->
+            <!--</div>-->
         </div>
+
         <ul class="inventory">
-            <li>商品件数:<span>2件</span></li>
-            <li>金额合计:<span>106元</span></li>
+            <li>商品件数:<span class="act_count">2件</span></li>
+            <li>金额合计:<span class="total_price">106元</span></li>
             <li>活动优惠:<span>-0元</span></li>
             <li>优惠券抵扣:<span>-0元</span></li>
-            <li>运费:<span>10元</span></li>
-            <li class="inventory_count">应付总额<span>10 <em>元</em></span></li>
+            <li>运费:<span>0元</span></li>
+            <li class="inventory_count">应付总额<span class="total_price_z">10 <em>元</em></span></li>
         </ul>
         <div class="btn_box clearfix">
             <div class="fl delivery_text ">
                 <p>李亚培  188****8888  </p>
                 <p>北京  <span>修改</span></p>
             </div>
-            <div class="btn fr">去结算</div>
+            <div class="btn fr go_pay">去结算</div>
         </div>
     </div>
 </div>
@@ -256,13 +247,14 @@
                 <input type="text" placeholder="手机号" style="width: 228px;">
                 <input type="text" id="city" placeholder="选择 省 / 市 / 区 / 街道" style="width: 508px;">
                 <textarea placeholder="详细地址"></textarea>
-                <input type="text" placeholder="邮政编码" style="width: 228px;">
+                <input type="text" placeholder="邮政编码" class="zipCode" style="width: 228px;">
                 <input type="text" placeholder="地址标签" style="width: 228px;">
+                <p class="text" style="font-size: 14px;color: red"></p>
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="javascript:;" class="btn btn-primary">保存</a>
+        <a href="javascript:;" class="btn btn-primary save">保存</a>
         <a href="javascript:;" class="btn btn-gray">取消</a>
     </div>
 </div>
@@ -278,33 +270,242 @@
         $('.address').children().val('');
         $('.modal').slideUp("fast");
     });
+    /*地址*/
     $('.address-item-new').click(function () {
         $('.address').children().val('');
         $('.shade').css('display', 'block');
         $('.modal').slideDown("fast");
+        _str='add';
     });
-    /*地址*/
     $("#city").click(function (e) {
         SelCity(this, e);
-        console.log("inout", $(this).val(), new Date());
-    });
-    $('.user-address-list .newadd').click(function(){
-        $(this).addClass('active').siblings().removeClass('active');
-    });
-    $('.btn-primary').click(function(){
-        var content='<div class="address-item newadd" id="1"> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <br>'+$('#add input').eq(3).val()+' ('+$('#add input').eq(4).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> </div> </div>';
-        $('.user-address-list').prepend(content);
-        $('.shade').css('display', 'none');
-        $('.modal').slideUp("fast");
-        $('.del').click(function () {
-            $(this).parent().parent().remove();
-        });
-        $('.user-address-list .newadd').click(function(){
-            $(this).addClass('active').siblings().removeClass('active');
-        });
     });
     $('.select a').click(function(){
         $(this).addClass('active').siblings().removeClass('active');
     });
+    $.ajax({
+        url:'/shipping/list.do',
+        data:{
+            'pageNum':1,
+            'pageSize':20
+        },
+        success:function(str){
+            if(!str.status){
+                for(var i=0;i<str.data.list.length;i++){
+                    var content='<div class="address-item newadd" id='+str.data.list[i].id+'> <dl> <dt> <em class="uname">'+str.data.list[i].receiverName+'</em> </dt> <dd class="utel">'+str.data.list[i].receiverMobile+'</dd> <dd class="uaddress">'+str.data.list[i].receiverProvince+'- '+str.data.list[i].receiverCity+'-'+str.data.list[i].receiverDistrict+'<p style="text-overflow: ellipsis; overflow: hidden;white-space:nowrap;">'+str.data.list[i].receiverAddress+'</p>('+str.data.list[i].receiverZip+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> <a href="javascript:;" class="modify del">删除</a> </div> </div>';
+                    $('.user-address-list').append(content);
+                }
+                $('.newadd').click(function(){
+                    $('.newadd').removeClass('active');
+                    $(this).addClass('active');
+                    user_address_id=$(this).attr('id');
+
+                });
+                delect();
+                modification();
+            }
+        },error:function(){
+        }
+    });
+    function delect(){
+        $('.del').click(function () {
+            var del=$(this).parent().parent();
+            var shId=parseInt($(this).parent().parent().attr('id'));
+            $.ajax({
+                url:'/shipping/del.do',
+                data:{
+                    'shippingId':shId
+                },
+                success:function(str){
+                    if(!str.status){
+                        del.remove();
+                        alert(str.data);
+                    }
+                },
+                error:function(){
+                }
+            });
+        });
+    };
+    var shId_reva;
+    function modification(){
+        $('.revamp').click(function(){
+            _str='revamp';
+            $('.text').html('');
+            shId_reva=parseInt($(this).parent().parent().attr('id'));
+            $.ajax({
+                url:'/shipping/select.do',
+                data:{
+                    'shippingId':shId_reva
+                },
+                success:function(str){
+                    if(!str.status){
+                        $('.shade').css('display', 'block');
+                        $('.modal').slideDown("fast");
+                        $('.modal-header span').html('修改收货地址');
+                        $('#add input').eq(0).val(str.data.receiverName);
+                        $('#add input').eq(1).val(str.data.receiverMobile);
+                        $("#city").val(str.data.receiverProvince+'-'+str.data.receiverCity+'-'+str.data.receiverDistrict);
+                        $('#add textarea').val(str.data.receiverAddress);
+                        $('#add input').eq(3).val(str.data.receiverZip);
+                    }
+                }
+            });
+
+        });
+    };
+    var _str;
+    $('.save').click(function(){
+        if(!$('#add input').eq(0).val()||!$('#add input').eq(1).val()||!$('#city').val()||!$('.zipCode').val()||!$('#add textarea').val()){
+            $('.text').html('填写完整');
+            return;
+        }
+        if($('.zipCode').val().length!=6){
+            $('.text').html('填入正确的邮政编码');
+            return false;
+        }
+        var reg=/^1\d{10}$/;
+        if(!reg.test($('#add input').eq(1).val())){
+            $('.text').html('填入正确的手机号');
+            return false;
+        }
+        if(_str=='add'){
+            $.ajax({
+                url:'/shipping/add.do',
+                data:{
+                    'receiverName':$('#add input').eq(0).val(),
+                    'receiverMobile':$('#add input').eq(1).val(),
+                    'receiverProvince':$('#add input').eq(5).val(),
+                    'receiverCity':$('#add input').eq(4).val(),
+                    'receiverDistrict':$('#add input').eq(3).val(),
+                    'receiverAddress':$('#add textarea').val(),
+                    'receiverZip':$('#add input').eq(6).val()
+                },
+                success:function(str){
+                    if(!str.status){
+                        var shippingId=str.data.shippingId;
+                        var content='<div class="address-item newadd" id='+shippingId+'> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <p style="text-overflow: ellipsis; overflow: hidden;white-space:nowrap;">'+$('#add textarea').val()+' ('+$('#add input').eq(6).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> <a href="javascript:;" class="modify del">删除</a> </div> </div>';
+                        $('.user-address-list').append(content);
+                        $('.shade').css('display', 'none');
+                        $('.modal').slideUp("fast");
+                        $('.newadd').click(function(){
+                            $('.newadd').removeClass('active');
+                            $(this).addClass('active');
+                            user_address_id=$(this).attr('id');
+                        });
+                        delect();
+                        modification();
+                    }else{
+                        alert("添加失败");
+                    }
+                },
+                error:function(){
+                }
+            });
+        }else{
+            var address= $("#city").val();
+            var arr=address.split('-');
+            $.ajax({
+                url:'/shipping/update.do',
+                data:{
+                    id:shId_reva,
+                    'receiverName':$('#add input').eq(0).val(),
+                    'receiverMobile':$('#add input').eq(1).val(),
+                    'receiverProvince':arr[0],
+                    'receiverCity':arr[1],
+                    'receiverDistrict':arr[2],
+                    'receiverAddress':$('#add textarea').val(),
+                    'receiverZip':$('.zipCode').val()
+                },
+                success:function(str){
+                    console.log(str);
+                    if(!str.status){
+                        $('.shade').css('display', 'none');
+                        $('.modal').slideUp("fast");
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+    });
+    //存储 地址id
+    var user_address_id;
+
+    //去结算
+    $('.go_pay').click(
+        function(){
+            if(!user_address_id){
+                alert('请选择地址');
+                return;
+            }
+            $.ajax({
+                url:'/order/create.do',
+                data:{
+                    'shippingId':user_address_id
+                },
+                type:'post',
+                success:function(res){
+                    if(res.status){
+                        alert(res.msg);
+                    }else{
+                        var payment=res.data.orderNo;
+                        var cookietime = new Date();
+                        var date = new Date();
+                        cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                        $.cookie('payment', payment , { path: '/', expires: cookietime});
+                        window.location.href = "payindent.html";
+                    }
+
+                },
+                error:function(){
+
+                }
+            })
+        }
+    );
+    $.ajax({
+        url:'/cart/list.do',
+        type:'post',
+        success:function(res){
+            var act_count=0;
+            var indent_list=res.data.cartProductVoList;
+            var arr=[];
+            $.each(indent_list,function(index,val){
+                if(val.productChecked){
+                    arr.push(val);
+                }
+            });
+            $.each(arr,function(index,val){
+                $('.indent_box_i').append('<div class="indent clearfix"><img class="fl" src="'+res.data.imageHost+val.productMainImage+'" alt=""><p class="fl indent_name">'+val.productName+'</p><ul class="fr"><li >'+val.productPrice+'元×'+val.quantity+'</li><li>有货</li><li class="indent_pri">'+val.productTotalPrice+'元</li></ul></div>');
+                act_count+=val.quantity;
+            });
+
+            $('.act_count').html(act_count+'件');
+            $('.total_price').html(res.data.cartTotalPrice+'元');
+
+            $('.total_price_z').html(res.data.cartTotalPrice+'<em>元</em>');
+        },
+        error:function(){
+
+        }
+    })
+
+//    $('.user-address-list .newadd').click(function(){
+//        $(this).addClass('active').siblings().removeClass('active');
+//    });
+//    $('.btn-primary').click(function(){
+//        var content='<div class="address-item newadd" id="1"> <dl> <dt> <em class="uname">'+$('#add input').eq(0).val()+'</em> </dt> <dd class="utel">'+$('#add input').eq(1).val()+'</dd> <dd class="uaddress">'+$('#add input').eq(2).val()+' <br>'+$('#add input').eq(3).val()+' ('+$('#add input').eq(4).val()+')</dd> </dl> <div class="actions"> <a href="javascript:;" class="modify revamp">修改</a> </div> </div>';
+//        $('.user-address-list').prepend(content);
+//        $('.shade').css('display', 'none');
+//        $('.modal').slideUp("fast");
+//        $('.del').click(function () {
+//            $(this).parent().parent().remove();
+//        });
+//        $('.user-address-list .newadd').click(function(){
+//            $(this).addClass('active').siblings().removeClass('active');
+//        });
+//    });
+
 
 </script>

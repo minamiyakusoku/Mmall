@@ -257,6 +257,7 @@
 			border-radius: 50%;
 			display: inline-block;
 			background: url(../img/close.png) no-repeat center center;
+			background: url(../img/close.png) no-repeat center center;
 			background-size: 100% 100%;
 		}
 		.delete_sp:hover{
@@ -338,6 +339,11 @@
 			text-align: center;
 			margin-left: 50px;
 			position: relative;
+		}
+		.btn_disabled_ac{
+			color:#fff;
+			background:#ff6700;
+			cursor: pointer;
 		}
 		.total_prices{
 			height: 50px;
