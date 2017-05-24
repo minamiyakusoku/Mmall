@@ -40,17 +40,25 @@ public class AdvController {
 
 
 
-    @ApiOperation(value = "根据广告位置获取全部广告信息",notes = "如果categoryId不为空或0，跳转到对应商品分类的商品列表页面；如果productId不为空或0，跳转到对应的商品详情页面；否则根据pageUrl跳转页面")
+    @ApiOperation(value = "获取广告（多条件可排序查询）")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "position", value = "广告位置（目前只有1，为首页轮播广告）", required = true, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "title", value = "广告标题（模糊查询）", required = false, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "content", value = "广告标题或副标题（模糊查询）", required = false, dataType = "String",paramType="query"),
+            @ApiImplicitParam(name = "position", value = "广告位置（目前只有1，为首页轮播广告）", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "status", value = "广告状态（1启用，0被禁用）", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
-    @RequestMapping(value = "/list_by_position.do",method = {RequestMethod.GET,RequestMethod.POST})
+            @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query"),
+            @ApiImplicitParam(name = "orderBy", value = "排序属性（create_time#desc,create_time#asc,position#desc,position#asc）", required = false, dataType = "int",paramType="query")})
+    @RequestMapping(value = "/list_by.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public ServerResponse<PageInfo> listByPosition(Integer position,
+    public ServerResponse<PageInfo> listBy(@RequestParam(value = "title",required = false) String title,
+                                                   @RequestParam(value = "content",required = false) String content,
+                                                   @RequestParam(value = "position",required = false) Integer position,
+                                                   @RequestParam(value = "status",required = false) Integer status,
                                                    @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                                           @RequestParam(value = "pageSize",defaultValue = "10") int pageSize) {
-        return iAdvService.getByPosition(position,pageNum,pageSize);
+                                           @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,
+                                           @RequestParam(value = "orderBy",defaultValue = "") String orderBy) {
+        return iAdvService.list(title,content,position,status,pageNum,pageSize,orderBy);
     }
 
 }

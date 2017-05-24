@@ -1,6 +1,10 @@
 package com.mmall.vo;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.util.Date;
+
 /**
  * Created by akku on 2017/5/22.
  */
@@ -10,6 +14,10 @@ public class AdvListVo {
     private String title;
 
     private String subtitle;
+
+    private Integer advType;
+
+    private String advTypeMsg;
 
     private Integer categoryId;
 
@@ -25,15 +33,43 @@ public class AdvListVo {
 
     private String imageHost;
 
+    private String createTime;
+
+    public Integer getAdvType() {
+        return advType;
+    }
+
+    public void setAdvType(Integer advType) {
+        this.advType = advType;
+    }
+
+    public String getAdvTypeMsg() {
+        return advTypeMsg;
+    }
+
+    public void setAdvTypeMsg(String advTypeMsg) {
+        this.advTypeMsg = advTypeMsg;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
     public AdvListVo() {
         super();
     }
 
-    public AdvListVo(Integer id, String title, String subtitle, Integer categoryId, Integer productId, String pageUrl, String mainImage, Integer position, Integer status,String imageHost) {
+    public AdvListVo(Integer id, String title, String subtitle,Integer advType,String advTypeMsg, Integer categoryId, Integer productId, String pageUrl, String mainImage, Integer position, Integer status,String imageHost,String createTime) {
         super();
         this.id = id;
         this.title = title;
         this.subtitle = subtitle;
+        this.advType = advType;
+        this.advTypeMsg = advTypeMsg;
         this.categoryId = categoryId;
         this.productId = productId;
         this.pageUrl = pageUrl;
@@ -41,6 +77,7 @@ public class AdvListVo {
         this.position = position;
         this.status = status;
         this.imageHost = imageHost;
+        this.createTime = createTime;
     }
 
     public Integer getId() {

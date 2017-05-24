@@ -14,7 +14,7 @@ import java.util.List;
 public interface IAdvService {
     ServerResponse<PageInfo> getAll(int pageNum,int pageSize);
 
-    ServerResponse<PageInfo> getByPosition(Integer position,int pageNum,int pageSize);
+    ServerResponse<PageInfo> list(String title,String content,Integer position,Integer status,int pageNum,int pageSize,String orderBy);
 
     ServerResponse<AdvDetailVo> get(Integer id);
 

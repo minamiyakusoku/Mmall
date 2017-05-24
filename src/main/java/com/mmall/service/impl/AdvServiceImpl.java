@@ -13,6 +13,7 @@ import com.mmall.util.DateTimeUtil;
 import com.mmall.util.PropertiesUtil;
 import com.mmall.vo.AdvDetailVo;
 import com.mmall.vo.AdvListVo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,20 +44,30 @@ public class AdvServiceImpl implements IAdvService {
     }
 
     @Override
-    public ServerResponse<PageInfo> getByPosition(Integer position, int pageNum, int pageSize) {
+    public ServerResponse<PageInfo> list(String title, String content, Integer position, Integer status, int pageNum, int pageSize, String orderBy) {
+
 
         PageHelper.startPage(pageNum,pageSize);
-        List<Adv> advList = advMapper.getByPosition(position);
+        //排序处理
+        if(StringUtils.isNotBlank(orderBy)){
+            if(true||Const.AdvListOrderBy.ADV_ASC_DESC.contains(orderBy)){
+                String[] orderByArray = orderBy.split("#");
+                PageHelper.orderBy(orderByArray[0]+" "+orderByArray[1]);
+            }
+        }
+        List<Adv> advList = advMapper.list(StringUtils.isBlank(title)?null:title,StringUtils.isBlank(content)?null:content,position,status);
 
         List<AdvListVo> advListVoList = Lists.newArrayList();
         for(Adv adv : advList){
             AdvListVo advListVo = assembleAdvListVo(adv);
             advListVoList.add(advListVo);
         }
-        PageInfo pageResult = new PageInfo(advList);
-        pageResult.setList(advListVoList);
-        return ServerResponse.createBySuccess(pageResult);
+
+        PageInfo pageInfo = new PageInfo(advList);
+        pageInfo.setList(advListVoList);
+        return ServerResponse.createBySuccess(pageInfo);
     }
+
 
     @Override
     public ServerResponse<AdvDetailVo> get(Integer id) {
@@ -126,10 +137,31 @@ public class AdvServiceImpl implements IAdvService {
         return advDetailVo;
     }
 
+
     private AdvListVo assembleAdvListVo(Adv adv){
         AdvListVo advListVo = new AdvListVo();
         advListVo.setId(adv.getId());
         advListVo.setTitle(adv.getTitle());
+        System.out.println("--------------------->"+adv.getCategoryId());
+        if(adv.getCategoryId()!=null){
+            if(adv.getCategoryId()!=0){
+                advListVo.setAdvType(Const.AdvTypeEnum.CATEGORY.getCode());
+                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.CATEGORY.getValue());
+            }
+        }else if(adv.getProductId()!=null){
+            if(adv.getProductId()!=0){
+                advListVo.setAdvType(Const.AdvTypeEnum.PRODUCT.getCode());
+                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.PRODUCT.getValue());
+            }
+        }else if(adv.getPageUrl()!=null){
+            if(!StringUtils.isBlank(adv.getPageUrl())){
+                advListVo.setAdvType(Const.AdvTypeEnum.URL.getCode());
+                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.URL.getValue());
+            }
+        }else{
+            advListVo.setAdvType(Const.AdvTypeEnum.NONE.getCode());
+            advListVo.setAdvTypeMsg(Const.AdvTypeEnum.NONE.getValue());
+        }
         advListVo.setSubtitle(adv.getSubtitle());
         advListVo.setCategoryId(adv.getCategoryId());
         advListVo.setProductId(adv.getProductId());
@@ -138,8 +170,7 @@ public class AdvServiceImpl implements IAdvService {
         advListVo.setPosition(adv.getPosition());
         advListVo.setStatus(adv.getStatus());
         advListVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.happymmall.com/"));
-
-
+        advListVo.setCreateTime(DateTimeUtil.dateToStr(adv.getCreateTime()));
 
         return advListVo;
     }

@@ -1,6 +1,8 @@
 package com.mmall.vo;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * Created by akku on 2017/5/22.
  */
@@ -24,7 +26,6 @@ public class AdvDetailVo {
     private Integer position;
 
     private Integer status;
-
     private String createTime;
 
     private String upDateTime;
@@ -38,6 +39,7 @@ public class AdvDetailVo {
     }
 
     private String imageHost;;
+
 
     public AdvDetailVo() {
         super();

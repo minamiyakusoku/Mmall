@@ -2,7 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/client/css/affirm-indent.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/client/css/user-address.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/client/css/affirm-indent.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/client/css/user-address.css" charset="UTF-8" />
   </component>
 </project>

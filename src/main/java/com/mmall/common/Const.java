@@ -15,7 +15,10 @@ public class Const {
     public static final String USERNAME = "username";
 
     public interface ProductListOrderBy{
-        Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_desc","price_asc");
+        Set<String> PRICE_ASC_DESC = Sets.newHashSet("price#desc","price#asc");
+    }
+    public interface AdvListOrderBy{
+        Set<String> ADV_ASC_DESC = Sets.newHashSet("create_time#desc","create_time#asc","position#desc","position#asc");
     }
 
     public interface Cart{
@@ -55,6 +58,28 @@ public class Const {
         private String value;
         private int code;
         AdvStatusEnum(int code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+    }
+
+    public enum AdvTypeEnum{
+        URL(0,"其他广告"),
+        CATEGORY(1,"类目推荐"),
+        PRODUCT(2,"商品推荐"),
+        NONE(10,"无广告内容");
+
+        private String value;
+        private int code;
+        AdvTypeEnum(int code,String value){
             this.code = code;
             this.value = value;
         }
