@@ -635,6 +635,7 @@
     background: #fff;
     -webkit-transition: -webkit-box-shadow .5s linear;
     transition: box-shadow .5s linear;
+    cursor: pointer;
 }
 .goods-item .figure-img {
     width: 200px;
@@ -875,6 +876,9 @@
     font-size: 12px;
     text-align: center;
     color: #b0b0b0;
+}
+.num_r,.num_l{
+    cursor: pointer;
 }
 
 

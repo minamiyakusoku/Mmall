@@ -65,48 +65,18 @@
 				</ul>
 			</div>
 			<div class="details">
-				<ul id="sp301" class="details_item clearfix">
-					<li class="check_sp fl">
-						<input type="checkbox" name="check_commodity" value="">
-						<div class="img_box">
-							<img src="img/top.jpg" height="60" width="60" alt="">
-						</div>
-					</li>
-					<li class="name_sp fl">
-						小米手机5s Plus 高配全网通版 6GB内存
-					</li>
-					<li class="price_sp fl">
-						<span class="commodity_price">2599</span>元
-					</li>
-					<li class="det_sp fl">
-						<ul>
-							<li class="det_sp_item fl">
-								<div class="count_box clearfix">
-									<span class="count_box_item fl count_j">-</span>
-									<span class="count_box_item fl count">1</span>
-									<span class="count_box_item fl count_z">+</span>
-								</div>
-							</li>
-							<li class="det_sp_item fl">
-								<span class="commodity_price_sum"> 2599元</span>
-							</li>
-							<li class="det_sp_item fl">
-								<span class="delete_sp"></span>
-							</li>
-						</ul>
-					</li>
-				</ul>
+
 			</div>
 			<div class="kxsp_box">
 				<ul>
-					<li id="tj302" class="kxsp_box_item">
-						<span class="add_sp"></span><span class="add_name">+249元得小米vr眼镜</span>
-					</li>
+					<!--<li id="tj302" class="kxsp_box_item">-->
+						<!--<span class="add_sp"></span><span class="add_name">+249元得小米vr眼镜</span>-->
+					<!--</li>-->
 				</ul>
 			</div>
 			<div class="cart_bar">
 				<div class="fl section_left">
-					<a href="#"><p class="jxgw">继续购物</p></a>
+					<a href="index.html"><p class="jxgw">继续购物</p></a>
 					<p class="tongji">
 						共<span class="commodity_amount">1</span>件商品,已选择<span class="selected_amount">0</span>件
 					</p>
@@ -235,108 +205,301 @@
 		</div>
 		
 	<script>
-		//创建页面
-        function createPage(data){
-	      	// if(!data){
-	      	// 	$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
-	      	// 	return;
-	      	// }
-      		// image=data.mainImg;
-      		operate();
-        }
-        //推荐商品的添加函数
-        function recommend(){
-        	$('.add_sp').click(function(){
-	        	operate_id=$(this).parent().attr('id');
-	        	$(this).parent().remove();
-				$('.details').append('<ul id="'+operate_id+'" class="details_item clearfix"><li class="check_sp fl"><input type="checkbox" checked  disabled="disabled" name="check_commodity" value=""><div class="img_box"><img src="img/top.jpg" height="60" width="60" alt=""></div></li><li class="name_sp fl">小米vr眼镜</li><li class="price_sp fl"><span class="commodity_price">249</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">1</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> 249元</span></li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
-					//添加
-					operate();
-					check_all();
-			});
-        }
-        recommend();
-        
-        //操作函数
-        function operate(){
-        	//移入商品重置operate_id
-        	$('.details_item').mouseover(function(){
-        		operate_id=$(this).attr('id');
-        	});
-        	//点击删除商品弹出提示框
-      		$('.delete_sp').click(function(){
-      			$('.delete_box').css('display','block');
-      			
-      		});
-      		$('.delete_box_close').click(function(){
-      			$('.delete_box').css('display','none');
-      		});
-      		$('.delete_box_abolish').click(function(){
-      			$('.delete_box').css('display','none');
-      		});
-      		//点击确认按钮删除商品
-      		$('.delete_box_confirm').click(function(){
-      			$('.delete_box').css('display','none');
-      			$("#"+operate_id).remove();
-      			//如果details没有子级 就是 没有东西
-      			if($('.details').children().length==0){
-      				$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
-      			}
-      			//如果删除的是推荐商品
-      			if(operate_id.indexOf('tj')!=-1){
-      				$('.kxsp_box ul').append('<li id="'+operate_id+'" class="kxsp_box_item"><span class="add_sp"></span><span class="add_name">+249元得小米vr眼镜</span></li>');
-      				recommend();
+        //获取商品总数
+        function hq_sp_count() {
+            $.ajax({
+                url:'/cart/get_cart_product_count.do',
+                type:'post',
+                success:function(res){
+                    $('.commodity_amount').html(res.data);
+                },
+                error:function(){
 
-      			}
-      		});
-      		//商品个数操作
-      		var count=1;
-      		$('.count_j').click(function(){
-      			alert(operate_id);
-				count--;
-				if(count<=1){
-					count=1;
-				}
-				$('#'+operate_id+' .count').html(count);
-			});
-			$('.count_z').click(function(){
-				count++;
-				$('#'+operate_id+' .count').html(count);
-			});
-						
+                }
+            });
         }
-        //选中个数
-     	var checkboxCount=0;
-        //选中函数
-        function check_all(){
-     		$('#quanxuan').unbind("click").click(function(){
-	     		if ($('#quanxuan').attr('checked')) {
-				    $("input:checkbox[name='check_commodity']").each(function() {
-					        $(this).attr('checked', true);
-					        checkboxCount++;
-					});
-				}else{
-					$("input:checkbox[name='check_commodity']").each(function () {
-					        $(this).attr('checked',false);
-					});
-					checkboxCount=0;
-				}
-				sp_count(checkboxCount);
-	     	});
-	     	$("input:checkbox[name='check_commodity']").unbind("click").click(function(){
-	     		if($(this).attr('checked')) {
-	     			checkboxCount++;
-	     		}else{
-	     			checkboxCount--;
-	     		}
-	     		if(checkboxCount==$("input:checkbox[name='check_commodity']").length){
-	     			$('#quanxuan').attr('checked',true)
-	     		}else{
-	     			$('#quanxuan').attr('checked',false)
-	     		}
-	     		sp_count(checkboxCount);
-	     	});
-     	}
+        hq_sp_count();
+		//选中商品的个数
+        var act_count=0;
+        //选中商品的总价
+        var act_rmb=0;
+        //每件商品选中的个数
+        var item_count;
+
+        $.ajax({
+            url:'/cart/list.do',
+            type:'post',
+            success:function(res){
+                var goods_list=res.data.cartProductVoList;
+                var imageHost=res.data.imageHost;
+                act_rmb=res.data.cartTotalPrice;
+                //console.log(goods_list);
+                $.each(goods_list,function(index,val){
+                    //index 索引
+                    //val每一项的值
+                    $('.details').append('<ul id="'+val.productId+'" class="details_item clearfix"><li class="check_sp fl"><input type="checkbox" name="check_commodity" value=""><div class="img_box"><img src="'+(imageHost+val.productMainImage)+'" height="60" width="60" alt=""></div></li><li class="name_sp fl">'+val.productName+'</li><li class="price_sp fl"><span class="commodity_price">'+val.productPrice+'</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">'+val.quantity+'</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> '+(val.quantity*val.productPrice)+'元</span></li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
+                    if(val.productChecked){
+						$('input:checkbox[name="check_commodity"]').eq(index).attr("checked",true);
+                        act_count+=val.quantity;
+                        //改变数量
+                        $('.count_j').eq(index).on("click",function(){
+                            item_count=$('.count').eq(index).html();
+                            item_count--;
+                            if(item_count<1){
+                                item_count=1;
+                                return ;
+                            }
+                            $('.count').eq(index).html(item_count);
+                            $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                            act_rmb-=val.productPrice;
+                            act_count--;
+                            $('input:checkbox[name="check_commodity"]').eq(index).off("click").on("click",check_un);
+                            //已选商品 的个数
+                            $('.selected_amount').html(act_count);
+                            //已选商品的总价
+                            $('.total_prices_count').html(act_rmb);
+                            //调用修改数量接口
+                            $.ajax({
+                                url:'/cart/update.do',
+                                data:{
+                                    'count':item_count,
+                                    'productId':val.productId
+                                },
+                                type:'post',
+                                success:function(res){
+                                    console.log(res.data.cartTotalPrice);
+                                    //调获取购物车商品个数接口
+                                    hq_sp_count();
+                                },
+                                error:function(){
+
+                                }
+                            });
+                        });
+                        $('.count_z').eq(index).on("click",function(){
+                            item_count=$('.count').eq(index).html();
+                            item_count++;
+                            $('.count').eq(index).html(item_count);
+                            $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                            act_rmb+=val.productPrice;
+                            act_count++;
+                            $('input:checkbox[name="check_commodity"]').eq(index).off("click").on("click",check_un);
+                            //已选商品 的个数
+                            $('.selected_amount').html(act_count);
+                            //已选商品的总价
+                            $('.total_prices_count').html(act_rmb);
+                            //调用修改数量接口
+                            $.ajax({
+                                url:'/cart/update.do',
+                                data:{
+                                    'count':item_count,
+                                    'productId':val.productId
+                                },
+                                type:'post',
+                                success:function(res){
+                                    console.log(res.data.cartTotalPrice);
+                                    //调获取购物车商品个数接口
+                                    hq_sp_count();
+                                },
+                                error:function(){
+
+                                }
+                            });
+                        });
+					}
+                    //选中与取消选中函数
+                    function check_un(){
+                        if($(this).attr("checked")){
+                            //绑定改变数量函数
+                            $('.count_j').eq(index).off("click").on("click",function(){
+                                item_count=$('.count').eq(index).html();
+                                item_count--;
+                                if(item_count<1){
+                                    item_count=1;
+                                    return ;
+                                }
+                                $('.count').eq(index).html(item_count);
+                                $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                                act_rmb-=val.productPrice;
+                                act_count--;
+                                $('input:checkbox[name="check_commodity"]').eq(index).off("click").on("click",check_un);
+                                //已选商品 的个数
+                                $('.selected_amount').html(act_count);
+                                //已选商品的总价
+                                $('.total_prices_count').html(act_rmb);
+                                //调用修改数量接口
+                                $.ajax({
+                                    url:'/cart/update.do',
+                                    data:{
+                                        'count':item_count,
+                                        'productId':val.productId
+                                    },
+                                    type:'post',
+                                    success:function(res){
+                                        console.log(res.data.cartTotalPrice);
+                                        //调获取购物车商品个数接口
+                                        hq_sp_count();
+                                    },
+                                    error:function(){
+
+                                    }
+                                });
+                            });
+                            $('.count_z').eq(index).off("click").on("click",function(){
+                                item_count=$('.count').eq(index).html();
+                                item_count++;
+                                $('.count').eq(index).html(item_count);
+                                $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                                act_rmb+=val.productPrice;
+                                act_count++;
+                                $('input:checkbox[name="check_commodity"]').eq(index).off("click").on("click",check_un);
+                                //已选商品 的个数
+                                $('.selected_amount').html(act_count);
+                                //已选商品的总价
+                                $('.total_prices_count').html(act_rmb);
+                                //调用修改数量接口
+                                $.ajax({
+                                    url:'/cart/update.do',
+                                    data:{
+                                        'count':item_count,
+                                        'productId':val.productId
+                                    },
+                                    type:'post',
+                                    success:function(res){
+                                        console.log(res.data.cartTotalPrice);
+                                        //调获取购物车商品个数接口
+                                        hq_sp_count();
+                                    },
+                                    error:function(){
+
+                                    }
+                                });
+                            });
+                            act_count+=Number($('.count').eq(index).html());
+                            act_rmb+=Number($('.count').eq(index).html())*val.productPrice;
+                            //设置总数  选中个数  总价
+
+                            $('.selected_amount').html(act_count);
+                            $('.total_prices_count').html(act_rmb);
+
+                            //调选中接口
+                            $.ajax({
+                                url:'/cart/select.do',
+                                data:{
+                                    'productId':val.productId
+                                },
+                                type:'post',
+                                success:function(res){
+                                    $('.total_prices_count').html(res.data.cartTotalPrice);
+                                },
+                                error:function(){
+                                    alert('添加失败，请重新添加');
+                                }
+                            });
+                        }else{
+                            //解除改变数量函数
+                            $('.count_j').eq(index).off("click");
+                            $('.count_z').eq(index).off("click");
+                            act_count-=Number($('.count').eq(index).html());
+                            act_rmb-=Number($('.count').eq(index).html())*val.productPrice;
+                            //设置选中个数与总价
+                            $('.selected_amount').html(act_count);
+                            $('.total_prices_count').html(act_rmb);
+                            //调反选接口
+                            $.ajax({
+                                url:'/cart/un_select.do',
+                                data:{
+                                    'productId':val.productId
+                                },
+                                type:'post',
+                                success:function(res){
+                                    $('.total_prices_count').html(res.data.cartTotalPrice);
+                                },
+                                error:function(){
+
+                                }
+                            });
+                        }
+
+                        //点击选中时看看 是不是全选了
+                        if(act_count==$('.commodity_amount').html()){
+                            $('#quanxuan').attr("checked",true);
+                        }else{
+                            $('#quanxuan').attr("checked",false);
+                        }
+                    }
+					//选中与取消选中
+                    $('input:checkbox[name="check_commodity"]').eq(index).off("click").on("click",check_un);
+
+                });
+                //已选商品 的个数
+                $('.selected_amount').html(act_count);
+                //已选商品的总价
+                $('.total_prices_count').html(act_rmb);
+                //加载页面时看看 是不是全选了
+               if(act_count==$('.commodity_amount').html()){
+                   $('#quanxuan').attr("checked",true);
+			   }
+				//全选按钮的点击
+				$('#quanxuan').on("click",function(){
+					if($(this).attr("checked")){
+					    //全选重置为0
+                        act_count=0;
+                        act_rmb=0;
+						$('input:checkbox[name="check_commodity"]').each(function(index,element){
+                            //index 索引
+                            //element每一个元素
+							$(this).attr("checked",true);
+                            act_count+=Number($('.count').eq(index).html());
+                            act_rmb+=Number($('.count').eq(index).html())*Number($('.commodity_price').eq(index).html());
+                        });
+                        $('.selected_amount').html(act_count);
+                        $('.total_prices_count').html(act_rmb);
+                        //调全部选中接口
+                        $.ajax({
+                            url:'/cart/select_all.do',
+                            type:'post',
+                            success:function(res){
+                                console.log(res.data.cartTotalPrice)
+                            },
+                            error:function(){
+
+                            }
+                        });
+					}else{
+					    //全不选就是 选中为0  总价为0 然后全部取消选中
+                        act_count=0;
+                        act_rmb=0;
+                        $('input:checkbox[name="check_commodity"]').each(function(index,element){
+                            //index 索引
+                            //element每一个元素
+                            $(this).attr("checked",false);
+                        });
+                        $('.selected_amount').html(act_count);
+                        $('.total_prices_count').html(act_rmb);
+                        //调全部反选接口
+                        $.ajax({
+                            url:'/cart/un_select_all.do',
+                            type:'post',
+                            success:function(res){
+                                console.log(res.data.cartTotalPrice)
+                            },
+                            error:function(){
+
+                            }
+                        });
+					}
+
+				});
+            },
+            error:function(){
+
+            }
+        });
+
+
+
+
         //提示框的显示隐藏
         function sp_count(checkboxCount){
         	//提示框的显示隐藏
@@ -355,33 +518,23 @@
      		//购物车商品个数
      		$('.commodity_amount').html($("input:checkbox[name='check_commodity']").length);
         }
-	$(document).ready(function(){
-		var image=[];
-		var id=301;
-		//要操作商品的id
-      	var operate_id;
-      	createPage();
-		// $.ajax({
-  //        	url:'http://192.168.31.211:2333/store/get?id='+id,       
-  //        	type:'GET',                                
-  //       	dataType:'jsonp',                         
-  //       	jsonp:'callback',                          
-  //       	success:function(result){
-  //           	var data=result.data;
-  //           	//createPage(data);
-  //        	},
-  //        	error:function(msg){
-                          
-  //        	}
-  //    	}); 
 
 
-     	
-     	sp_count(checkboxCount);
-     	check_all();
 
-     	
-	})
+
+
+        //推荐商品的添加函数
+        //        function recommend(){
+        //        	$('.add_sp').click(function(){
+        //	        	operate_id=$(this).parent().attr('id');
+        //	        	$(this).parent().remove();
+        //				$('.details').append('<ul id="'+operate_id+'" class="details_item clearfix"><li class="check_sp fl"><input type="checkbox" checked  disabled="disabled" name="check_commodity" value=""><div class="img_box"><img src="img/top.jpg" height="60" width="60" alt=""></div></li><li class="name_sp fl">小米vr眼镜</li><li class="price_sp fl"><span class="commodity_price">249</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">1</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> 249元</span></li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
+        //					//添加
+        //					operate();
+        //					check_all();
+        //			});
+        //        }
+        //        recommend();
 	</script>
 	
 </body>

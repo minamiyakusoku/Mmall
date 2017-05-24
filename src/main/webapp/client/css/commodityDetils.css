@@ -137,7 +137,7 @@ html,body{
 		.commodity_name{
 			height: 39px;
 			line-height: 39px;
-			font-size: 20px;
+			font-size: 18px;
 		}
 		.commodity_privilege{
 			height: 16px;
@@ -230,6 +230,7 @@ html,body{
 			color: #fff;
 			font-size: 16px;
 			background: #e01d20;
+			cursor: pointer;
 		}
 		.shopping_cart{
 			background: #ff6700;

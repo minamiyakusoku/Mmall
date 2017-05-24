@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/reset.css" />
 	<link rel="stylesheet" href="css/indentDetils.css" />
 	<script src="them/jquery/jquery-1.7.2.js"></script>
-	
+	<script src="them/jquery/jquery.cookie.js"></script>
 	<style>
 	</style>
 </head>
@@ -291,341 +291,370 @@
 		</div>
 	</div>
 </div>
-	<div id="conetent_wrapper">
-		<div id="content">
-			<div class="indent_box">
-				<div class="indent_title clearfix">
-					<p class="fl">订单详情</p>
-					<span class="fl">请谨防钓鱼链接或诈骗电话！</span>
-				</div>
-				<div class="clearfix indent_num_box">
-					<div class="indent_num fl">
-						订单号：<span class="indent_num_i">555525651515</span>
-					</div>
-					<div class="fr pay_box">
-						<a href="#" class="fr pay">立即支付</a>
-						<a href="#" class="fr cancel">取消订单</a>
-					</div>
-					
-				</div>
-				<div class="indent_details">
-					<p class="indent_status">等待付款</p>
-					<p class="indent_predict">1小时52分后订单将被关闭</p>
-				</div>
-				<ul class="progress_bar">
-					<li>下单 <span class="progress_time">5月17日 09:05</span></li>
-					<li>付款</li>
-					<li>配货</li>
-					<li>出库</li>
-					<li>交易完成</li>
-					<p class="bar"></p>
-				</ul>
-				<ul class="goods_list">
-					<li>
-						<div class="figure">
-							<a href="">
-								<img src="img/top.jpg" height="80" width="80" alt="">
-							</a>
-						</div>
-						<p class="goods_name">小米手机</p>
-						<p class="goods_pric">95元×1</p>
-					</li>
-					<li>
-						<div class="figure">
-							<a href="">
-								<img src="img/top.jpg" height="80" width="80" alt="">
-							</a>
-						</div>
-						<p class="goods_name">小米手机</p>
-						<p class="goods_pric">95元×1</p>
-					</li>
-				</ul>
-				<div class="site_box">
-					<div class="site_title">收货信息
-						<p class="site_modification">修改</p>
-					</div>
-					<ul>
-						<li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：
-							<span class="site_name">李亚培</span>
-						</li>
-						<li>联系电话：
-							<span class="site_tell">188****8888</span>
-						</li>
-						<li>收货地址：
-							<span class="site_site">北京市</span>
-						</li>
-					</ul>
-				</div>
-				<div class="site_box">
-					<div class="site_title">支付方式及送货时间
-						<p class="pay_modification">修改</p>
-					</div>
-					<ul>
-						<li>支付方式：
-							<span class="site_pay_function">在线支付</span>
-						</li>
-						<li>送货时间：
-							<span class="site_time">不限送货时间</span>
-						</li>
-						<li>送货时效：
-							<span class="site_site">预计五天内发货</span>
-						</li>
-					</ul>
-				</div>
-				<div class="site_box">
-					<div class="site_title">发票信息
-					</div>
-					<ul>
-						<li>发票类型：
-							<span class="site_name">电子发票</span>
-						</li>
-						<li>发票内容
-							<span class="site_tell">购买商品明细</span>
-						</li>
-						<li>发票抬头：
-							<span class="site_site">个人</span>
-						</li>
-					</ul>
-				</div>
-				<div class="billing_information">
-					<ul>
-						<li>商品总价：<span>3594元</span></li>
-						<li>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 费：<span>0元</span></li>
-						<li>订单金额：<span>3594元</span></li>
-					</ul>
-					<div class="practical_money">
-						<p class="practical_money_text">实付金额：</p>
-						<p class="practical_money_num">3594元</p>
-					</div>
-				</div>
+<div id="conetent_wrapper">
+	<div id="content">
+		<div class="indent_box">
+			<div class="indent_title clearfix">
+				<p class="fl">订单详情</p>
+				<span class="fl">请谨防钓鱼链接或诈骗电话！</span>
 			</div>
-		</div>
-	</div>
-	<div class="footer">
-		<div class="fuwu">
-			<ul>
-				<li>预约维修服务</li>
-				<li>7天无理由退货</li>
-				<li>15天免费换货</li>
-				<li>满150元包邮</li>
-				<li>520余家售后网点</li>
+			<div class="clearfix indent_num_box">
+				<div class="indent_num fl">
+					订单号：<span class="indent_num_i"></span>
+				</div>
+				<div class="fr pay_box">
+					<a href="payindent.html" class="fr pay">立即支付</a>
+					<a href="#" class="fr cancel">取消订单</a>
+				</div>
+
+			</div>
+			<div class="indent_details">
+				<p class="indent_status statusDesc">等待付款</p>
+				<p class="indent_predict">1小时52分后订单将被关闭</p>
+			</div>
+			<ul class="progress_bar">
+				<li>下单 <span class="progress_time createTime"></span></li>
+				<li>付款<span class="progress_time paymentTime"></span></li>
+				<li>配货</li>
+				<li>出库</li>
+				<li>交易完成</li>
+				<p class="bar"></p>
 			</ul>
-		</div>
-		<div class="fuwu_det clearfix">
-			<ul class="fl fuwu_det_item">
-				<li class="fuwu_det_i fl">
-					<p>帮助中心</p>
-					<ul>
-						<li>账户管理</li>
-						<li>购物指南</li>
-						<li>订单操作</li>
-					</ul>
-					
-				</li>
-				<li class="fuwu_det_i fl">
-					<p>帮助中心</p>
-					<ul>
-						<li>账户管理</li>
-						<li>购物指南</li>
-						<li>订单操作</li>
-					</ul>
-				</li>
-				<li class="fuwu_det_i fl">
-					<p>帮助中心</p>
-					<ul>
-						<li>账户管理</li>
-						<li>购物指南</li>
-						<li>订单操作</li>
-					</ul>
-				</li>
-				<li class="fuwu_det_i fl">
-					<p>帮助中心</p>
-					<ul>
-						<li>账户管理</li>
-						<li>购物指南</li>
-						<li>订单操作</li>
-					</ul>
-				</li>
-				<li class="fuwu_det_i fl">
-					<p>帮助中心</p>
-					<ul>
-						<li>账户管理</li>
-						<li>购物指南</li>
-						<li>订单操作</li>
-					</ul>
-				</li>
-				<li class="fuwu_det_i fl">
-					<p>帮助中心</p>
-					<ul>
-						<li>账户管理</li>
-						<li>购物指南</li>
-						<li>订单操作</li>
-					</ul>
-				</li>
+			<ul class="goods_list">
+				<!--<li>
+					<div class="figure">
+						<a href="">
+							<img src="img/top.jpg" height="80" width="80" alt="">
+						</a>
+					</div>
+					<p class="goods_name">小米手机</p>
+					<p class="goods_pric">95元×1</p>
+				</li>-->
 			</ul>
-			<ul class="fl fuwu_det_tel">
-				<li class="fuwu_det_num">400-100-5678</li>
-				<li class="fuwu_det_time">周一至周日 8:00-18:00</li>
-				<li class="fuwu_det_time">（仅收市话费）</li>
-				<li class="fuwu_det_btn">24小时在线客服</li>
-			</ul>
-		</div>
-		<div class="bottom clearfix">
-			<div class="logo_b fl"></div>
-			<div class="bottom_text fl">
+			<div class="site_box">
+				<div class="site_title">收货信息
+					<!--<p class="site_modification">修改</p>-->
+				</div>
 				<ul>
-					<li>小米商城</li>
-					<li>MIUI</li>
-					<li>米聊</li>
-					<li>多看书城</li>
-					<li>小米路由器</li>
-					<li>视频电话</li>
-					<li>小米天猫店</li>
-					<li>小米淘宝直营店</li>
-					<li>Select Region</li>
+					<li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：
+						<span class="site_name name"></span>
+					</li>
+					<li>联系电话：
+						<span class="site_tell phone">188****8888</span>
+					</li>
+					<li>收货地址：
+						<span class="site_site address">北京市</span>
+					</li>
 				</ul>
-				<p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</p>
-				<p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
 			</div>
-			<div class="bottom_img fl">
-				<img src="img/truste.png" alt="">
-				<img src="img/v-logo-1.png" alt="">
-				<img src="img/v-logo-2.png" alt="">
-				<img src="img/v-logo-3.png" alt="">
+			<div class="site_box">
+				<div class="site_title">支付方式及送货时间
+					<p class="pay_modification">修改</p>
+				</div>
+				<ul>
+					<li>支付方式：
+						<span class="site_pay_function">在线支付</span>
+					</li>
+					<li>送货时间：
+						<span class="site_time">不限送货时间</span>
+					</li>
+					<li>送货时效：
+						<span class="site_site">预计五天内发货</span>
+					</li>
+				</ul>
+			</div>
+			<div class="site_box">
+				<div class="site_title">发票信息
+				</div>
+				<ul>
+					<li>发票类型：
+						<span class="site_name">电子发票</span>
+					</li>
+					<li>发票内容
+						<span class="site_tell">购买商品明细</span>
+					</li>
+					<li>发票抬头：
+						<span class="site_site">个人</span>
+					</li>
+				</ul>
+			</div>
+			<div class="billing_information">
+				<ul>
+					<li>商品总价：<span class="payment"></span></li>
+					<li>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 费：<span class="postage">0元</span></li>
+				</ul>
+				<div class="practical_money">
+					<p class="practical_money_text">实付金额：</p>
+					<p class="practical_money_num"></p>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="sms_verification_box" style="display:none;">
-		<div class="sms_verification">
-			<div class="sms_top">
-				短信验证
-				<span class="close">×</span>
-			</div>
-			<div class="sms_center">
-				<p class="sms_tetx">为了确保你的购物安全</p>
-				<p class="sms_tetx mg_b">我们将向你当前的小米账号绑定的手机号发送验证码</p>
-				<div class="tell_box">
-					<p class="tell_text">手机号码：<span class="tell_num">188****8888</span></p>
-					<input type="text" placeholder="验证码" class="auth_code">
-					<input type="button" class="tell_btn" value="获取验证码">
-				</div>
+</div>
+<div class="footer">
+	<div class="fuwu">
+		<ul>
+			<li>预约维修服务</li>
+			<li>7天无理由退货</li>
+			<li>15天免费换货</li>
+			<li>满150元包邮</li>
+			<li>520余家售后网点</li>
+		</ul>
+	</div>
+	<div class="fuwu_det clearfix">
+		<ul class="fl fuwu_det_item">
+			<li class="fuwu_det_i fl">
+				<p>帮助中心</p>
+				<ul>
+					<li>账户管理</li>
+					<li>购物指南</li>
+					<li>订单操作</li>
+				</ul>
 
-			</div>
-			<div class="sms_bottom">
-				<div class="sms_bottom_box clearfix">
-					<span class="fl abolish">取消</span>
-					<span class="fr ascertain">确定</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="delivery_verification_box" style="display:none">
-		<div class="sms_verification">
-			<div class="sms_top">
-				送货时间
-				<span class="close">×</span>
-			</div>
-			<div class="sms_center">
-				<ul class="delivery_box">
-					<li class="fl active">
-						<p class="title">不限时间</p>
-						<p class="txt">周一至周日</p>
-					</li>
-					<li class="fl ">
-						<p class="title">工作日送货</p>
-						<p class="txt">周一至周五</p>
-					</li>
-					<li class="fl ">
-						<p class="title">双休日、假日送货</p>
-						<p class="txt">周六至周日</p>
-					</li>
+			</li>
+			<li class="fuwu_det_i fl">
+				<p>帮助中心</p>
+				<ul>
+					<li>账户管理</li>
+					<li>购物指南</li>
+					<li>订单操作</li>
 				</ul>
+			</li>
+			<li class="fuwu_det_i fl">
+				<p>帮助中心</p>
+				<ul>
+					<li>账户管理</li>
+					<li>购物指南</li>
+					<li>订单操作</li>
+				</ul>
+			</li>
+			<li class="fuwu_det_i fl">
+				<p>帮助中心</p>
+				<ul>
+					<li>账户管理</li>
+					<li>购物指南</li>
+					<li>订单操作</li>
+				</ul>
+			</li>
+			<li class="fuwu_det_i fl">
+				<p>帮助中心</p>
+				<ul>
+					<li>账户管理</li>
+					<li>购物指南</li>
+					<li>订单操作</li>
+				</ul>
+			</li>
+			<li class="fuwu_det_i fl">
+				<p>帮助中心</p>
+				<ul>
+					<li>账户管理</li>
+					<li>购物指南</li>
+					<li>订单操作</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="fl fuwu_det_tel">
+			<li class="fuwu_det_num">400-100-5678</li>
+			<li class="fuwu_det_time">周一至周日 8:00-18:00</li>
+			<li class="fuwu_det_time">（仅收市话费）</li>
+			<li class="fuwu_det_btn">24小时在线客服</li>
+		</ul>
+	</div>
+	<div class="bottom clearfix">
+		<div class="logo_b fl"></div>
+		<div class="bottom_text fl">
+			<ul>
+				<li>小米商城</li>
+				<li>MIUI</li>
+				<li>米聊</li>
+				<li>多看书城</li>
+				<li>小米路由器</li>
+				<li>视频电话</li>
+				<li>小米天猫店</li>
+				<li>小米淘宝直营店</li>
+				<li>Select Region</li>
+			</ul>
+			<p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</p>
+			<p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+		</div>
+		<div class="bottom_img fl">
+			<img src="img/truste.png" alt="">
+			<img src="img/v-logo-1.png" alt="">
+			<img src="img/v-logo-2.png" alt="">
+			<img src="img/v-logo-3.png" alt="">
+		</div>
+	</div>
+</div>
+
+<div class="sms_verification_box" style="display:none;">
+	<div class="sms_verification">
+		<div class="sms_top">
+			短信验证
+			<span class="close">×</span>
+		</div>
+		<div class="sms_center">
+			<p class="sms_tetx">为了确保你的购物安全</p>
+			<p class="sms_tetx mg_b">我们将向你当前的小米账号绑定的手机号发送验证码</p>
+			<div class="tell_box">
+				<p class="tell_text">手机号码：<span class="tell_num">188****8888</span></p>
+				<input type="text" placeholder="验证码" class="auth_code">
+				<input type="button" class="tell_btn" value="获取验证码">
 			</div>
-			<div class="sms_bottom">
-				<div class="sms_bottom_box clearfix">
-					<span class="fl abolish">取消</span>
-					<span class="fr ascertain">确定</span>
-				</div>
+
+		</div>
+		<div class="sms_bottom">
+			<div class="sms_bottom_box clearfix">
+				<span class="fl abolish">取消</span>
+				<span class="fr ascertain">确定</span>
 			</div>
 		</div>
 	</div>
-	<script>
-		var _width=$(window).width();
-		$('.header-nav-menu').css('width',_width);
-		$('.header-nav-menu').css('left','-40px');
-		//创建页面
-        function createPage(data){
-	      	// if(!data){
-	      	// 	$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
-	      	// 	return;
-	      	// }
-      		// image=data.mainImg;
+</div>
+<div class="delivery_verification_box" style="display:none">
+	<div class="sms_verification">
+		<div class="sms_top">
+			送货时间
+			<span class="close">×</span>
+		</div>
+		<div class="sms_center">
+			<ul class="delivery_box">
+				<li class="fl active">
+					<p class="title">不限时间</p>
+					<p class="txt">周一至周日</p>
+				</li>
+				<li class="fl ">
+					<p class="title">工作日送货</p>
+					<p class="txt">周一至周五</p>
+				</li>
+				<li class="fl ">
+					<p class="title">双休日、假日送货</p>
+					<p class="txt">周六至周日</p>
+				</li>
+			</ul>
+		</div>
+		<div class="sms_bottom">
+			<div class="sms_bottom_box clearfix">
+				<span class="fl abolish">取消</span>
+				<span class="fr ascertain">确定</span>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var _width=$(window).width();
+	$('.header-nav-menu').css('width',_width);
+	$('.header-nav-menu').css('left','-40px');
+
+
+
+
+	$('.header-nav .nav-list li').mouseover(function(){
+	   $(this).find($('.header-nav-menu')).css('display','block');
+	});
+	$('.header-nav .nav-list li').mouseout(function(){
+		$(this).find($('.header-nav-menu')).css('display','none');
+	});
+	$('.site_modification').click(function(){
+		$('.sms_verification_box').css('display','block');
+	});
+	$('.sms_verification_box .close').click(function(){
+		$('.sms_verification_box').css('display','none');
+	});
+	$('.sms_verification_box .abolish').click(function(){
+		$('.sms_verification_box').css('display','none');
+	});
+	$('.sms_verification_box .ascertain').click(function(){
+		$('.sms_verification_box').css('display','none');
+	});
+
+
+
+	$('.pay_modification').click(function(){
+		$('.delivery_verification_box').css('display','block');
+	});
+	$('.delivery_verification_box .close').click(function(){
+		$('.delivery_verification_box').css('display','none');
+	});
+	$('.delivery_verification_box .abolish').click(function(){
+		$('.delivery_verification_box').css('display','none');
+	});
+
+	var html;
+	$('.delivery_box li').click(function(){
+		$('.delivery_box li').removeClass('active');
+		$(this).addClass('active');
+		html=$(this).children('.title').html();
+	});
+	$('.delivery_verification_box .ascertain').click(function(){
+		$('.site_time').html(html);
+		$('.delivery_verification_box').css('display','none');
+	});
+    var orderNo=$.cookie("orderNo");
+    $.ajax({
+        url:'/order/detail.do',
+        data:{
+            'orderNo':parseInt(orderNo)
+        },
+        success:function(str){
+            if(!str.status){
+                var total_prices=parseFloat(str.data.postage)+parseFloat(str.data.payment);
+                $('.postage').html(str.data.postage+'元');
+				$('.payment').html(str.data.payment+'元');
+				$('.practical_money_num').html(total_prices+'元');
+				$('.indent_num_i').html(str.data.orderNo);
+				$('.statusDesc').html(str.data.statusDesc);
+				$('.createTime').html(str.data.createTime);
+				$('.paymentTime').html(str.data.paymentTime);
+				$('.name').html(str.data.receiverName);
+				$('.phone').html(str.data.shippingVo.receiverMobile);
+				$('.address').html(str.data.shippingVo.receiverProvince+'&nbsp;'+str.data.shippingVo.receiverCity+'&nbsp;'+str.data.shippingVo.receiverDistrict+'&nbsp;'+str.data.shippingVo.receiverAddress);
+
+				 var orderItemVoList=str.data.orderItemVoList;
+				 for(var i=0;i<orderItemVoList.length;i++){
+					  var cont='<li> <div class="figure"> <a href=""> <img src="'+str.data.imageHost+orderItemVoList[i].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+orderItemVoList[i].productName+'</p> <p class="goods_pric">'+orderItemVoList[i].currentUnitPrice+'元×'+orderItemVoList[i].quantity+'</p> </li>';
+					  $('.goods_list').append(cont);
+				 }
+				 if($('.statusDesc').html()=="已付款"){
+				     $('.bar').css('width','40%');
+				     $('.pay_box').css('display','none');
+				 }
+                if($('.statusDesc').html()=="未支付"){
+                    $('.bar').css('width','20%');
+                }
+                if($('.statusDesc').html()=="已取消"){
+                    $('.indent_predict').html('');
+                    $('.progress_bar').remove();
+                    $('.pay_box').css('display','none');
+                }
+
+            }
         }
-        
-	$(document).ready(function(){
-		var image=[];
-		var id=301;
-		//要操作商品的id
-      	var operate_id;
-      	createPage();
-		// $.ajax({
-  //        	url:'http://192.168.31.211:2333/store/get?id='+id,       
-  //        	type:'GET',                                
-  //       	dataType:'jsonp',                         
-  //       	jsonp:'callback',                          
-  //       	success:function(result){
-  //           	var data=result.data;
-  //           	//createPage(data);
-  //        	},
-  //        	error:function(msg){
-                          
-  //        	}
-  //    	}); 
-  		$('.header-nav .nav-list li').mouseover(function(){
-	       $(this).find($('.header-nav-menu')).css('display','block');
-	    });
-	    $('.header-nav .nav-list li').mouseout(function(){
-	        $(this).find($('.header-nav-menu')).css('display','none');
-	    });
-	  	$('.site_modification').click(function(){
-	  		$('.sms_verification_box').css('display','block');
-	    });
-	    $('.sms_verification_box .close').click(function(){
-	  		$('.sms_verification_box').css('display','none');
-	    });
-	    $('.sms_verification_box .abolish').click(function(){
-	  		$('.sms_verification_box').css('display','none');
-	    });
-	    $('.sms_verification_box .ascertain').click(function(){
-	  		$('.sms_verification_box').css('display','none');
-	    });
-
-
-
-	    $('.pay_modification').click(function(){
-	  		$('.delivery_verification_box').css('display','block');
-	    });
-	    $('.delivery_verification_box .close').click(function(){
-	  		$('.delivery_verification_box').css('display','none');
-	    });
-	    $('.delivery_verification_box .abolish').click(function(){
-	  		$('.delivery_verification_box').css('display','none');
-	    });
-
-	    var html;
-	    $('.delivery_box li').click(function(){
-	  		$('.delivery_box li').removeClass('active');
-	  		$(this).addClass('active');
-	  		html=$(this).children('.title').html();
-	    });
-	    $('.delivery_verification_box .ascertain').click(function(){
-	    	$('.site_time').html(html);
-	  		$('.delivery_verification_box').css('display','none');
-	    });
-
-	})
-	</script>
+    });
+    $('.pay').attr('id',orderNo);
+    $('.pay').click(function(){
+        var cookietime = new Date();
+        var date = new Date();
+        cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+        $.cookie('payment', $(this).attr('id') , { path: '/', expires: cookietime});
+	});
+    $('.cancel').click(function(){
+        $.ajax({
+            url:'/order/cancel.do',
+            data:{
+                'orderNo':parseInt(orderNo)
+            },
+            success:function(res){
+                console.log(res);
+                if(res.msg==null){
+                    alert("取消成功");
+                    location.reload();
+				}else{
+                    alert(res.msg);
+				}
+            }
+        });
+	});
+</script>
 	
 </body>
 </html>

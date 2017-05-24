@@ -79,7 +79,7 @@
     position: absolute;
     left: 0;
     top: 40px;
-    width: 150px;
+    width: 90px;
     background: #fff;
     display: none;
 }
@@ -534,6 +534,7 @@
 		}
 		.indent_detailsbox{
 			border:1px solid #ff6700;
+			margin-bottom: 20px;
 		}
 		.indent_details{
 			width: 938px;
@@ -663,12 +664,20 @@
 			right: -50px;
 		}
 		.paging_box li{
+			display: inline-block;
 			width: 48px;
-			height: 30px;
-			background: #757575;
-			color: #fff;
-			font-size: 12px;
+			height: 24px;
+			padding: 3px 0;
+			margin: 0 7px;
+			font-size: 18px;
+			font-weight: 200;
+			line-height: 24px;
+			cursor: pointer;
 			text-align: center;
+		}
+		.current {
+			background-color: #757575;
+			color: #fff;
 		}
 		.content_blank{
 			height: 200px;
