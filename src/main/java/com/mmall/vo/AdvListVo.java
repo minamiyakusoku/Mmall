@@ -1,12 +1,11 @@
 package com.mmall.vo;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import java.util.Date;
 
 /**
  * Created by akku on 2017/5/22.
+ * 广告列表页面输出包装类
  */
 public class AdvListVo {
     private Integer id;
@@ -15,8 +14,10 @@ public class AdvListVo {
 
     private String subtitle;
 
+    //广告链接内容类型编号
     private Integer advType;
 
+    //广告链接内容类型
     private String advTypeMsg;
 
     private Integer categoryId;

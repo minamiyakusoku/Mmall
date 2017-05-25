@@ -4,26 +4,28 @@ import java.util.Date;
 
 /**
  * Created by akku on 2017/5/22.
+ * 广告类
  */
 public class Adv {
+    //id
     private Integer id;
-
+    //标题
     private String title;
-
+    //副标题
     private String subtitle;
-
+    //广告链接到一个类目的商品所对应的商品类目id
     private Integer categoryId;
-
+    //广告链接到某个商品所对应的商品id
     private Integer productId;
-
+    //广告链接的链接地址
     private String pageUrl;
-
+    //广告主图
     private String mainImage;
-
+    //广告全部图片
     private String subImages;
-
+    //广告置放位置
     private Integer position;
-
+    //广告启用状态
     private Integer status;
 
     private Date createTime;
