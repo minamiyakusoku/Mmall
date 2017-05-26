@@ -14,15 +14,15 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @ApiIgnore
-@RequestMapping("/")
+@RequestMapping("/re")
 public class HomepageController{
     @RequestMapping("/{page}")
     public String checkLogin(@PathVariable("page")String page){
         return "redirect:/c/index.html";
     }
 
-    @RequestMapping("/a")
-    public String a(){
+    @RequestMapping("/hp")
+    public String toHomePage(){
         return "redirect:/c/index.html";
     }
 }
