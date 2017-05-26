@@ -1,8 +1,6 @@
 package com.mmall.controller.page;
 
 import com.mmall.common.Const;
-import com.mmall.common.ResponseCode;
-import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +42,7 @@ public class WebClientPageController {
                 flag = true;
                 break;
             default:
-                if(user==null) {
-                    flag = false;
-                } else {
+                if(user!=null) {
                     flag =true;
                 }
                 break;
@@ -56,7 +52,7 @@ public class WebClientPageController {
         if(user!=null)
             System.out.println("【username:"+user.getUsername() +"】");
 
-        if(flag == true){return new ModelAndView("web_client/" + page + ".html");}
+        if(flag){return new ModelAndView("web_client/" + page + ".html");}
         else{return new ModelAndView("web_client/login.html");}
 
 

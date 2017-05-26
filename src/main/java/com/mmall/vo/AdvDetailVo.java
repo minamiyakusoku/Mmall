@@ -1,8 +1,6 @@
 package com.mmall.vo;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 /**
  * Created by akku on 2017/5/22.
  * 广告详情页面输出包装类

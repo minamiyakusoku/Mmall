@@ -26,7 +26,7 @@ public interface OrderMapper {
 
 
 
-    List<Order> selectByUserId(Integer userId);
+    List<Order> selectByUserIdAndStatus(@Param("userId")Integer userId,@Param("status")Integer status) ;
 
 
     List<Order> selectAllOrder();

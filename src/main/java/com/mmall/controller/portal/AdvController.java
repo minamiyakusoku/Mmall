@@ -3,8 +3,6 @@ package com.mmall.controller.portal;
 import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.service.IAdvService;
-import com.mmall.vo.AdvListVo;
-import com.mmall.vo.ProductDetailVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
