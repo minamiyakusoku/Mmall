@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @ApiIgnore
-@RequestMapping("/")
+@RequestMapping("/pagemanage")
 public class PageController {
     @Autowired
     IUserService iUserService;
