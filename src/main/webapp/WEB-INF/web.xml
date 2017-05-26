@@ -5,9 +5,9 @@
          id="WebApp_ID" version="2.5">
 
     <display-name>Archetype Created Web Application</display-name>
-    <welcome-file-list>
-        <welcome-file>client/index.html</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>client/index.html</welcome-file>-->
+    <!--</welcome-file-list>-->
     <session-config>   <!--分钟为单位-->
         <session-timeout>360</session-timeout>
     </session-config>
