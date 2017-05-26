@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>服务</title>
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/service.css" />
-	<script src="them/jquery/jquery-1.7.2.js"></script>
-	<link rel="stylesheet" href="them/swiper/css/swiper-3.4.2.min.css" />
-	<script src="them/swiper/js/swiper-3.4.2.jquery.min.js"></script>
-	
+	<title>我的订单</title>
+	<link rel="stylesheet" href="../css/reset.css" />
+	<link rel="stylesheet" href="../css/indent.css" />
+	<script src="../them/jquery/jquery-1.7.2.js"></script>
+	<script src="../them/jquery/jquery.cookie.js"></script>
 	<style>
+		
 	</style>
 </head>
 <body>
@@ -30,14 +29,16 @@
 	            </a>
 	        </div>
 	        <div class="topbar-info">
-	            <a href="javascript:;">登录</a>
-	            <a href="javascript:;">注册</a>
+				<div class="login" style="display: inline-block">
+					<a href="login.html">登录</a>
+					<a href="register.html">注册</a>
+				</div>
 	            <a href="javascript:;">消息通知</a>
-	            <div class="info_select">
+	            <!--<div class="info_select">
 	                <a href="personal-center.html">个人中心</a>
 	                <a href="user-favorite.html">我的喜欢</a>
 	                <a href="login.html">退出登录</a>
-	            </div>
+	            </div>-->
 	        </div>
 	    </div>
 	</div>
@@ -45,7 +46,7 @@
 	<div class="site-header">
 	    <div class="container">
 	        <div class="header-logo">
-	            <a href="javascript:;">
+	            <a href="index.html">
 	                <span class="logo"></span>
 	            </a>
 	        </div>
@@ -259,203 +260,82 @@
 	</div>
 	<div id="conetent_wrapper">
 		<div id="content">
-			<div class="swiper-container">
-			  <div class="swiper-wrapper">
-			    <div class="swiper-slide"></div>
-			    <div class="swiper-slide swiper-slide_2"></div>
-			  </div>
-			</div>
-			<p class="title">自助服务</p>
-			<ul class="service_class_box clearfix">
-				<li class="service_class">
-					<p>申请售后</p>
-				</li>
-				<li class="service_class">
-					<p>订单查询</p>
-				</li>
-				<li class="service_class">
-					<p>小米账户</p>
-				</li>
-				<li class="service_class">
-					<p>售后县级代理点</p>
-				</li>
-				<li class="service_class">
-					<p>授权服务网店</p>
-				</li>
-				<li class="service_class">
-					<p>安装服务</p>
-				</li>
-				<li class="service_class">
-					<p>售后政策</p>
-				</li>
-				<li class="service_class">
-					<p>查询真伪</p>
-				</li>
-			</ul>
-			<p class="title">产品支持</p>
-			<ul class="service_commodityli clearfix">
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-				<li>
-					<div>
-						<img src="img/cms_14670157357414_putWy.jpg" height="180" width="180" alt="">
-					</div>
-					<span>小米手机</span>
-				</li>
-			</ul>
-			<p class="title">常见问题</p>
-			<ul class="service_question clearfix">
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
+			<div class="indent_box">
+				<div class="indent_title clearfix">
+					<p class="fl">我的订单</p>
+					<span class="fl">请谨防钓鱼链接或诈骗电话！</span>
+				</div>
+				<div class="indent_navbox clearfix">
+					<ul class="indent_nav fl">
+						<li class="fl active all">全部有效订单</li>
+						<li class="fl wzf">未支付</li>
+						<li class="fl yfk">已付款</li>
+						<li class="fl ygb">已关闭</li>
 					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-				<li class="service_question_item">
-					<p>账户管理</p>
-					<ul>
-						<li>账户管理</li>
-						<li>VIP认证</li>
-						<li>忘记密码</li>
-						<li>重置密码</li>
-						<li>账号确认</li>
-						<li>申述解锁</li>
-					</ul>
-				</li>
-			</ul>
-			<p class="title">联系客服</p>
-			<div class="customer_box">
-				<ul class="customer">
-					<li class="fl left">
-						<img class="fl" src="img/kefu-1.png" height="100" width="100" alt="">
-						<div class="fl left_box">
-							<p class="left_title">7×24小时在线服务</p>
-							<p class="left_text">在线对话，为您解决遇到的问题</p>
-							<input class="left_btn" type="button" value="立即咨询">
+					<div class="indent_search">
+						<input type="text" placeholder="输入商品名称、订单号、商品编号" class="indent_search_inp fl">
+						<div class="indent_search_img fl" ></div>
+					</div>
+				</div>
+				<div class="main"></div>
+				<!--<div class="indent_detailsbox">
+					<div class="indent_details">
+						<p class="indent_status">等待发货</p>
+						<p class="indent_predict">预计五天内发货</p>
+						<ul class="indent_recipients clearfix">
+							<li class="fl indent_time">2017年05月17日 09:05</li>
+							<li class="fl indent_name">李亚培</li>
+							<li class="fl indent_number">订单号：121212141511</li>
+							<li class="fl indent_pay">在线支付</li>
+						</ul>
+						<p class="indent_money">
+							订单金额
+							<span class="indent_money_num">
+								8889
+							</span>
+							元
+						</p>
+					</div>
+					<div class="indent_indent clearfix">
+						<div class="order_items fl">
+							<ul class="goods_list">
+								<li>
+									<div class="figure">
+										<a href="">
+											<img src="img/top.jpg" height="80" width="80" alt="">
+										</a>
+									</div>
+									<p class="goods_name">小米手机</p>
+									<p class="goods_pric">95元×1</p>
+								</li>
+								<li>
+									<div class="figure">
+										<a href="">
+											<img src="img/top.jpg" height="80" width="80" alt="">
+										</a>
+									</div>
+									<p class="goods_name">小米手机</p>
+									<p class="goods_pric">95元×1</p>
+								</li>
+							</ul>
 						</div>
-					</li>
-					<li class="fl right">
-						<img class="fl" src="img/kefu-2.png" height="100" width="100" alt="">
-						<div class="fl left_box">
-							<p class="left_title">400-100-5618</p>
-							<p class="left_text">周一至周日 8:00至18:00 </p>
-							<p class="left_text">仅收市话费</p>
+						<div class="order_actions">
+							<a href="#" class="btn_primary">立即支付</a>
+							<a href="#">查看详情</a>
 						</div>
-					</li>
-				</ul>
+					</div>
+				</div>-->
+				<div style="display:none;" class="content_blank">当前没有~</div>
+				<div class="paging_box">
+					<!--<span class="left prev"><</span>-->
+					<ul class="clearfix">
+						<!--<li class="fl current">1</li>
+						<li class="fl ">2</li>-->
+					</ul>
+					<!--<span class="right next">></span>-->
+				</div>
+				
 			</div>
-			<img src="img/contact-weixin.png" alt="">
 		</div>
 	</div>
 	<div class="footer">
@@ -552,43 +432,37 @@
 			</div>
 		</div>
 	</div>
-	<script> 
-		var mySwiper = new Swiper('.swiper-container', {
-			autoplay: 2000
-		})
-	</script>
+		
 	<script>
+        $.ajax({
+            url:'/user/get_user_info.do',
+            type:'post',
+            success:function(result){
+                var name=result.data.username;
+                if(!result.status){
+                    $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                    $('.quit').click(function(){
+                        $.ajax({
+                            url:'/user/logout.do',
+                            type:'post',
+                            success:function(result){
+                                if(!result.status){
+                                    $('.hint').html('');
+                                    window.location.href='index.html';
+                                }
+                            }
+                        });
+                    });
+                    $('.changeInfo').click(function(){
+                        window.location.href='change-information.html';
+                    });
+                }
+            }
+        });
 		var _width=$(window).width();
 		$('.header-nav-menu').css('width',_width);
 		$('.header-nav-menu').css('left','-40px');
-		//创建页面
-        function createPage(data){
-	      	// if(!data){
-	      	// 	$('#conetent_wrapper').html('<div class="cartblank"><div class="cartblank_text"><p>您的购物车还是空的！</p><a href="#" class="cartblank_btn">马上去购物</a></div></div>');
-	      	// 	return;
-	      	// }
-      		// image=data.mainImg;
-        }
-        
-	$(document).ready(function(){
-		var image=[];
-		var id=301;
-		//要操作商品的id
-      	var operate_id;
-      	createPage();
-		// $.ajax({
-  //        	url:'http://192.168.31.211:2333/store/get?id='+id,       
-  //        	type:'GET',                                
-  //       	dataType:'jsonp',                         
-  //       	jsonp:'callback',                          
-  //       	success:function(result){
-  //           	var data=result.data;
-  //           	//createPage(data);
-  //        	},
-  //        	error:function(msg){
-                          
-  //        	}
-  //    	}); 
+
   		$('.header-nav .nav-list li').mouseover(function(){
 	       $(this).find($('.header-nav-menu')).css('display','block');
 	    });
@@ -596,10 +470,145 @@
 	        $(this).find($('.header-nav-menu')).css('display','none');
 	    });
 	    
-	  	$('').click(function(){
-	  		
+	  	$('.indent_nav li').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
 	    });
-	})
+		allOrders();
+		var Allsize;
+		$('.all').click(function(){
+            $('.paging_box ul').html('');
+            allOrders();
+            if(Allsize>=0){
+                $('.content_blank').css('display','none');
+                $('.paging_box ul').css('display','block');
+			}
+		});
+        $('.wzf').click(function(){
+            $('.main').html('');
+            var length=$('.main').children().length;
+            if(length==0){
+                $('.content_blank').css('display','block');
+                $('.paging_box ul').css('display','none');
+            }
+        });
+        $('.yfk').click(function(){
+            $('.main').html('');
+            var length=$('.main').children().length;
+            if(length==0){
+                $('.content_blank').css('display','block');
+                $('.paging_box ul').css('display','none');
+            }
+        });
+        $('.ygb').click(function(){
+            $('.main').html('');
+            var length=$('.main').children().length;
+            if(length==0){
+                $('.content_blank').css('display','block');
+                $('.paging_box ul').css('display','none');
+            }
+        });
+	  	/*获取全部订单*/
+        function allOrders(){
+            $.ajax({
+                url:'/order/list.do',
+                data:{
+                    pageNum:1,
+                    pageSize:10
+                },
+                success:function(str){
+                    if(!str.status){
+                        var arr;
+                        var page=str.data.pages;
+                        Allsize=str.data.size;
+                        for(var i=0;i<str.data.list.length;i++){
+							/*console.log(str.data.list[i]);*/
+                            arr=str.data.list[i].orderItemVoList;
+                            var total_prices=parseFloat(str.data.list[i].postage)+parseFloat(str.data.list[i].payment);
+                            var cont=' <div class="indent_detailsbox"><div class="indent_details"><p class="indent_status">'+str.data.list[i].statusDesc+'</p> <p class="indent_predict"></p> <ul class="indent_recipients clearfix"> <li class="fl indent_time">'+str.data.list[i].createTime+'</li> <li class="fl indent_name">'+str.data.list[i].receiverName+'</li> <li class="fl indent_number">订单号：'+str.data.list[i].orderNo+'</li> <li class="fl indent_pay">'+str.data.list[i].statusDesc+'</li> </ul> <p class="indent_money"> 订单金额 <span class="indent_money_num"> '+total_prices+' 元</span> </p> </div> <div class="indent_indent clearfix">   <div class="order_items fl"> <ul class="goods_list"></ul> </div>   <div class="order_actions"> <a href="payindent.html" class="btn_primary payment" id="'+str.data.list[i].orderNo+'">立即支付</a> <a href="indentDetils.html" class="details" id="'+str.data.list[i].orderNo+'">查看详情</a> </div> </div> </div>';
+                            $('.main').append(cont);
+
+                            if($('.indent_status').eq(i).html()=="已取消"){
+                                $('.payment').eq(i).css('display','none');
+                            }
+                            if($('.indent_status').eq(i).html()=="已付款"){
+                                $('.payment').eq(i).css('display','none');
+                            }
+                            for(var j=0;j<arr.length;j++){
+                                var cont2='<li> <div class="figure"> <a href=""> <img src="'+str.data.list[i].imageHost+arr[j].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+arr[j].productName+'</p> <p class="goods_pric">'+arr[j].currentUnitPrice+'元×'+arr[j].quantity+'</p> </li>';
+                                $('.goods_list').eq(i).append(cont2);
+                            }
+                        }
+                        details();
+						payment();
+
+
+                        for(var i=1;i<=page;i++){
+                            var content='<li class="fl ">'+i+'</li>';
+                            $('.paging_box ul').append(content);
+                            $('.paging_box ul li').eq(0).addClass('current');
+                        }
+                        $('.paging_box ul li').click(function(){
+                            $('.main').html('');
+                            $(this).addClass('current').siblings().removeClass('current');
+                            var _page=parseInt($(this).html());
+                            $.ajax({
+                                url:'/order/list.do',
+                                data:{
+                                    pageNum:_page,
+                                    pageSize:10
+                                },
+                                success:function(str){
+                                    if(!str.status){
+                                        var arr;
+                                        var page=str.data.pages;
+                                        for(var i=0;i<str.data.list.length;i++){
+											/*console.log(str.data.list[i]);*/
+                                            arr=str.data.list[i].orderItemVoList;
+
+                                            var cont=' <div class="indent_detailsbox"><div class="indent_details"><p class="indent_status">'+str.data.list[i].statusDesc+'</p> <p class="indent_predict"></p> <ul class="indent_recipients clearfix"> <li class="fl indent_time">'+str.data.list[i].createTime+'</li> <li class="fl indent_name">李亚培</li> <li class="fl indent_number">订单号：'+str.data.list[i].orderNo+'</li> <li class="fl indent_pay">'+str.data.list[i].statusDesc+'</li> </ul> <p class="indent_money"> 订单金额 <span class="indent_money_num"> '+str.data.list[i]. payment+' 元</span> </p> </div> <div class="indent_indent clearfix">   <div class="order_items fl"> <ul class="goods_list">   </ul> </div>   <div class="order_actions"> <a href="payindent.html" class="btn_primary payment" id="'+str.data.list[i].orderNo+'">立即支付</a> <a class="details" id="'+str.data.list[i].orderNo+'" href="indentDetils.html">查看详情</a> </div> </div> </div>';
+                                            $('.main').append(cont);
+                                            if($('.indent_status').eq(i).html()=="已取消"){
+                                                $('.payment').eq(i).css('display','none');
+                                            }
+                                            if($('.indent_status').eq(i).html()=="已付款"){
+                                                $('.payment').eq(i).css('display','none');
+                                            }
+                                            for(var j=0;j<arr.length;j++){
+                                                var cont2='<li> <div class="figure"> <a href=""> <img src="'+str.data.list[i].imageHost+arr[j].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+arr[j].productName+'</p> <p class="goods_pric">'+arr[j].currentUnitPrice+'元×'+arr[j].quantity+'</p> </li>';
+                                                $('.goods_list').eq(i).append(cont2);
+                                            }
+                                        }
+                                       /* if($('.indent_status').html()=="已取消"){
+                                            $('.payment').css('display','none');
+                                        }*/
+                                        details();
+                                        payment();
+                                    }
+                                }
+                            });
+                        });
+                    }
+                }
+            });
+		};
+
+        /**/
+        function details(){
+            $('.details').click(function(){
+                var cookietime = new Date();
+                var date = new Date();
+                cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                $.cookie('orderNo', $(this).attr('id') , { path: '/', expires: cookietime});
+            });
+		}
+		function payment(){
+            $('.payment').click(function(){
+                var cookietime = new Date();
+                var date = new Date();
+                cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                $.cookie('payment', $(this).attr('id') , { path: '/', expires: cookietime});
+            });
+		}
 	</script>
 	
 </body>

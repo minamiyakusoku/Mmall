@@ -1,8 +1,11 @@
 package com.mmall.vo;
 
 
+
+
 /**
  * Created by akku on 2017/5/22.
+ * 广告列表页面输出包装类
  */
 public class AdvListVo {
     private Integer id;
@@ -10,6 +13,12 @@ public class AdvListVo {
     private String title;
 
     private String subtitle;
+
+    //广告链接内容类型编号
+    private Integer advType;
+
+    //广告链接内容类型
+    private String advTypeMsg;
 
     private Integer categoryId;
 
@@ -25,15 +34,43 @@ public class AdvListVo {
 
     private String imageHost;
 
+    private String createTime;
+
+    public Integer getAdvType() {
+        return advType;
+    }
+
+    public void setAdvType(Integer advType) {
+        this.advType = advType;
+    }
+
+    public String getAdvTypeMsg() {
+        return advTypeMsg;
+    }
+
+    public void setAdvTypeMsg(String advTypeMsg) {
+        this.advTypeMsg = advTypeMsg;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
     public AdvListVo() {
         super();
     }
 
-    public AdvListVo(Integer id, String title, String subtitle, Integer categoryId, Integer productId, String pageUrl, String mainImage, Integer position, Integer status,String imageHost) {
+    public AdvListVo(Integer id, String title, String subtitle,Integer advType,String advTypeMsg, Integer categoryId, Integer productId, String pageUrl, String mainImage, Integer position, Integer status,String imageHost,String createTime) {
         super();
         this.id = id;
         this.title = title;
         this.subtitle = subtitle;
+        this.advType = advType;
+        this.advTypeMsg = advTypeMsg;
         this.categoryId = categoryId;
         this.productId = productId;
         this.pageUrl = pageUrl;
@@ -41,6 +78,7 @@ public class AdvListVo {
         this.position = position;
         this.status = status;
         this.imageHost = imageHost;
+        this.createTime = createTime;
     }
 
     public Integer getId() {

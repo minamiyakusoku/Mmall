@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/personal-center.css"/>
-    <script src="them/jquery/jquery-1.7.2.js"></script>
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../them/swiper/css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="../css/change-information.css"/>
+    <script src="../them/jquery/jquery-1.7.2.js"></script>
 </head>
 <body>
 <!--头部-->
@@ -30,11 +31,7 @@
                 <a href="register.html">注册</a>
             </div>
             <a href="javascript:;">消息通知</a>
-            <!--<div class="info_select">
-                <a href="personal-center.html">个人中心</a>
-                <a href="user-favorite.html">我的喜欢</a>
-                <a href="login.html">退出登录</a>
-            </div>-->
+
         </div>
     </div>
 </div>
@@ -42,7 +39,7 @@
 <div class="site-header">
     <div class="container">
         <div class="header-logo">
-            <a href="indent.html">
+            <a href="javascript:;">
                 <span class="logo"></span>
             </a>
         </div>
@@ -255,105 +252,22 @@
     </div>
 </div>
 <!--中间-->
-<div class="breadcrumbs">
-    <div class="container">
-        <a href="index.html">首页</a>
-        <span>&gt;</span>
-        <a href="javascript:;">个人中心</a>
-    </div>
-</div>
-<div class="user-main">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="left-box">
-                <div class="uc-sub-box">
-                    <div class="uc-nav-box">
-                        <div class="box-hd">
-                            <h3 class="tittle">个人中心</h3>
-                        </div>
-                        <div class="box-bd">
-                            <ul class="uc-nav-list">
-                                <li class="active">
-                                    <a href="javascript:;">我的个人中心</a>
-                                </li>
-                                <li>
-                                    <a href="user-address.html">收货地址</a>
-                                </li>
-                                <li>
-                                    <a href="user-favorite.html">喜欢的商品</a>
-                                </li>
-                                <li>
-                                    <a href="indent.html">我的订单</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-box">
-                <div class="uc-box">
-                    <div class="uc-content-box">
-                        <div class="box-bd">
-                            <div class="portal-main clearfix">
-                                <div class="user-card">
-                                    <h3 class="username"></h3>
-                                    <p class="tip"></p>
-                                    <a class="link"  target="_blank" href="personal-information.html">修改个人信息 ></a>
-                                    <img class="avatar" src="https://account.xiaomi.com/static/img/passport/photo.jpg">
-                                </div>
-                                <div class="user-actions">
-                                    <ul class="action-list">
-                                        <li>
-                                            账户安全：
-                                            <span class="levl">普通</span>
-                                        </li>
-                                        <li>绑定手机：
-                                            <span class="tel phone"></span>
-                                        </li>
-                                        <li>
-                                            绑定邮箱：
-                                            <span class="tel email"></span>
-                                            <a class="btn" href="personal-information.html">绑定</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="portal-sub">
-                                <ul class="info-list clearfix">
-                                    <li>
-                                        <h3>待支付的订单：
-                                            <span class="num">0</span>
-                                        </h3>
-                                        <a href="javascript">查看待支付订单></a>
-                                        <img src="http://s01.mifile.cn/i/user/portal-icon-1.png">
-                                    </li>
-                                    <li>
-                                        <h3>待收货的订单：
-                                            <span class="num">0</span>
-                                        </h3>
-                                        <a href="javascript">查看待收货订单></a>
-                                        <img src="http://s01.mifile.cn/i/user/portal-icon-2.png">
-                                    </li>
-                                    <li>
-                                        <h3>待评价商品数：
-                                            <span class="num">0</span>
-                                        </h3>
-                                        <a href="javascript">查看待评价商品></a>
-                                        <img src="http://s01.mifile.cn/i/user/portal-icon-3.png">
-                                    </li>
-                                    <li>
-                                        <h3>喜欢的商品：
-                                            <span class="num">0</span>
-                                        </h3>
-                                        <a href="javascript">查看喜欢的商品></a>
-                                        <img src="http://s01.mifile.cn/i/user/portal-icon-4.png">
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="payment-box">
+    <div class="payment">
+        <div class="box">
+            <p class="tittle">修改用户信息</p>
+            <form>
+                <label for="question">邮箱</label>
+                <input type="text" id="email">
+                <label for="question">手机号</label>
+                <input type="text" id="phone" >
+                <label for="question">密保问题</label>
+                <input type="text" id="question" >
+                <label for="answer">密保答案</label>
+                <input type="text" id="answer" >
+                <p class="verify-text hint"></p>
+                <input type="button" value="确定" class="btn" id="btn">
+            </form>
         </div>
     </div>
 </div>
@@ -461,9 +375,6 @@
         success:function(result){
             var name=result.data.username;
             if(!result.status){
-                $('.username').html(name);
-                $('.phone').html(result.data.phone);
-                $('.email').html(result.data.email);
                 $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
                 $('.quit').click(function(){
                     $.ajax({
@@ -477,16 +388,18 @@
                         }
                     });
                 });
-                $('.changeInfo').click(function(){
-                    window.location.href='change-information.html';
-                });
             }
         }
+    });
+    $('.login').mouseover(function(){
+        $('.info_select').css('display','block');
+    });
+    $('.login').mouseout(function(){
+        $('.info_select').css('display','none');
     });
     var _width=$(window).width();
     $('.header-nav-menu').css('width',_width);
     $('.header-nav-menu').css('left','-40px');
-    /*导航*/
     $('.header-nav .nav-list li').mouseover(function(){
         $(this).find($('.header-nav-menu')).css('display','block');
     });
@@ -494,7 +407,62 @@
         $(this).find($('.header-nav-menu')).css('display','none');
     });
 
-    $('.uc-nav-list li').click(function(){
-       $(this).addClass('active').siblings().removeClass('active');
+
+    $('#question').blur(function(){
+        if(!$(this).val()){
+            $('.verify-text').html('密保问题不能为空');
+        }else{
+            $('.verify-text').html('');
+        }
+    });
+    $('#answer').blur(function(){
+        if(!$(this).val()){
+            $('.verify-text').html('密保答案不能为空');
+        }else{
+            $('.verify-text').html('');
+        }
+    });
+    $('#email').blur(function(){
+        if(!$(this).val()){
+            $('.verify-text').html('邮箱不能为空');
+        }else{
+            $('.verify-text').html('');
+        }
+    });
+    $('#phone').blur(function(){
+        if(!$(this).val()){
+            $('.verify-text').html('手机号不能为空');
+        }else{
+            $('.verify-text').html('');
+        }
+    });
+    $('.btn').click(function(){
+        if(!$('#email').val() || !$('#phone').val() || !$('#question').val() || !$('#answer').val()){
+            $('.verify-text').html('请填写完整');
+        }
+        if($('.verify-text').html()==''){
+            $.ajax({
+                url:'/user/update_information.do',
+                data:{
+                    'email':$('#email').val(),
+                    'phone':$('#phone').val(),
+                    'question':$('#question').val(),
+                    'answer':$('#answer').val()
+                },
+                type:'post',
+                success:function(str){
+                    if(!str.status){
+                        alert("修改成功");
+                    }else{
+                        alert('修改失败');
+                    }
+
+                },
+                error:function(){
+
+                }
+            });
+        }
+
     });
 </script>

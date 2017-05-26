@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>我的订单</title>
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/indent.css" />
-	<script src="them/jquery/jquery-1.7.2.js"></script>
-	<script src="them/jquery/jquery.cookie.js"></script>
-	<style>
-		
-	</style>
+	<title>商品详情页</title>
+	<link rel="stylesheet" href="../css/reset.css" />
+	<link rel="stylesheet" href="../css/commodityDetils.css" />
+	<script src="../them/jquery/jquery-1.7.2.js"></script>
+	<script src="../them/jquery/jquery.cookie.js"></script>
 </head>
 <body>
 	<!--头部-->
@@ -29,16 +26,14 @@
 	            </a>
 	        </div>
 	        <div class="topbar-info">
-				<div class="login" style="display: inline-block">
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a>
-				</div>
+	            <a href="javascript:;">登录</a>
+	            <a href="javascript:;">注册</a>
 	            <a href="javascript:;">消息通知</a>
-	            <!--<div class="info_select">
+	            <div class="info_select">
 	                <a href="personal-center.html">个人中心</a>
 	                <a href="user-favorite.html">我的喜欢</a>
 	                <a href="login.html">退出登录</a>
-	            </div>-->
+	            </div>
 	        </div>
 	    </div>
 	</div>
@@ -46,7 +41,7 @@
 	<div class="site-header">
 	    <div class="container">
 	        <div class="header-logo">
-	            <a href="index.html">
+	            <a href="javascript:;">
 	                <span class="logo"></span>
 	            </a>
 	        </div>
@@ -260,81 +255,272 @@
 	</div>
 	<div id="conetent_wrapper">
 		<div id="content">
-			<div class="indent_box">
-				<div class="indent_title clearfix">
-					<p class="fl">我的订单</p>
-					<span class="fl">请谨防钓鱼链接或诈骗电话！</span>
-				</div>
-				<div class="indent_navbox clearfix">
-					<ul class="indent_nav fl">
-						<li class="fl active all">全部有效订单</li>
-						<li class="fl wzf">未支付</li>
-						<li class="fl yfk">已付款</li>
-						<li class="fl ygb">已关闭</li>
-					</ul>
-					<div class="indent_search">
-						<input type="text" placeholder="输入商品名称、订单号、商品编号" class="indent_search_inp fl">
-						<div class="indent_search_img fl" ></div>
+			<div class="commodity clearfix">
+				<div class="commodity_left fl">
+					<div class="commodity_img">
+						<img id="commodity_img" src="" alt="">
+						<span></span>
+						<div class="commodity_img_b">
+							<img id="commodity_img_b" src="" alt="">
+						</div>
+					</div>
+					<div class="img_nav">
+						<a href="javascript:;" class="price"></a>
+						<div class="img_btn_box">
+							<ul class="btn_box .clearfix">
+								
+							</ul>
+						</div>
+						<a href="javascript:;" class="next"></a>
 					</div>
 				</div>
-				<div class="main"></div>
-				<!--<div class="indent_detailsbox">
-					<div class="indent_details">
-						<p class="indent_status">等待发货</p>
-						<p class="indent_predict">预计五天内发货</p>
-						<ul class="indent_recipients clearfix">
-							<li class="fl indent_time">2017年05月17日 09:05</li>
-							<li class="fl indent_name">李亚培</li>
-							<li class="fl indent_number">订单号：121212141511</li>
-							<li class="fl indent_pay">在线支付</li>
-						</ul>
-						<p class="indent_money">
-							订单金额
-							<span class="indent_money_num">
-								8889
-							</span>
-							元
+				<div class="commodity_right fl">
+					<div class="commodity_title">
+						<p class="commodity_name"></p>
+						<p class="commodity_privilege"></p>
+					</div>
+					<div class="details">
+						<p class="newPrice">
+							现&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span></span>
 						</p>
+
+						<ul class="details_details">
+							<li class="details_item">
+								服&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：<span>由华为商城负责发货，并提供售后服务</span>
+							</li>
+							<li class="details_item">
+								支&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;持：<span class="services"></span>
+							</li>
+							
+						</ul>
 					</div>
-					<div class="indent_indent clearfix">
-						<div class="order_items fl">
-							<ul class="goods_list">
-								<li>
-									<div class="figure">
-										<a href="">
-											<img src="img/top.jpg" height="80" width="80" alt="">
-										</a>
+					<ul class="buy_option">
+						<!--<li class="buy_option_item">-->
+							<!--月&nbsp;销&nbsp;&nbsp;量：<span style="color: #e01d20" class="saleCount"></span>-->
+						<!--</li>-->
+						<!--<li class="buy_option_item">-->
+							<!--累计评价：<span class="commentCount" style="color: #e01d20"></span>-->
+						<!--</li>-->
+						<li class="buy_option_item">
+							库&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：<span class="stock"></span>件
+						</li>
+					</ul>
+					<div class="buy_content_box clearfix">
+						<span  class="buy_text fl">购买数量：</span>
+						<span class="buy_reduce fl">-</span>
+						<span class="buy_count fl">0</span>
+						<span class="buy_add fl">+</span>
+					</div>
+					<div class="buy_btn_box clearfix">
+						<p class="buy_btn fl">立即购买</p>
+						<p class="shopping_cart fl">加入购物车</p>
+					</div>
+				</div>
+			</div>
+			<div class="commodity_details clearfix">
+				<div class="commodity_details_left fl">
+					<div class="hot_singles">
+						<p class="hot_singles_title">热销榜单</p>
+						<ul>
+							<li class="hot_singles_item clearfix">
+								<p class="fl top_img">
+									<img src="img/top.jpg" alt="">
+								</p>
+								<div class="fl top_text">
+									荣耀V9 全网通尊享版 6GB+128GB（极光蓝）
+									<p class="top_price">￥3499</p>
+								</div>
+								<p class="top_content"></p>
+							</li>
+							<li class="hot_singles_item clearfix">
+								<p class="fl top_img">
+									<img src="img/top.jpg" alt="">
+								</p>
+								<div class="fl top_text">
+									荣耀V9 全网通尊享版 6GB+128GB（极光蓝）
+									<p class="top_price">￥3499</p>
+								</div>
+								<p class="top_content"></p>
+							</li>
+							<li class="hot_singles_item clearfix">
+								<p class="fl top_img">
+									<img src="img/top.jpg" alt="">
+								</p>
+								<div class="fl top_text">
+									荣耀V9 全网通尊享版 6GB+128GB（极光蓝）
+									<p class="top_price">￥3499</p>
+								</div>
+								<p class="top_content"></p>
+							</li>
+							<li class="hot_singles_item clearfix">
+								<p class="fl top_img">
+									<img src="img/top.jpg" alt="">
+								</p>
+								<div class="fl top_text">
+									荣耀V9 全网通尊享版 6GB+128GB（极光蓝）
+									<p class="top_price">￥3499</p>
+								</div>
+								<p class="top_content"></p>
+							</li>
+							<li class="hot_singles_item clearfix">
+								<p class="fl top_img">
+									<img src="img/top.jpg" alt="">
+								</p>
+								<div class="fl top_text">
+									荣耀V9 全网通尊享版 6GB+128GB（极光蓝）
+									<p class="top_price">￥3499</p>
+								</div>
+								<p class="top_content"></p>
+							</li>
+							<li class="hot_singles_item clearfix">
+								<p class="fl top_img">
+									<img src="img/top.jpg" alt="">
+								</p>
+								<div class="fl top_text">
+									荣耀V9 全网通尊享版 6GB+128GB（极光蓝）
+									<p class="top_price">￥3499</p>
+								</div>
+								<p class="top_content"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="commodity_details_right fl">
+					<div class="commodity_nav_border">
+						<ul class="commodity_nav_box clearfix">
+							<li class="commodity_nav_item fl commodity_nav_item_active">商品详情</li>
+							<li class="commodity_nav_item fl">用户评价</li>
+						</ul>
+					</div>
+					<div class="commodity_nav_div">
+						<div class="commodity_nav_details">
+
+						</div>
+						<div style="display: none" class="commodity_nav_appraise">
+							<div class="appraise_title clearfix">	
+								<div class="fl appraise_title_item">
+									<div class="appraise_scale">
+										97%
 									</div>
-									<p class="goods_name">小米手机</p>
-									<p class="goods_pric">95元×1</p>
+									<div class="appraise_scale_text">
+										好评度
+									</div>
+								</div>
+								<div class="fl effect">
+									<div class="fl effect_title">买家印象：</div>
+									<ul class="fl effect_item_box">
+										<li>性价比高(47456)</li>
+										<li>物流给力(40648)</li>
+										<li>精美(14884)</li>
+										<li>物美价廉(33705)</li>
+										<li>性价比高(47456)</li>
+										<li>物流给力(40648)</li>
+										<li>精美(14884)</li>
+										<li>物美价廉(33705)</li>
+									</ul>
+								</div>
+							</div>
+							<ul class="appraise_list">
+								<li class="appraise_list_item clearfix">
+									<div class="fl user">
+										<div class="user_img_box">
+											<img src="https://res.vmallres.com/20170502/images/echannel/misc/defaultface_user_small.png" alt="">
+											<span class="grade"></span>
+										</div>
+										<p>1**22</p>
+									</div>
+									<div class="fl user_appraise">
+										<div class="user_appraise_t">
+											<div class="star fl"></div>
+											<ul class="fl">
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+											</ul>
+										</div>
+										<div class="user_appraise_b">
+											花不解语花颔首
+										</div>
+									</div>
 								</li>
-								<li>
-									<div class="figure">
-										<a href="">
-											<img src="img/top.jpg" height="80" width="80" alt="">
-										</a>
+								<li class="appraise_list_item clearfix">
+									<div class="fl user">
+										<div class="user_img_box">
+											<img src="https://res.vmallres.com/20170502/images/echannel/misc/defaultface_user_small.png" alt="">
+											<span class="grade"></span>
+										</div>
+										<p>1**22</p>
 									</div>
-									<p class="goods_name">小米手机</p>
-									<p class="goods_pric">95元×1</p>
+									<div class="fl user_appraise">
+										<div class="user_appraise_t">
+											<div class="star fl"></div>
+											<ul class="fl">
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+											</ul>
+										</div>
+										<div class="user_appraise_b">
+											花不解语花颔首
+										</div>
+									</div>
+								</li>
+								<li class="appraise_list_item clearfix">
+									<div class="fl user">
+										<div class="user_img_box">
+											<img src="https://res.vmallres.com/20170502/images/echannel/misc/defaultface_user_small.png" alt="">
+											<span class="grade"></span>
+										</div>
+										<p>1**22</p>
+									</div>
+									<div class="fl user_appraise">
+										<div class="user_appraise_t">
+											<div class="star fl"></div>
+											<ul class="fl">
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+											</ul>
+										</div>
+										<div class="user_appraise_b">
+											花不解语花颔首
+										</div>
+									</div>
+								</li>
+								<li class="appraise_list_item clearfix">
+									<div class="fl user">
+										<div class="user_img_box">
+											<img src="https://res.vmallres.com/20170502/images/echannel/misc/defaultface_user_small.png" alt="">
+											<span class="grade"></span>
+										</div>
+										<p>1**22</p>
+									</div>
+									<div class="fl user_appraise">
+										<div class="user_appraise_t">
+											<div class="star fl"></div>
+											<ul class="fl">
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+												<li class="fl label">物美价廉</li>
+											</ul>
+										</div>
+										<div class="user_appraise_b">
+											花不解语花颔首
+										</div>
+									</div>
 								</li>
 							</ul>
 						</div>
-						<div class="order_actions">
-							<a href="#" class="btn_primary">立即支付</a>
-							<a href="#">查看详情</a>
-						</div>
 					</div>
-				</div>-->
-				<div style="display:none;" class="content_blank">当前没有~</div>
-				<div class="paging_box">
-					<!--<span class="left prev"><</span>-->
-					<ul class="clearfix">
-						<!--<li class="fl current">1</li>
-						<li class="fl ">2</li>-->
-					</ul>
-					<!--<span class="right next">></span>-->
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -432,184 +618,219 @@
 			</div>
 		</div>
 	</div>
-		
+	
 	<script>
-        $.ajax({
-            url:'/user/get_user_info.do',
-            type:'post',
-            success:function(result){
-                var name=result.data.username;
-                if(!result.status){
-                    $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
-                    $('.quit').click(function(){
-                        $.ajax({
-                            url:'/user/logout.do',
-                            type:'post',
-                            success:function(result){
-                                if(!result.status){
-                                    $('.hint').html('');
-                                    window.location.href='index.html';
-                                }
-                            }
-                        });
-                    });
-                    $('.changeInfo').click(function(){
-                        window.location.href='change-information.html';
-                    });
-                }
-            }
-        });
 		var _width=$(window).width();
 		$('.header-nav-menu').css('width',_width);
 		$('.header-nav-menu').css('left','-40px');
 
-  		$('.header-nav .nav-list li').mouseover(function(){
-	       $(this).find($('.header-nav-menu')).css('display','block');
-	    });
-	    $('.header-nav .nav-list li').mouseout(function(){
-	        $(this).find($('.header-nav-menu')).css('display','none');
-	    });
-	    
-	  	$('.indent_nav li').click(function(){
-            $(this).addClass('active').siblings().removeClass('active');
-	    });
-		allOrders();
-		var Allsize;
-		$('.all').click(function(){
-            $('.paging_box ul').html('');
-            allOrders();
-            if(Allsize>=0){
-                $('.content_blank').css('display','none');
-                $('.paging_box ul').css('display','block');
-			}
-		});
-        $('.wzf').click(function(){
-            $('.main').html('');
-            var length=$('.main').children().length;
-            if(length==0){
-                $('.content_blank').css('display','block');
-                $('.paging_box ul').css('display','none');
+        //存储页面路径
+        var str_path=window.location.pathname;
+        var arr_path=str_path.split('/');
+        var location_index=arr_path[arr_path.length-1];
+        //alert(location_index);
+        var cookietime = new Date();
+        var date = new Date();
+        cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+        $.cookie("location_index", location_index,{expires:cookietime});
+
+		//购买数量
+        var buycount=1;
+
+		//创建页面
+      function createPage(data){
+		  var subImages=data.subImages;
+		  var images=subImages.split(',');
+		  var image=[];
+          $.each(images,function(index,val){
+              var _src=data.imageHost+val;
+              image.push(_src);
+		  });
+
+      		$('#commodity_img').attr('src',image[0]);
+			$('#commodity_img_b').attr('src',image[0]);
+      		$('.commodity_name').html(data.name);
+      		$('.newPrice span').html('￥'+data.price.toFixed(2));
+      		$('.services').html(data.subtitle);
+      		$('.stock').html(data.stock);
+      		$('.commodity_privilege').html(data.subtitle);
+          $('.buy_count').html(buycount);
+      		$.each(image,function(index,val){
+				$('.btn_box').append('<li class="img_btn fl "><img src="'+val+'" alt=""></li>');
+			});
+      		$('.img_btn').eq(0).addClass('img_btn_active');
+			$('.btn_box').css('width',image.length*90-10+'px');
+
+			var count=0;
+
+			$('.img_btn').mouseover(function(){
+				$('.img_btn').removeClass('img_btn_active');
+				$(this).addClass('img_btn_active');
+				$('#commodity_img').attr('src',image[$(this).index()]);
+				$('#commodity_img_b').attr('src',image[$(this).index()]);
+			});
+			$('.next').click(function(){
+				var oleft=$('.btn_box').width()-$('.img_btn_box').width();
+				var nleft=$('.btn_box').position().left;
+				if (-nleft>=oleft) {
+					return;
+				}
+				count++;
+				$('.btn_box').css('left',-88*count+'px');
+			});
+			$('.price').click(function(){
+				count--;
+				if(count<=0){
+					count=0;
+				}
+				$('.btn_box').css('left',-88*count+'px');
+			});
+			$('.buy_reduce').click(function(){
+				buycount--;
+				if(buycount<=1){
+					buycount=1;
+				}
+				$('.buy_count').html(buycount);
+			});
+			$('.buy_add').click(function(){
+				buycount++;
+				$('.buy_count').html(buycount);
+			});
+			$('.commodity_nav_item ').click(function(){
+				$('.commodity_nav_item').removeClass('commodity_nav_item_active');
+				$(this).addClass('commodity_nav_item_active');
+				$('.commodity_nav_div > div').css('display','none');
+				$('.commodity_nav_div > div').eq($(this).index()).css('display','block');
+			});
+			$('.commodity_nav_details').html(data.detail);
+
+      }
+	//请求商品信息
+		var image=[];
+		var good_det_id=$.cookie("good_det_id");
+
+        $.ajax({
+            url:'/product/detail.do',
+            data:{
+                'productId':good_det_id
+            },
+            type:'post',
+            success:function(res){
+				var data=res.data;
+                createPage(data);
+            },
+            error:function(){
+
             }
         });
-        $('.yfk').click(function(){
-            $('.main').html('');
-            var length=$('.main').children().length;
-            if(length==0){
-                $('.content_blank').css('display','block');
-                $('.paging_box ul').css('display','none');
-            }
-        });
-        $('.ygb').click(function(){
-            $('.main').html('');
-            var length=$('.main').children().length;
-            if(length==0){
-                $('.content_blank').css('display','block');
-                $('.paging_box ul').css('display','none');
-            }
-        });
-	  	/*获取全部订单*/
-        function allOrders(){
+        //加入购物车
+		$('.shopping_cart').click(function(){
             $.ajax({
-                url:'/order/list.do',
-                data:{
-                    pageNum:1,
-                    pageSize:10
-                },
-                success:function(str){
-                    if(!str.status){
-                        var arr;
-                        var page=str.data.pages;
-                        Allsize=str.data.size;
-                        for(var i=0;i<str.data.list.length;i++){
-							/*console.log(str.data.list[i]);*/
-                            arr=str.data.list[i].orderItemVoList;
-                            var total_prices=parseFloat(str.data.list[i].postage)+parseFloat(str.data.list[i].payment);
-                            var cont=' <div class="indent_detailsbox"><div class="indent_details"><p class="indent_status">'+str.data.list[i].statusDesc+'</p> <p class="indent_predict"></p> <ul class="indent_recipients clearfix"> <li class="fl indent_time">'+str.data.list[i].createTime+'</li> <li class="fl indent_name">'+str.data.list[i].receiverName+'</li> <li class="fl indent_number">订单号：'+str.data.list[i].orderNo+'</li> <li class="fl indent_pay">'+str.data.list[i].statusDesc+'</li> </ul> <p class="indent_money"> 订单金额 <span class="indent_money_num"> '+total_prices+' 元</span> </p> </div> <div class="indent_indent clearfix">   <div class="order_items fl"> <ul class="goods_list"></ul> </div>   <div class="order_actions"> <a href="payindent.html" class="btn_primary payment" id="'+str.data.list[i].orderNo+'">立即支付</a> <a href="indentDetils.html" class="details" id="'+str.data.list[i].orderNo+'">查看详情</a> </div> </div> </div>';
-                            $('.main').append(cont);
+                url:'/user/get_user_info.do',
+                type:'post',
+                success:function(res){
+                    if(res.status){
+                        window.location.href = "login.html";
+                    }else{
+                        $.ajax({
+                            url:'/cart/add.do',
+                            data:{
+                                'count':buycount,
+                                'productId':good_det_id
+                            },
+                            type:'post',
+                            success:function(res){
+                                alert('添加购物车成功');
+                            },
+                            error:function(){
 
-                            if($('.indent_status').eq(i).html()=="已取消"){
-                                $('.payment').eq(i).css('display','none');
                             }
-                            if($('.indent_status').eq(i).html()=="已付款"){
-                                $('.payment').eq(i).css('display','none');
-                            }
-                            for(var j=0;j<arr.length;j++){
-                                var cont2='<li> <div class="figure"> <a href=""> <img src="'+str.data.list[i].imageHost+arr[j].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+arr[j].productName+'</p> <p class="goods_pric">'+arr[j].currentUnitPrice+'元×'+arr[j].quantity+'</p> </li>';
-                                $('.goods_list').eq(i).append(cont2);
-                            }
-                        }
-                        details();
-						payment();
-
-
-                        for(var i=1;i<=page;i++){
-                            var content='<li class="fl ">'+i+'</li>';
-                            $('.paging_box ul').append(content);
-                            $('.paging_box ul li').eq(0).addClass('current');
-                        }
-                        $('.paging_box ul li').click(function(){
-                            $('.main').html('');
-                            $(this).addClass('current').siblings().removeClass('current');
-                            var _page=parseInt($(this).html());
-                            $.ajax({
-                                url:'/order/list.do',
-                                data:{
-                                    pageNum:_page,
-                                    pageSize:10
-                                },
-                                success:function(str){
-                                    if(!str.status){
-                                        var arr;
-                                        var page=str.data.pages;
-                                        for(var i=0;i<str.data.list.length;i++){
-											/*console.log(str.data.list[i]);*/
-                                            arr=str.data.list[i].orderItemVoList;
-
-                                            var cont=' <div class="indent_detailsbox"><div class="indent_details"><p class="indent_status">'+str.data.list[i].statusDesc+'</p> <p class="indent_predict"></p> <ul class="indent_recipients clearfix"> <li class="fl indent_time">'+str.data.list[i].createTime+'</li> <li class="fl indent_name">李亚培</li> <li class="fl indent_number">订单号：'+str.data.list[i].orderNo+'</li> <li class="fl indent_pay">'+str.data.list[i].statusDesc+'</li> </ul> <p class="indent_money"> 订单金额 <span class="indent_money_num"> '+str.data.list[i]. payment+' 元</span> </p> </div> <div class="indent_indent clearfix">   <div class="order_items fl"> <ul class="goods_list">   </ul> </div>   <div class="order_actions"> <a href="payindent.html" class="btn_primary payment" id="'+str.data.list[i].orderNo+'">立即支付</a> <a class="details" id="'+str.data.list[i].orderNo+'" href="indentDetils.html">查看详情</a> </div> </div> </div>';
-                                            $('.main').append(cont);
-                                            if($('.indent_status').eq(i).html()=="已取消"){
-                                                $('.payment').eq(i).css('display','none');
-                                            }
-                                            if($('.indent_status').eq(i).html()=="已付款"){
-                                                $('.payment').eq(i).css('display','none');
-                                            }
-                                            for(var j=0;j<arr.length;j++){
-                                                var cont2='<li> <div class="figure"> <a href=""> <img src="'+str.data.list[i].imageHost+arr[j].productImage+'" height="80" width="80" alt=""> </a> </div> <p class="goods_name">'+arr[j].productName+'</p> <p class="goods_pric">'+arr[j].currentUnitPrice+'元×'+arr[j].quantity+'</p> </li>';
-                                                $('.goods_list').eq(i).append(cont2);
-                                            }
-                                        }
-                                       /* if($('.indent_status').html()=="已取消"){
-                                            $('.payment').css('display','none');
-                                        }*/
-                                        details();
-                                        payment();
-                                    }
-                                }
-                            });
                         });
                     }
+                },
+                error:function(){
+                    alert('添加失败，请重新添加');
                 }
             });
-		};
-
-        /**/
-        function details(){
-            $('.details').click(function(){
-                var cookietime = new Date();
-                var date = new Date();
-                cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
-                $.cookie('orderNo', $(this).attr('id') , { path: '/', expires: cookietime});
+		});
+		//购物车按钮
+		$('.cart-mini').click(function(){
+            $.cookie("location_index", "shopCart.html",{expires:cookietime});
+            $.ajax({
+                url:'/user/get_user_info.do',
+                type:'post',
+                success:function(res){
+                    if(res.status){
+                        window.location.href = "login.html";
+                    }else{
+                        window.location.href = "shopCart.html";
+                    }
+                },
+                error:function(){
+                    alert('添加失败，请重新添加');
+                }
             });
-		}
-		function payment(){
-            $('.payment').click(function(){
-                var cookietime = new Date();
-                var date = new Date();
-                cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
-                $.cookie('payment', $(this).attr('id') , { path: '/', expires: cookietime});
-            });
-		}
+        });
 	</script>
-	
+	<script>
+		//获取绝对定位
+		function getPos(obj){
+			var l=0;
+			var t=0;
+			while(obj.offsetParent){
+				l+=obj.offsetLeft;
+				t+=obj.offsetTop;
+				obj=obj.offsetParent;
+			}
+			
+			return {l:l,t:t};
+		}
+		var oS = document.getElementsByClassName('commodity_img')[0];
+		var oSpan = oS.children[1];
+		var oBox = document.getElementsByClassName('commodity_img_b')[0];
+		var oImg = document.getElementById('commodity_img_b');
+
+		// 当鼠标移入到small里面
+		oS.onmouseenter = function(){
+			// 让浮层和box出来
+			oSpan.style.display = 'block';
+			oBox.style.display = 'block';
+		}
+		oS.onmouseleave = function(){
+			oSpan.style.display = 'none';
+			oBox.style.display = 'none';
+		}
+		
+
+		oS.onmousemove = function(ev){
+			var oEvent = ev || event;
+			var l = oEvent.clientX - oSpan.offsetWidth/2 -getPos(oS).l;
+			var t = oEvent.clientY - oSpan.offsetHeight/2 -50;
+
+			
+			if(l <= 0){
+				l = 0;
+			}
+			if(l >= oS.offsetWidth - oSpan.offsetWidth){
+				l = oS.offsetWidth - oSpan.offsetWidth;
+			}
+			if(t <= 0){
+				t = 0;
+			}
+			if(t >= oS.offsetHeight - oSpan.offsetHeight){
+				t = oS.offsetHeight - oSpan.offsetHeight;
+			}
+
+			oSpan.style.left = l + 'px';
+			oSpan.style.top = t + 'px';
+
+			// 比例：
+			oImg.style.left = -(oImg.offsetWidth-oBox.offsetWidth)*oSpan.offsetLeft/(oS.offsetWidth-oSpan.offsetWidth)+'px';
+			oImg.style.top = -(oImg.offsetHeight-oBox.offsetHeight)*oSpan.offsetTop/(oS.offsetHeight-oSpan.offsetHeight)+'px';
+		}
+
+		
+	</script>
+
 </body>
 </html>

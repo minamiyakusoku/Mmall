@@ -41,7 +41,7 @@ public class ProductController {
             @ApiImplicitParam(name = "categoryId", value = "商品类型ID", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query"),
-            @ApiImplicitParam(name = "orderBy", value = "排序属性", required = false, dataType = "String",paramType="query")})
+            @ApiImplicitParam(name = "orderBy", value = "排序属性(price#desc,price#asc)", required = false, dataType = "String",paramType="query")})
     @RequestMapping(value = "/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public ServerResponse<PageInfo> list(@RequestParam(value = "keyword",required = false)String keyword,
