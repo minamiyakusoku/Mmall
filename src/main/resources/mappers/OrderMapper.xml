@@ -219,11 +219,14 @@
 
 
 
-  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+  <select id="selectByUserIdAndStatus" resultMap="BaseResultMap" parameterType="int">
     SELECT
       <include refid="Base_Column_List"/>
     from mmall_order
     where user_id = #{userId}
+    <if test="status != null" >
+      AND  status = #{status}
+    </if>
     order by create_time desc
   </select>
 
@@ -234,6 +237,7 @@
     <include refid="Base_Column_List"/>
     from mmall_order
     ORDER BY  create_time desc
+
   </select>
 
 

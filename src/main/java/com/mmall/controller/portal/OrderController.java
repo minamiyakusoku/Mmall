@@ -92,16 +92,20 @@ public class OrderController {
 
     @ApiOperation(value = "获取当前用户全部订单")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "status", value = "订单状态（0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭）", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageNum", value = "页码", required = false, dataType = "int",paramType="query"),
             @ApiImplicitParam(name = "pageSize", value = "每页条目数量", required = false, dataType = "int",paramType="query")})
     @RequestMapping(value="/list.do",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public ServerResponse list(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
+    public ServerResponse list(HttpSession session,
+                               @RequestParam(value = "status",required = false)Integer status,
+                               @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+                               @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         if(user ==null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
         }
-        return iOrderService.getOrderList(user.getId(),pageNum,pageSize);
+        return iOrderService.getOrderList(user.getId(),status,pageNum,pageSize);
     }
 
 

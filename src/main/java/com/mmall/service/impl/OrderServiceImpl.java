@@ -345,9 +345,9 @@ public class OrderServiceImpl implements IOrderService {
     }
 
 
-    public ServerResponse<PageInfo> getOrderList(Integer userId,int pageNum,int pageSize){
+    public ServerResponse<PageInfo> getOrderList(Integer userId,Integer status,int pageNum,int pageSize){
         PageHelper.startPage(pageNum,pageSize);
-        List<Order> orderList = orderMapper.selectByUserId(userId);
+        List<Order> orderList = orderMapper.selectByUserIdAndStatus(userId,status);
         List<OrderVo> orderVoList = assembleOrderVoList(orderList,userId);
         PageInfo pageResult = new PageInfo(orderList);
         pageResult.setList(orderVoList);
