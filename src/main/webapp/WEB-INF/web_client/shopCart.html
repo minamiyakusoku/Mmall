@@ -30,16 +30,17 @@
 				</p>
 				<ul class="title_item fr">
 					<li class="userName fl">
-						123456789<span></span>
+						<i style="font-style: normal;" class="user_name"></i><span></span>
 						<ul class="user_menu">
-							<li><a href="#">个人中心</a></li>
-							<li><a href="#">评价晒单</a></li>
-							<li><a href="#">我的喜欢</a></li>
-							<li><a href="#">退出登录</a></li>
+							<li><a href="personal-center.html">个人中心</a></li>
+							<li><a href="user-favorite.html">我的喜欢</a></li>
+							<li><a href="change-information.html" class="changeInfo">修改信息</a></li>
+							<li><a href="indent.html" class="quit">退出登录</a></li>
 						</ul>
 					</li>
 					<li class="indent fl">
-						我的订单
+						<a href="indent.html">我的订单</a>
+
 					</li>
 				</ul> 
 			</div>
@@ -205,6 +206,31 @@
 		</div>
 		
 	<script>
+        $.ajax({
+            url:'/user/get_user_info.do',
+            type:'post',
+            success:function(result){
+                var name=result.data.username;
+                if(!result.status){
+                    $('.user_name').html(name);
+                    $('.quit').click(function(){
+                        $.ajax({
+                            url:'/user/logout.do',
+                            type:'post',
+                            success:function(result){
+                                if(!result.status){
+                                    $('.hint').html('');
+                                    window.location.href='index.html';
+                                }
+                            }
+                        });
+                    });
+                    $('.changeInfo').click(function(){
+                        window.location.href='change-information.html';
+                    });
+                }
+            }
+        });
         //获取商品总数
         function hq_sp_count() {
             $.ajax({

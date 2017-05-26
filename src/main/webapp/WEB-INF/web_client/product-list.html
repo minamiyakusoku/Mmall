@@ -26,14 +26,12 @@
             </a>
         </div>
         <div class="topbar-info">
-            <a href="login.html">登录</a>
-            <a href="register.html">注册</a>
-            <a href="javascript:;">消息通知</a>
-            <div class="info_select">
-                <a href="personal-center.html">个人中心</a>
-                <a href="user-favorite.html">我的喜欢</a>
-                <a href="login.html">退出登录</a>
+            <div class="login" style="display: inline-block">
+                <a href="login.html">登录</a>
+                <a href="register.html">注册</a>
             </div>
+            <a href="javascript:;">消息通知</a>
+
         </div>
     </div>
 </div>
@@ -41,7 +39,7 @@
 <div class="site-header">
     <div class="container">
         <div class="header-logo">
-            <a href="javascript:;">
+            <a href="index.html">
                 <span class="logo"></span>
             </a>
         </div>
@@ -616,6 +614,7 @@
 </body>
 </html>
 <script>
+
     //存储页面路径
     var str_path=window.location.pathname;
     var arr_path=str_path.split('/');
@@ -625,7 +624,24 @@
     var date = new Date();
     cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
     $.cookie("location_index", location_index,{expires:cookietime});
-
+    //购物车按钮
+    $('.cart-mini').click(function(){
+        $.cookie("location_index", "shopCart.html",{expires:cookietime});
+        $.ajax({
+            url:'/user/get_user_info.do',
+            type:'post',
+            success:function(res){
+                if(res.status){
+                    window.location.href = "login.html";
+                }else{
+                    window.location.href = "shopCart.html";
+                }
+            },
+            error:function(){
+                alert('添加失败，请重新添加');
+            }
+        });
+    });
     //点击存储商品id
     function good_cl(){
         $('.goods-item').click(function(){
@@ -919,5 +935,30 @@
         oUl.style.left = -(W - 14) * left + 'px';
     }
     /*为你推荐 #recommend  end */
-
+    //获取登录信息
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            if(!result.status){
+                var name=result.data.username;
+                $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
 </script>
