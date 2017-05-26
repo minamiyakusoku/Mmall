@@ -6,7 +6,8 @@
     margin: 0 auto;
     width: 57px;
     height: 57px;
-    background: url(../img/mi-logo.png) no-repeat center center #ff6700;
+    background: url(http://192.168.31.3:18089/mall_config/logo.jpg) no-repeat center center ;
+    background-size: 100% 100%;
 }
 .header .header-logo .tittle{
     margin-top: 21px;

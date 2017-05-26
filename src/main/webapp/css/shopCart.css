@@ -586,7 +586,7 @@
 		.footer .logo_b{
 			width: 57px;
 			height: 57px;
-			background: url(../img/mi-logo.png) no-repeat center center #ff6700; 
+			background: url(../img/mi-logo.png) no-repeat center center rgb(0,147,0);
 		}
 		.footer .bottom_text{
 			width: 790px;
