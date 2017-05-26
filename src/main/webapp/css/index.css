@@ -143,7 +143,6 @@
     height: 55px;
     overflow: hidden;
     _zoom: 1;
-    background-color: #ff6700;
 }
 
 .header-logo a .logo {
@@ -152,7 +151,8 @@
     display: inline-block;
     margin-top: 3px;
     margin-left: 3px;
-    background: url("../img/mi-logo.png") no-repeat;
+    background: url("http://192.168.31.3:18089/mall_config/logo.jpg") no-repeat;
+    background-size:100% 100%;
 }
 
 .site-header .header-nav {
