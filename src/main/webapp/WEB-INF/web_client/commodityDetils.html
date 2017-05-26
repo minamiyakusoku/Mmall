@@ -26,14 +26,12 @@
 	            </a>
 	        </div>
 	        <div class="topbar-info">
-	            <a href="javascript:;">登录</a>
-	            <a href="javascript:;">注册</a>
+				<div class="login" style="display: inline-block">
+					<a href="login.html">登录</a>
+					<a href="register.html">注册</a>
+				</div>
 	            <a href="javascript:;">消息通知</a>
-	            <div class="info_select">
-	                <a href="personal-center.html">个人中心</a>
-	                <a href="user-favorite.html">我的喜欢</a>
-	                <a href="login.html">退出登录</a>
-	            </div>
+
 	        </div>
 	    </div>
 	</div>
@@ -828,7 +826,32 @@
 			oImg.style.left = -(oImg.offsetWidth-oBox.offsetWidth)*oSpan.offsetLeft/(oS.offsetWidth-oSpan.offsetWidth)+'px';
 			oImg.style.top = -(oImg.offsetHeight-oBox.offsetHeight)*oSpan.offsetTop/(oS.offsetHeight-oSpan.offsetHeight)+'px';
 		}
-
+        //获取登录信息
+        $.ajax({
+            url:'/user/get_user_info.do',
+            type:'post',
+            success:function(result){
+                if(!result.status){
+                    var name=result.data.username;
+                    $('.login').html('<a href="javascript:;">'+name+' , 您好！</a><div class="info_select"> <a href="personal-center.html">个人中心</a> <a href="user-favorite.html">我的喜欢</a> <a href="javascript:;" class="changeInfo">修改信息</a><a href="javascript:;" class="quit">退出登录</a> </div>');
+                    $('.quit').click(function(){
+                        $.ajax({
+                            url:'/user/logout.do',
+                            type:'post',
+                            success:function(result){
+                                if(!result.status){
+                                    $('.hint').html('');
+                                    window.location.href='index.html';
+                                }
+                            }
+                        });
+                    });
+                    $('.changeInfo').click(function(){
+                        window.location.href='change-information.html';
+                    });
+                }
+            }
+        });
 		
 	</script>
 

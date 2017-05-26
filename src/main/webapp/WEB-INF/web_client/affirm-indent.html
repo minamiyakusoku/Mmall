@@ -19,13 +19,14 @@
         <p class="fl title">
             确认订单信息
         </p>
-        <a class="to_indent fr" href="#">我的订单</a>
+        <a class="to_indent fr" href="indent.html">我的订单</a>
         <div class="user_name_box fr" >
-            <span class="user_name">123458</span>
+            <span class="user_name"></span>
             <p class="user_name_b">
-                <a href="#">个人中心</a>
-                <a href="#">我的喜欢</a>
-                <a href="#">退出登录</a>
+                <a href="personal-center.html">个人中心</a>
+                <a href="user-favorite.html">我的喜欢</a>
+                <a href="change-information.html" class="changeInfo">修改信息</a>
+                <a href="indent.html" class="quit">退出登录</a>
             </p>
         </div>
     </div>
@@ -128,8 +129,8 @@
         </ul>
         <div class="btn_box clearfix">
             <div class="fl delivery_text ">
-                <p>李亚培  188****8888  </p>
-                <p>北京  <span>修改</span></p>
+                <!--<p>李亚培  188****8888  </p>-->
+                <!--<p>北京  <span>修改</span></p>-->
             </div>
             <div class="btn fr go_pay">去结算</div>
         </div>
@@ -261,6 +262,31 @@
 </body>
 </html>
 <script>
+    $.ajax({
+        url:'/user/get_user_info.do',
+        type:'post',
+        success:function(result){
+            var name=result.data.username;
+            if(!result.status){
+                $('.user_name').html(name);
+                $('.quit').click(function(){
+                    $.ajax({
+                        url:'/user/logout.do',
+                        type:'post',
+                        success:function(result){
+                            if(!result.status){
+                                $('.hint').html('');
+                                window.location.href='index.html';
+                            }
+                        }
+                    });
+                });
+                $('.changeInfo').click(function(){
+                    window.location.href='change-information.html';
+                });
+            }
+        }
+    });
     $('.close').click(function () {
         $('.shade').css('display', 'none');
         $('.modal').slideUp("fast");
