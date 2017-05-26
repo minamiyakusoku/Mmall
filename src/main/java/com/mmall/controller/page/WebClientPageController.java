@@ -27,8 +27,11 @@ public class WebClientPageController {
 
     @RequestMapping("/{page}.html")
     public ModelAndView checkLogin(@PathVariable("page")String page, HttpSession session){
+
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        boolean flag = false;
         switch (page){
-            case "index":
+            case"index":
             case"login":
             case"commodityDetils":
             case"product-list":
@@ -38,17 +41,23 @@ public class WebClientPageController {
             case"reset-password":
             case"reset-verify":
             case"service":
-                return new ModelAndView("web_client/" + page + ".html");
-            default:{
-                User user = (User)session.getAttribute(Const.CURRENT_USER);
+                flag = true;
+                break;
+            default:
                 if(user==null) {
-                    return new ModelAndView("web_client/login.html");
+                    flag = false;
                 } else {
-                    return new ModelAndView("web_client/" + page + ".html");
+                    flag =true;
                 }
-            }
-
+                break;
         }
+
+        System.out.println(">>>>【page:"+page+"】【user:"+user+"】"+"【flag:"+flag+"】  <<<<");
+        if(user!=null)
+            System.out.println("【username:"+user.getUsername() +"】");
+
+        if(flag == true){return new ModelAndView("web_client/" + page + ".html");}
+        else{return new ModelAndView("web_client/login.html");}
 
 
     }
