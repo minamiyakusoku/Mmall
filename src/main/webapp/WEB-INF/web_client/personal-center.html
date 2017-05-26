@@ -21,7 +21,7 @@
             <a href="javascript:;" class="cart-mini">
                 <span class="cart"></span>
                 <span>购物车</span>
-                <!--<span>(0)</span>-->
+                <span class="gwc_number"></span>
             </a>
         </div>
         <div class="topbar-info">
@@ -461,6 +461,15 @@
         success:function(result){
             var name=result.data.username;
             if(!result.status){
+                $.ajax({
+                    url: '/cart/get_cart_product_count.do',
+                    type: 'post',
+                    success: function (res) {
+                        console.log(res.data);
+                        $('.gwc_number').html('('+res.data+')');
+                        $('.cart-mini').css('background','rgba(255, 103, 0,.7)');
+                    }
+                });
                 $('.username').html(name);
                 $('.phone').html(result.data.phone);
                 $('.email').html(result.data.email);
