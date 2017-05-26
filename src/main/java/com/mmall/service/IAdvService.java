@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Adv;
 import com.mmall.vo.AdvDetailVo;
-import com.mmall.vo.AdvListVo;
 
 import java.util.List;
 
