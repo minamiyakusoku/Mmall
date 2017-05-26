@@ -20,4 +20,9 @@ public class HomepageController{
     public String checkLogin(@PathVariable("page")String page){
         return "redirect:/c/index.html";
     }
+
+    @RequestMapping("/a")
+    public String a(){
+        return "redirect:/c/index.html";
+    }
 }
