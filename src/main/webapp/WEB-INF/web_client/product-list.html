@@ -616,6 +616,7 @@
 </body>
 </html>
 <script>
+
     //存储页面路径
     var str_path=window.location.pathname;
     var arr_path=str_path.split('/');
@@ -625,7 +626,24 @@
     var date = new Date();
     cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
     $.cookie("location_index", location_index,{expires:cookietime});
-
+    //购物车按钮
+    $('.cart-mini').click(function(){
+        $.cookie("location_index", "shopCart.html",{expires:cookietime});
+        $.ajax({
+            url:'/user/get_user_info.do',
+            type:'post',
+            success:function(res){
+                if(res.status){
+                    window.location.href = "login.html";
+                }else{
+                    window.location.href = "shopCart.html";
+                }
+            },
+            error:function(){
+                alert('添加失败，请重新添加');
+            }
+        });
+    });
     //点击存储商品id
     function good_cl(){
         $('.goods-item').click(function(){
