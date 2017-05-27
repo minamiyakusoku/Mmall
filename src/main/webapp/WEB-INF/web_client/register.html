@@ -30,7 +30,7 @@
             </div>
         </form>
         <a class="btn" href="javascript:;">立即注册</a>
-        <p class="look">点击“立即注册”，即表示您同意并愿意遵守小米 用户协议 和 隐私政策</p>
+        <p class="look">点击“立即注册”，即表示您同意并愿意遵守艾家 用户协议 和 隐私政策</p>
     </div>
 </div>
 
@@ -90,7 +90,7 @@
             var date = new Date();
             cookietime.setTime(date.getTime() + (5 * 60 * 1000));//coockie保存5分钟
             $.cookie("user_phone", user_phone,{expires:cookietime});
-            $('.btn').attr('href','register-verify.html');
+            $('.btn').attr('href','register-password.html');
         }else{
             return false;
         }
