@@ -1311,3 +1311,43 @@
 .footer .bottom_img img:last-child{
     margin-right: 0;
 }
+.service_class_box{
+    width: 100%;
+    background: #fff;
+}
+.service_class_box li{
+    float: left;
+    width:305.5px;
+    height: 160px;
+    border:1px solid #f5f5f5;
+    margin-top: -1px;
+    margin-left: -1px;
+    background: url(../img/service-icon-shouhoufuwu.png) no-repeat 110px 26px;
+    background-size: 66px 66px;
+    position: relative;
+    cursor: pointer;
+}
+.service_class_box li p{
+    width: 95%;
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    bottom: 45px;
+    text-align: center;
+    color: #757575;
+}
+.service_class_box li:hover p{
+    color: #ff6700;
+}
+.service_class_box li:nth-child(2){
+    background: url(../img/service-icon-dingdan.png) no-repeat 110px 26px;
+}
+.service_class_box li:nth-child(3){
+    background: url(../img/service-icon-xmaccount.png) no-repeat 110px 26px;
+}
+.service_class_box li:nth-child(4){
+    background: url(../img/cms_14895585907373_GNERP.jpg) no-repeat 110px 26px;
+    background-size: 66px 66px;
+}

@@ -960,7 +960,9 @@
         type:'post',
         success:function(res){
             var goods_list=res.data.list;
-
+            if(!goods_list.length){
+                $('.goods-list-box').html('<p style="text-align: center; line-height: 100px; font-size: 30px; color: #e0e0e0;">抱歉没有找到相关库存</p>')
+            }
             goods_length=res.data.total;
             $.each(goods_list,function(index,val){
                 //index 索引
