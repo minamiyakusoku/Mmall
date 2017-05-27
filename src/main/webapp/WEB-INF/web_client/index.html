@@ -262,48 +262,21 @@
         <!--二级分类-->
 
     </div>
-    <div class="home-sub clearfix">
-        <div class="left-box">
-            <ul class="home-channel-list clearfix">
-                <li class="right">
-                    <a href="javascript:;"><span></span>选购手机</a>
-                </li>
-                <li class="right">
-                    <a href="javascript:;"><span></span>选购手机</a>
-                </li>
-                <li>
-                    <a href="javascript:;"><span></span>选购手机</a>
-                </li>
-                <li class="right top">
-                    <a href="javascript:;"><span></span>选购手机</a>
-                </li>
-                <li class="right top">
-                    <a href="javascript:;"><span></span>选购手机</a>
-                </li>
-                <li class="top">
-                    <a href="javascript:;"><span></span>选购手机</a>
-                </li>
-            </ul>
-        </div>
-        <div class="right-box">
-            <ul class="clearfix">
-                <li>
-                    <a href="javascript:;">
-                        <img src="../../img/lb.jpg">
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <img src="../../img/lb1.jpg">
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <img src="../../img/lb2.jpg">
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <div class="home-sub">
+        <ul class="service_class_box clearfix">
+            <li class="service_class">
+                <p>授权服务网店</p>
+            </li>
+            <li class="service_class">
+                <p>安装服务</p>
+            </li>
+            <li class="service_class">
+                <p>售后政策</p>
+            </li>
+            <li class="service_class">
+                <p>查询真伪</p>
+            </li>
+        </ul>
     </div>
     <!--明星单品-->
     <div class="products-box">
@@ -1711,6 +1684,28 @@
             var img_arr=res.data.list;
             $.each(img_arr,function(index,val){
                 $('.swiper-wrapper').append('<div class="swiper-slide"><img src="'+val.imageHost+val.mainImage+'"></div>');
+                $('.swiper-wrapper img').eq(index).click(function(){
+                    if(val.advType==0){
+                        window.location.href=val.pageUrl;
+                    }
+                    if(val.advType==1){
+                        var goods_id=val.categoryId;
+                        var cookietime = new Date();
+                        var date = new Date();
+                        cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                        //coockie保存时间
+                        $.cookie("goods_id", goods_id,{expires:cookietime});
+                        window.location.href = "product-list.html";
+                    }
+                    if(val.advType==2){
+                        var good_det_id=val.productId;
+                        var cookietime = new Date();
+                        var date = new Date();
+                        cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                        $.cookie("good_det_id", good_det_id,{expires:cookietime});
+                        window.location.href = "commodityDetils.html";
+                    }
+                });
 
             });
             var swiper2 = new Swiper('.swiper-container', {
@@ -1763,9 +1758,9 @@
                         //index 索引
                         //val每一项的值
                         if(index<=5){
-                            $(this).find($('.children_list')).append('<li class="star-goods" id="'+val.id+'"><a href="javascript:;" class="link" ><img class="thumb" src="http://c1.mifile.cn/f/i/g/2015/cn-index/bjbcdq80.jpg?width=40&height=40"><span class="text">'+val.name+'</span></a></li>');
+                            $(this).find($('.children_list')).append('<li class="star-goods" id="'+val.id+'"><a href="javascript:;" class="link" ><img class="thumb" src="http://192.168.31.3:18089/mall_config/category.png" width="30"><span class="text">'+val.name+'</span></a></li>');
                         }else{
-                            $(this).find($('.children_list')).append('<li class="star-goods" id="'+val.id+'"><a href="javascript:;" class="link" ><img class="thumb" src="http://c1.mifile.cn/f/i/g/2015/cn-index/bjbcdq80.jpg?width=40&height=40"><span class="text">'+val.name+'</span></a></li>');
+                            $(this).find($('.children_list')).append('<li class="star-goods" id="'+val.id+'"><a href="javascript:;" class="link" ><img class="thumb" src="http://192.168.31.3:18089/mall_config/category.png" width="30"><span class="text">'+val.name+'</span></a></li>');
                         }
                     });
                     list2_c();
@@ -1909,7 +1904,7 @@
                     url: '/cart/get_cart_product_count.do',
                     type: 'post',
                     success: function (res) {
-                        console.log(res.data);
+                        //console.log(res.data);
                         $('.gwc_number').html('('+res.data+')');
                         $('.cart-mini').css('background','rgba(255, 103, 0,.7)');
                     }
