@@ -286,21 +286,22 @@
                 $.each(goods_list,function(index,val){
                     //index 索引
                     //val每一项的值
-                    $('.details').append('<ul id="'+val.productId+'" class="details_item clearfix"><li class="check_sp fl"><input type="checkbox" name="check_commodity" value=""><div class="img_box"><img src="'+(imageHost+val.productMainImage)+'" height="60" width="60" alt=""></div></li><li class="name_sp fl">'+val.productName+'</li><li class="price_sp fl"><span class="commodity_price">'+val.productPrice+'</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">'+val.quantity+'</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> '+(val.quantity*val.productPrice)+'</span>元</li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
+					//console.log(val.quantity*val.productPrice);
+                    $('.details').append('<ul id="'+val.productId+'" class="details_item clearfix"><li class="check_sp fl"><input type="checkbox" name="check_commodity" value=""><div class="img_box"><img src="'+(imageHost+val.productMainImage)+'" height="60" width="60" alt=""></div></li><li class="name_sp fl">'+val.productName+'</li><li class="price_sp fl"><span class="commodity_price">'+val.productPrice+'</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">'+val.quantity+'</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> '+(val.productTotalPrice)+'</span>元</li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
                     if(val.productChecked){
 						$('input:checkbox[name="check_commodity"]').eq(index).attr("checked",true);
                         act_count+=val.quantity;
                         show_hiden();
                         //选中的绑定改变数量函数
                         $('.count_j').eq(index).on("click",function(){
-                            item_count=$('.count').eq(index).html();
+                            item_count=Number($('.count').eq(index).html());
                             item_count--;
                             if(item_count<1){
                                 item_count=1;
                                 return ;
                             }
                             $('.count').eq(index).html(item_count);
-                            $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                            $('.commodity_price_sum').eq(index).html((item_count*val.productPrice).toFixed(2));
                             act_rmb-=val.productPrice;
                             act_count--;
                             show_hiden();
@@ -309,7 +310,7 @@
                             //已选商品 的个数
                             $('.selected_amount').html(act_count);
                             //已选商品的总价
-                            $('.total_prices_count').html(act_rmb);
+                            $('.total_prices_count').html(act_rmb.toFixed(2));
                             //调用修改数量接口
                             $.ajax({
                                 url:'/cart/update.do',
@@ -329,10 +330,11 @@
                             });
                         });
                         $('.count_z').eq(index).on("click",function(){
-                            item_count=$('.count').eq(index).html();
+                            item_count=Number($('.count').eq(index).html());
                             item_count++;
                             $('.count').eq(index).html(item_count);
-                            $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                            $('.commodity_price_sum').eq(index).html((item_count*val.productPrice).toFixed(2));
+
                             act_rmb+=val.productPrice;
                             act_count++;
                             //因为更改了数据 所以重新绑定选中函数
@@ -340,7 +342,7 @@
                             //已选商品 的个数
                             $('.selected_amount').html(act_count);
                             //已选商品的总价
-                            $('.total_prices_count').html(act_rmb);
+                            $('.total_prices_count').html(act_rmb.toFixed(2));
                             //调用修改数量接口
                             $.ajax({
                                 url:'/cart/update.do',
@@ -373,7 +375,7 @@
                                     return ;
                                 }
                                 $('.count').eq(index).html(item_count);
-                                $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                                $('.commodity_price_sum').eq(index).html((item_count*val.productPrice).toFixed(2));
                                 act_rmb-=val.productPrice;
                                 act_count--;
                                 show_hiden();
@@ -381,7 +383,7 @@
                                 //已选商品 的个数
                                 $('.selected_amount').html(act_count);
                                 //已选商品的总价
-                                $('.total_prices_count').html(act_rmb);
+                                $('.total_prices_count').html(act_rmb.toFixed(2));
                                 //调用修改数量接口
                                 $.ajax({
                                     url:'/cart/update.do',
@@ -404,14 +406,14 @@
                                 item_count=$('.count').eq(index).html();
                                 item_count++;
                                 $('.count').eq(index).html(item_count);
-                                $('.commodity_price_sum').eq(index).html(item_count*val.productPrice);
+                                $('.commodity_price_sum').eq(index).html((item_count*val.productPrice).toFixed(2));
                                 act_rmb+=val.productPrice;
                                 act_count++;
                                 $('input:checkbox[name="check_commodity"]').eq(index).off("click").on("click",check_un);
                                 //已选商品 的个数
                                 $('.selected_amount').html(act_count);
                                 //已选商品的总价
-                                $('.total_prices_count').html(act_rmb);
+                                $('.total_prices_count').html(act_rmb.toFixed(2));
                                 //调用修改数量接口
                                 $.ajax({
                                     url:'/cart/update.do',
@@ -436,7 +438,7 @@
                             //设置总数  选中个数  总价
 
                             $('.selected_amount').html(act_count);
-                            $('.total_prices_count').html(act_rmb);
+                            $('.total_prices_count').html(act_rmb.toFixed(2));
 
                             //调选中接口
                             $.ajax({
@@ -462,7 +464,7 @@
                             act_rmb-=Number($('.count').eq(index).html())*val.productPrice;
                             //设置选中个数与总价
                             $('.selected_amount').html(act_count);
-                            $('.total_prices_count').html(act_rmb);
+                            $('.total_prices_count').html(act_rmb.toFixed(2));
                             //调反选接口
                             $.ajax({
                                 url:'/cart/un_select.do',
@@ -508,7 +510,7 @@
 
                             //设置选中个数与总价
                             $('.selected_amount').html(act_count);
-                            $('.total_prices_count').html(act_rmb);
+                            $('.total_prices_count').html(act_rmb.toFixed(2));
                             $('#'+val.productId).remove();
 
                             //调用删除接口
@@ -526,8 +528,7 @@
                                     var Count=$('.details').children().length;
 
                                     for(var i=0;i<Count;i++){
-                                        //选中与取消选中重新绑定
-//                                        $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",check_un);
+
                                         //绑定改变数量函数
 										(function(i){
                                             $('.count_j').eq(i).off("click").on("click",function(){
@@ -539,260 +540,15 @@
                                                     return ;
                                                 }
                                                 $('.count').eq(i).html(item_count);
-                                                $('.commodity_price_sum').eq(i).html(item_count*danjia);
+                                                $('.commodity_price_sum').eq(i).html((item_count*danjia).toFixed(2));
                                                 act_rmb-=danjia;
                                                 act_count--;
                                                 show_hiden();
-                                                $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
-                                                    if($(this).attr("checked")){
-                                                        //绑定改变数量函数
-                                                        $('.count_j').eq(i).off("click").on("click",function(){
-                                                            var danjia=Number($('.commodity_price').eq(i).html());
-                                                            item_count=Number($('.count').eq(i).html());
-                                                            item_count--;
-                                                            if(item_count<1){
-                                                                item_count=1;
-                                                                return ;
-                                                            }
-                                                            $('.count').eq(i).html(item_count);
-                                                            $('.commodity_price_sum').eq(i).html(item_count*danjia);
-                                                            act_rmb-=danjia;
-                                                            act_count--;
-                                                            show_hiden();
-                                                            $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
-                                                                if($(this).attr("checked")){
-                                                                    //绑定改变数量函数
 
-                                                                    act_count+=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb+=Number($('.count').eq(index).html())*$('.commodity_price').eq(i).html();
-                                                                    //设置总数  选中个数  总价
-
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-
-                                                                    //调选中接口
-                                                                    $.ajax({
-                                                                        url:'/cart/select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-
-                                                                        },
-                                                                        error:function(){
-                                                                            alert('添加失败，请重新添加');
-                                                                        }
-                                                                    });
-                                                                }else{
-                                                                    //解除改变数量函数
-                                                                    $('.count_j').eq(index).off("click");
-                                                                    $('.count_z').eq(index).off("click");
-                                                                    act_count-=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb-=Number($('.count').eq(i).html())*Number($('.commodity_price').eq(i).html());
-                                                                    //设置选中个数与总价
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-                                                                    //调反选接口
-                                                                    $.ajax({
-                                                                        url:'/cart/un_select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                        },
-                                                                        error:function(){
-
-                                                                        }
-                                                                    });
-                                                                }
-
-                                                                //点击选中时看看 是不是全选了
-                                                                if(act_count==$('.commodity_amount').html()){
-                                                                    $('#quanxuan').attr("checked",true);
-                                                                }else{
-                                                                    $('#quanxuan').attr("checked",false);
-                                                                }
-                                                            });
-                                                            //已选商品 的个数
-                                                            $('.selected_amount').html(act_count);
-                                                            //已选商品的总价
-                                                            $('.total_prices_count').html(act_rmb);
-                                                            //调用修改数量接口
-                                                            $.ajax({
-                                                                url:'/cart/update.do',
-                                                                data:{
-                                                                    'count':item_count,
-                                                                    'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                },
-                                                                type:'post',
-                                                                success:function(res){
-                                                                    $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                    //调获取购物车商品个数接口
-                                                                    hq_sp_count();
-                                                                },
-                                                                error:function(){
-
-                                                                }
-                                                            });
-                                                        });
-                                                        $('.count_z').eq(i).off("click").on("click",function(){
-                                                            var danjia=Number($('.commodity_price').eq(i).html());
-                                                            item_count=Number($('.count').eq(i).html());
-                                                            item_count++;
-
-                                                            $('.count').eq(i).html(item_count);
-                                                            $('.commodity_price_sum').eq(i).html(item_count*danjia);
-                                                            act_rmb+=danjia;
-                                                            act_count++;
-                                                            show_hiden();
-                                                            $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
-                                                                if($(this).attr("checked")){
-                                                                    //绑定改变数量函数
-
-                                                                    act_count+=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb+=Number($('.count').eq(index).html())*Number($('.commodity_price').eq(i).html());
-                                                                    //设置总数  选中个数  总价
-
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-
-                                                                    //调选中接口
-                                                                    $.ajax({
-                                                                        url:'/cart/select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-
-                                                                        },
-                                                                        error:function(){
-                                                                            alert('添加失败，请重新添加');
-                                                                        }
-                                                                    });
-                                                                }else{
-                                                                    //解除改变数量函数
-                                                                    $('.count_j').eq(index).off("click");
-                                                                    $('.count_z').eq(index).off("click");
-                                                                    act_count-=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb-=Number($('.count').eq(i).html())*$('.commodity_price').eq(i).html();
-                                                                    //设置选中个数与总价
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-                                                                    //调反选接口
-                                                                    $.ajax({
-                                                                        url:'/cart/un_select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                        },
-                                                                        error:function(){
-
-                                                                        }
-                                                                    });
-                                                                }
-
-                                                                //点击选中时看看 是不是全选了
-                                                                if(act_count==$('.commodity_amount').html()){
-                                                                    $('#quanxuan').attr("checked",true);
-                                                                }else{
-                                                                    $('#quanxuan').attr("checked",false);
-                                                                }
-                                                            });
-                                                            //已选商品 的个数
-                                                            $('.selected_amount').html(act_count);
-                                                            //已选商品的总价
-                                                            $('.total_prices_count').html(act_rmb);
-                                                            //调用修改数量接口
-                                                            $.ajax({
-                                                                url:'/cart/update.do',
-                                                                data:{
-                                                                    'count':item_count,
-                                                                    'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                },
-                                                                type:'post',
-                                                                success:function(res){
-                                                                    $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                    //调获取购物车商品个数接口
-                                                                    hq_sp_count();
-                                                                },
-                                                                error:function(){
-
-                                                                }
-                                                            });
-                                                        });
-                                                        act_count+=Number($('.count').eq(i).html());
-                                                        show_hiden();
-                                                        act_rmb+=Number($('.count').eq(index).html())*$('.commodity_price').eq(i).html();
-                                                        //设置总数  选中个数  总价
-
-                                                        $('.selected_amount').html(act_count);
-                                                        $('.total_prices_count').html(act_rmb);
-
-                                                        //调选中接口
-                                                        $.ajax({
-                                                            url:'/cart/select.do',
-                                                            data:{
-                                                                'productId':Number($('.details_item').eq(i).attr('id'))
-                                                            },
-                                                            type:'post',
-                                                            success:function(res){
-                                                                $('.total_prices_count').html(res.data.cartTotalPrice);
-
-                                                            },
-                                                            error:function(){
-                                                                alert('添加失败，请重新添加');
-                                                            }
-                                                        });
-                                                    }else{
-                                                        //解除改变数量函数
-                                                        $('.count_j').eq(index).off("click");
-                                                        $('.count_z').eq(index).off("click");
-                                                        act_count-=Number($('.count').eq(i).html());
-                                                        show_hiden();
-                                                        act_rmb-=Number($('.count').eq(i).html())*Number($('.commodity_price').eq(i).html());
-                                                        //设置选中个数与总价
-                                                        $('.selected_amount').html(act_count);
-                                                        $('.total_prices_count').html(act_rmb);
-                                                        //调反选接口
-                                                        $.ajax({
-                                                            url:'/cart/un_select.do',
-                                                            data:{
-                                                                'productId':Number($('.details_item').eq(i).attr('id'))
-                                                            },
-                                                            type:'post',
-                                                            success:function(res){
-                                                                $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                            },
-                                                            error:function(){
-
-                                                            }
-                                                        });
-                                                    }
-
-                                                    //点击选中时看看 是不是全选了
-                                                    if(act_count==$('.commodity_amount').html()){
-                                                        $('#quanxuan').attr("checked",true);
-                                                    }else{
-                                                        $('#quanxuan').attr("checked",false);
-                                                    }
-                                                });
                                                 //已选商品 的个数
                                                 $('.selected_amount').html(act_count);
                                                 //已选商品的总价
-                                                $('.total_prices_count').html(act_rmb);
+                                                $('.total_prices_count').html(act_rmb.toFixed(2));
                                                 //调用修改数量接口
                                                 $.ajax({
                                                     url:'/cart/update.do',
@@ -817,260 +573,14 @@
                                                 item_count++;
 
                                                 $('.count').eq(i).html(item_count);
-                                                $('.commodity_price_sum').eq(i).html(item_count*danjia);
+                                                $('.commodity_price_sum').eq(i).html((item_count*danjia).toFixed(2));
                                                 act_rmb+=danjia;
                                                 act_count++;
                                                 show_hiden();
-                                                $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
-                                                    if($(this).attr("checked")){
-                                                        //绑定改变数量函数
-                                                        $('.count_j').eq(i).off("click").on("click",function(){
-                                                            var danjia=Number($('.commodity_price').eq(i).html());
-                                                            item_count=Number($('.count').eq(i).html());
-                                                            item_count--;
-                                                            if(item_count<1){
-                                                                item_count=1;
-                                                                return ;
-                                                            }
-                                                            $('.count').eq(i).html(item_count);
-                                                            $('.commodity_price_sum').eq(i).html(item_count*danjia);
-                                                            act_rmb-=danjia;
-                                                            act_count--;
-                                                            show_hiden();
-                                                            $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
-                                                                if($(this).attr("checked")){
-                                                                    //绑定改变数量函数
-
-                                                                    act_count+=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb+=Number($('.count').eq(index).html())*$('.commodity_price').eq(i).html();
-                                                                    //设置总数  选中个数  总价
-
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-
-                                                                    //调选中接口
-                                                                    $.ajax({
-                                                                        url:'/cart/select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-
-                                                                        },
-                                                                        error:function(){
-                                                                            alert('添加失败，请重新添加');
-                                                                        }
-                                                                    });
-                                                                }else{
-                                                                    //解除改变数量函数
-                                                                    $('.count_j').eq(index).off("click");
-                                                                    $('.count_z').eq(index).off("click");
-                                                                    act_count-=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb-=Number($('.count').eq(i).html())*Number($('.commodity_price').eq(i).html());
-                                                                    //设置选中个数与总价
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-                                                                    //调反选接口
-                                                                    $.ajax({
-                                                                        url:'/cart/un_select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                        },
-                                                                        error:function(){
-
-                                                                        }
-                                                                    });
-                                                                }
-
-                                                                //点击选中时看看 是不是全选了
-                                                                if(act_count==$('.commodity_amount').html()){
-                                                                    $('#quanxuan').attr("checked",true);
-                                                                }else{
-                                                                    $('#quanxuan').attr("checked",false);
-                                                                }
-                                                            });
-                                                            //已选商品 的个数
-                                                            $('.selected_amount').html(act_count);
-                                                            //已选商品的总价
-                                                            $('.total_prices_count').html(act_rmb);
-                                                            //调用修改数量接口
-                                                            $.ajax({
-                                                                url:'/cart/update.do',
-                                                                data:{
-                                                                    'count':item_count,
-                                                                    'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                },
-                                                                type:'post',
-                                                                success:function(res){
-                                                                    $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                    //调获取购物车商品个数接口
-                                                                    hq_sp_count();
-                                                                },
-                                                                error:function(){
-
-                                                                }
-                                                            });
-                                                        });
-                                                        $('.count_z').eq(i).off("click").on("click",function(){
-                                                            var danjia=Number($('.commodity_price').eq(i).html());
-                                                            item_count=Number($('.count').eq(i).html());
-                                                            item_count++;
-
-                                                            $('.count').eq(i).html(item_count);
-                                                            $('.commodity_price_sum').eq(i).html(item_count*danjia);
-                                                            act_rmb+=danjia;
-                                                            act_count++;
-                                                            show_hiden();
-                                                            $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
-                                                                if($(this).attr("checked")){
-                                                                    //绑定改变数量函数
-
-                                                                    act_count+=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb+=Number($('.count').eq(index).html())*Number($('.commodity_price').eq(i).html());
-                                                                    //设置总数  选中个数  总价
-
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-
-                                                                    //调选中接口
-                                                                    $.ajax({
-                                                                        url:'/cart/select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-
-                                                                        },
-                                                                        error:function(){
-                                                                            alert('添加失败，请重新添加');
-                                                                        }
-                                                                    });
-                                                                }else{
-                                                                    //解除改变数量函数
-                                                                    $('.count_j').eq(index).off("click");
-                                                                    $('.count_z').eq(index).off("click");
-                                                                    act_count-=Number($('.count').eq(i).html());
-                                                                    show_hiden();
-                                                                    act_rmb-=Number($('.count').eq(i).html())*$('.commodity_price').eq(i).html();
-                                                                    //设置选中个数与总价
-                                                                    $('.selected_amount').html(act_count);
-                                                                    $('.total_prices_count').html(act_rmb);
-                                                                    //调反选接口
-                                                                    $.ajax({
-                                                                        url:'/cart/un_select.do',
-                                                                        data:{
-                                                                            'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                        },
-                                                                        type:'post',
-                                                                        success:function(res){
-                                                                            $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                        },
-                                                                        error:function(){
-
-                                                                        }
-                                                                    });
-                                                                }
-
-                                                                //点击选中时看看 是不是全选了
-                                                                if(act_count==$('.commodity_amount').html()){
-                                                                    $('#quanxuan').attr("checked",true);
-                                                                }else{
-                                                                    $('#quanxuan').attr("checked",false);
-                                                                }
-                                                            });
-                                                            //已选商品 的个数
-                                                            $('.selected_amount').html(act_count);
-                                                            //已选商品的总价
-                                                            $('.total_prices_count').html(act_rmb);
-                                                            //调用修改数量接口
-                                                            $.ajax({
-                                                                url:'/cart/update.do',
-                                                                data:{
-                                                                    'count':item_count,
-                                                                    'productId':Number($('.details_item').eq(i).attr('id'))
-                                                                },
-                                                                type:'post',
-                                                                success:function(res){
-                                                                    $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                                    //调获取购物车商品个数接口
-                                                                    hq_sp_count();
-                                                                },
-                                                                error:function(){
-
-                                                                }
-                                                            });
-                                                        });
-                                                        act_count+=Number($('.count').eq(i).html());
-                                                        show_hiden();
-                                                        act_rmb+=Number($('.count').eq(index).html())*Number($('.commodity_price').eq(i).html());
-                                                        //设置总数  选中个数  总价
-
-                                                        $('.selected_amount').html(act_count);
-                                                        $('.total_prices_count').html(act_rmb);
-
-                                                        //调选中接口
-                                                        $.ajax({
-                                                            url:'/cart/select.do',
-                                                            data:{
-                                                                'productId':Number($('.details_item').eq(i).attr('id'))
-                                                            },
-                                                            type:'post',
-                                                            success:function(res){
-                                                                $('.total_prices_count').html(res.data.cartTotalPrice);
-
-                                                            },
-                                                            error:function(){
-                                                                alert('添加失败，请重新添加');
-                                                            }
-                                                        });
-                                                    }else{
-                                                        //解除改变数量函数
-                                                        $('.count_j').eq(index).off("click");
-                                                        $('.count_z').eq(index).off("click");
-                                                        act_count-=Number($('.count').eq(i).html());
-                                                        show_hiden();
-                                                        act_rmb-=Number($('.count').eq(i).html())*$('.commodity_price').eq(i).html();
-                                                        //设置选中个数与总价
-                                                        $('.selected_amount').html(act_count);
-                                                        $('.total_prices_count').html(act_rmb);
-                                                        //调反选接口
-                                                        $.ajax({
-                                                            url:'/cart/un_select.do',
-                                                            data:{
-                                                                'productId':Number($('.details_item').eq(i).attr('id'))
-                                                            },
-                                                            type:'post',
-                                                            success:function(res){
-                                                                $('.total_prices_count').html(res.data.cartTotalPrice);
-                                                            },
-                                                            error:function(){
-
-                                                            }
-                                                        });
-                                                    }
-
-                                                    //点击选中时看看 是不是全选了
-                                                    if(act_count==$('.commodity_amount').html()){
-                                                        $('#quanxuan').attr("checked",true);
-                                                    }else{
-                                                        $('#quanxuan').attr("checked",false);
-                                                    }
-                                                });
                                                 //已选商品 的个数
                                                 $('.selected_amount').html(act_count);
                                                 //已选商品的总价
-                                                $('.total_prices_count').html(act_rmb);
+                                                $('.total_prices_count').html(act_rmb.toFixed(2));
                                                 //调用修改数量接口
                                                 $.ajax({
                                                     url:'/cart/update.do',
@@ -1089,6 +599,134 @@
                                                     }
                                                 });
                                             });
+                                            //选中与不选中
+											  $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
+											 if($(this).attr("checked")){
+											 //绑定改变数量函数
+                                                 $('.count_j').eq(i).off("click").on("click",function(){
+                                                     var danjia=Number($('.commodity_price').eq(i).html());
+                                                     item_count=Number($('.count').eq(i).html());
+                                                     item_count--;
+                                                     if(item_count<1){
+                                                         item_count=1;
+                                                         return ;
+                                                     }
+                                                     $('.count').eq(i).html(item_count);
+                                                     $('.commodity_price_sum').eq(i).html((item_count*danjia).toFixed(2));
+                                                     act_rmb-=danjia;
+                                                     act_count--;
+                                                     show_hiden();
+
+                                                     //已选商品 的个数
+                                                     $('.selected_amount').html(act_count);
+                                                     //已选商品的总价
+                                                     $('.total_prices_count').html(act_rmb.toFixed(2));
+                                                     //调用修改数量接口
+                                                     $.ajax({
+                                                         url:'/cart/update.do',
+                                                         data:{
+                                                             'count':item_count,
+                                                             'productId':Number($('.details_item').eq(i).attr('id'))
+                                                         },
+                                                         type:'post',
+                                                         success:function(res){
+                                                             $('.total_prices_count').html(res.data.cartTotalPrice);
+                                                             //调获取购物车商品个数接口
+                                                             hq_sp_count();
+                                                         },
+                                                         error:function(){
+
+                                                         }
+                                                     });
+                                                 });
+                                                 $('.count_z').eq(i).off("click").on("click",function(){
+                                                     var danjia=Number($('.commodity_price').eq(i).html());
+                                                     item_count=Number($('.count').eq(i).html());
+                                                     item_count++;
+
+                                                     $('.count').eq(i).html(item_count);
+                                                     $('.commodity_price_sum').eq(i).html((item_count*danjia).toFixed(2));
+                                                     act_rmb+=danjia;
+                                                     act_count++;
+                                                     show_hiden();
+                                                     //已选商品 的个数
+                                                     $('.selected_amount').html(act_count);
+                                                     //已选商品的总价
+                                                     $('.total_prices_count').html(act_rmb.toFixed(2));
+                                                     //调用修改数量接口
+                                                     $.ajax({
+                                                         url:'/cart/update.do',
+                                                         data:{
+                                                             'count':item_count,
+                                                             'productId':Number($('.details_item').eq(i).attr('id'))
+                                                         },
+                                                         type:'post',
+                                                         success:function(res){
+                                                             $('.total_prices_count').html(res.data.cartTotalPrice);
+                                                             //调获取购物车商品个数接口
+                                                             hq_sp_count();
+                                                         },
+                                                         error:function(){
+
+                                                         }
+                                                     });
+                                                 });
+											 act_count+=Number($('.count').eq(i).html());
+											 show_hiden();
+											 act_rmb+=Number($('.count').eq(index).html())*$('.commodity_price').eq(i).html();
+											 //设置总数  选中个数  总价
+
+											 $('.selected_amount').html(act_count);
+											 $('.total_prices_count').html(act_rmb.toFixed(2));
+
+											 //调选中接口
+											 $.ajax({
+											 url:'/cart/select.do',
+											 data:{
+											 'productId':Number($('.details_item').eq(i).attr('id'))
+											 },
+											 type:'post',
+											 success:function(res){
+											 $('.total_prices_count').html(res.data.cartTotalPrice);
+
+											 },
+											 error:function(){
+											 alert('添加失败，请重新添加');
+											 }
+											 });
+											 }else{
+											 //解除改变数量函数
+											 $('.count_j').eq(index).off("click");
+											 $('.count_z').eq(index).off("click");
+											 act_count-=Number($('.count').eq(i).html());
+											 show_hiden();
+											 act_rmb-=Number($('.count').eq(i).html())*Number($('.commodity_price').eq(i).html());
+											 //设置选中个数与总价
+											 $('.selected_amount').html(act_count);
+											 $('.total_prices_count').html(act_rmb.toFixed(2));
+											 //调反选接口
+											 $.ajax({
+											 url:'/cart/un_select.do',
+											 data:{
+											 'productId':Number($('.details_item').eq(i).attr('id'))
+											 },
+											 type:'post',
+											 success:function(res){
+											 $('.total_prices_count').html(res.data.cartTotalPrice);
+											 },
+											 error:function(){
+
+											 }
+											 });
+											 }
+
+											 //点击选中时看看 是不是全选了
+											 if(act_count==$('.commodity_amount').html()){
+											 $('#quanxuan').attr("checked",true);
+											 }else{
+											 $('#quanxuan').attr("checked",false);
+											 }
+											 });
 										})(i);
 
                                     }
@@ -1126,7 +764,7 @@
                             act_rmb+=Number($('.count').eq(index).html())*Number($('.commodity_price').eq(index).html());
                         });
                         $('.selected_amount').html(act_count);
-                        $('.total_prices_count').html(act_rmb);
+                        $('.total_prices_count').html(act_rmb.toFixed(2));
                         //调全部选中接口
                         $.ajax({
                             url:'/cart/select_all.do',
