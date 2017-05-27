@@ -243,20 +243,20 @@
 	                </li>
 	            </ul>
 	        </div>
-	        <div class="header-search">
-	            <form class="search-form clearfix" method="get">
-	                <input class="search-text" type="search" name="keyword" autocomplete="off">
-	                <input type="submit" class="search-btn" value=" ">
+			<div class="header-search">
+				<div class="search-form clearfix">
+					<input class="search-text" type="text">
+					<input type="submit" class="search-btn" value=" ">
 
-	                <div class="search-hot-words">
-	                    <a href="javasctipy:;">红米Note4X</a>
-	                    <a href="javascript:;">红米4X</a>
-	                </div>
-	                <div class="keyword-list hide">
-	                    <ul class="result-list"></ul>
-	                </div>
-	            </form>
-	        </div>
+					<div class="search-hot-words">
+						<a href="javasctipy:;">艾灸</a>
+						<a href="javascript:;">艾棒</a>
+					</div>
+					<div class="keyword-list hide">
+						<ul class="result-list"></ul>
+					</div>
+				</div>
+			</div>
 	    </div>
 	</div>
 	<div id="conetent_wrapper">
@@ -438,6 +438,18 @@
 	</div>
 		
 	<script>
+		/*存搜索字段*/
+        $('.search-btn').click(function(){
+            var html=$('.search-text').val();
+            if(html.length==0){
+                return;
+            }
+            var cookietime = new Date();
+            var date = new Date();
+            cookietime.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+            $.cookie("search", html,{expires:cookietime});
+            window.location.href = "search.html";
+        });
         $.ajax({
             url: '/cart/get_cart_product_count.do',
             type: 'post',
