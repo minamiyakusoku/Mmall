@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * Created by akku on 2017/5/18.
@@ -39,6 +40,9 @@ public class WebClientPageController {
             case"reset-password":
             case"reset-verify":
             case"service":
+            case"register-verify":
+            case"register-password":
+            case"register-ok":
                 flag = true;
                 break;
             default:
@@ -48,9 +52,9 @@ public class WebClientPageController {
                 break;
         }
 
-        System.out.println(">>>>【page:"+page+"】【user:"+user+"】"+"【flag:"+flag+"】  <<<<");
+        System.out.println("["+new Date()+"]【page:"+page+"】【user:"+user+"】"+"【flag:"+flag+"】 ");
         if(user!=null)
-            System.out.println("【username:"+user.getUsername() +"】");
+            System.out.println("["+new Date()+"]【username:"+user.getUsername() +"】");
 
         if(flag){return new ModelAndView("web_client/" + page + ".html");}
         else{return new ModelAndView("web_client/login.html");}

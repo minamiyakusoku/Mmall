@@ -131,25 +131,30 @@ public class AdvServiceImpl implements IAdvService {
         /**
          * 填充广告链接的内容类型及备注
          */
+        Integer adyType = Const.AdvTypeEnum.NONE.getCode();
+        String adyTypeMsg = Const.AdvTypeEnum.NONE.getValue();
+
+        if(adv.getPageUrl()!=null) {
+            if (!StringUtils.isBlank(adv.getPageUrl())) {
+                adyType = Const.AdvTypeEnum.URL.getCode();
+                adyTypeMsg = Const.AdvTypeEnum.URL.getValue();
+            }
+        }
+        if(adv.getProductId()!=null){
+            if(adv.getProductId()!=0){
+                adyType = Const.AdvTypeEnum.PRODUCT.getCode();
+                adyTypeMsg = Const.AdvTypeEnum.PRODUCT.getValue();
+            }
+        }
         if(adv.getCategoryId()!=null){
             if(adv.getCategoryId()!=0){
-                advDetailVo.setAdvType(Const.AdvTypeEnum.CATEGORY.getCode());
-                advDetailVo.setAdvTypeMsg(Const.AdvTypeEnum.CATEGORY.getValue());
+                adyType = Const.AdvTypeEnum.CATEGORY.getCode();
+                adyTypeMsg = Const.AdvTypeEnum.CATEGORY.getValue();
             }
-        }else if(adv.getProductId()!=null){
-            if(adv.getProductId()!=0){
-                advDetailVo.setAdvType(Const.AdvTypeEnum.PRODUCT.getCode());
-                advDetailVo.setAdvTypeMsg(Const.AdvTypeEnum.PRODUCT.getValue());
-            }
-        }else if(adv.getPageUrl()!=null){
-            if(!StringUtils.isBlank(adv.getPageUrl())){
-                advDetailVo.setAdvType(Const.AdvTypeEnum.URL.getCode());
-                advDetailVo.setAdvTypeMsg(Const.AdvTypeEnum.URL.getValue());
-            }
-        }else{
-            advDetailVo.setAdvType(Const.AdvTypeEnum.NONE.getCode());
-            advDetailVo.setAdvTypeMsg(Const.AdvTypeEnum.NONE.getValue());
+
         }
+        advDetailVo.setAdvType(adyType);
+        advDetailVo.setAdvTypeMsg(adyTypeMsg);
 
         advDetailVo.setSubtitle(adv.getSubtitle());
         advDetailVo.setCategoryId(adv.getCategoryId());
@@ -182,29 +187,30 @@ public class AdvServiceImpl implements IAdvService {
         /**
          * 填充广告链接的内容类型及备注
          */
-
-
-        advListVo.setAdvType(Const.AdvTypeEnum.NONE.getCode());
-        advListVo.setAdvTypeMsg(Const.AdvTypeEnum.NONE.getValue());
+        Integer adyType = Const.AdvTypeEnum.NONE.getCode();
+        String adyTypeMsg = Const.AdvTypeEnum.NONE.getValue();
 
         if(adv.getPageUrl()!=null) {
             if (!StringUtils.isBlank(adv.getPageUrl())) {
-                advListVo.setAdvType(Const.AdvTypeEnum.URL.getCode());
-                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.URL.getValue());
+                adyType = Const.AdvTypeEnum.URL.getCode();
+                adyTypeMsg = Const.AdvTypeEnum.URL.getValue();
             }
         }
         if(adv.getProductId()!=null){
             if(adv.getProductId()!=0){
-                advListVo.setAdvType(Const.AdvTypeEnum.PRODUCT.getCode());
-                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.PRODUCT.getValue());
+                adyType = Const.AdvTypeEnum.PRODUCT.getCode();
+                adyTypeMsg = Const.AdvTypeEnum.PRODUCT.getValue();
             }
         }
         if(adv.getCategoryId()!=null){
             if(adv.getCategoryId()!=0){
-                advListVo.setAdvType(Const.AdvTypeEnum.CATEGORY.getCode());
-                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.CATEGORY.getValue());
+                adyType = Const.AdvTypeEnum.CATEGORY.getCode();
+                adyTypeMsg = Const.AdvTypeEnum.CATEGORY.getValue();
             }
+
         }
+        advListVo.setAdvType(adyType);
+        advListVo.setAdvTypeMsg(adyTypeMsg);
 
         advListVo.setSubtitle(adv.getSubtitle());
         advListVo.setCategoryId(adv.getCategoryId());
