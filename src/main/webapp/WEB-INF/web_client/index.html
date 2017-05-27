@@ -1698,6 +1698,7 @@
             var img_arr=res.data.list;
             $.each(img_arr,function(index,val){
                 $('.swiper-wrapper').append('<div class="swiper-slide"><img src="'+val.imageHost+val.mainImage+'"></div>');
+
             });
             var swiper2 = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
