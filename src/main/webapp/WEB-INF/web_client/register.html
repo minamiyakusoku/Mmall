@@ -90,7 +90,7 @@
             var date = new Date();
             cookietime.setTime(date.getTime() + (5 * 60 * 1000));//coockie保存5分钟
             $.cookie("user_phone", user_phone,{expires:cookietime});
-            $('.btn').attr('href','register-verify.html');
+            $('.btn').attr('href','register-password.html');
         }else{
             return false;
         }
