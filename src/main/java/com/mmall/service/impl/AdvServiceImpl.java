@@ -178,28 +178,34 @@ public class AdvServiceImpl implements IAdvService {
         AdvListVo advListVo = new AdvListVo();
         advListVo.setId(adv.getId());
         advListVo.setTitle(adv.getTitle());
+
         /**
          * 填充广告链接的内容类型及备注
          */
+
+
+        advListVo.setAdvType(Const.AdvTypeEnum.NONE.getCode());
+        advListVo.setAdvTypeMsg(Const.AdvTypeEnum.NONE.getValue());
+
+        if(adv.getPageUrl()!=null) {
+            if (!StringUtils.isBlank(adv.getPageUrl())) {
+                advListVo.setAdvType(Const.AdvTypeEnum.URL.getCode());
+                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.URL.getValue());
+            }
+        }
+        if(adv.getProductId()!=null){
+            if(adv.getProductId()!=0){
+                advListVo.setAdvType(Const.AdvTypeEnum.PRODUCT.getCode());
+                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.PRODUCT.getValue());
+            }
+        }
         if(adv.getCategoryId()!=null){
             if(adv.getCategoryId()!=0){
                 advListVo.setAdvType(Const.AdvTypeEnum.CATEGORY.getCode());
                 advListVo.setAdvTypeMsg(Const.AdvTypeEnum.CATEGORY.getValue());
             }
-        }else if(adv.getProductId()!=null){
-            if(adv.getProductId()!=0){
-                advListVo.setAdvType(Const.AdvTypeEnum.PRODUCT.getCode());
-                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.PRODUCT.getValue());
-            }
-        }else if(adv.getPageUrl()!=null){
-            if(!StringUtils.isBlank(adv.getPageUrl())){
-                advListVo.setAdvType(Const.AdvTypeEnum.URL.getCode());
-                advListVo.setAdvTypeMsg(Const.AdvTypeEnum.URL.getValue());
-            }
-        }else{
-            advListVo.setAdvType(Const.AdvTypeEnum.NONE.getCode());
-            advListVo.setAdvTypeMsg(Const.AdvTypeEnum.NONE.getValue());
         }
+
         advListVo.setSubtitle(adv.getSubtitle());
         advListVo.setCategoryId(adv.getCategoryId());
         advListVo.setProductId(adv.getProductId());
