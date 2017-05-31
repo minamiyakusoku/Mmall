@@ -529,8 +529,9 @@
 
                                     for(var i=0;i<Count;i++){
 
-                                        //绑定改变数量函数
+
 										(function(i){
+                                            //绑定改变数量函数
                                             $('.count_j').eq(i).off("click").on("click",function(){
                                                 var danjia=Number($('.commodity_price').eq(i).html());
                                                 item_count=Number($('.count').eq(i).html());
@@ -601,18 +602,20 @@
                                             });
                                             //选中与不选中
 											  $('input:checkbox[name="check_commodity"]').eq(i).off("click").on("click",function(){
+											      var n=$(this).index();
 											 if($(this).attr("checked")){
 											 //绑定改变数量函数
-                                                 $('.count_j').eq(i).off("click").on("click",function(){
-                                                     var danjia=Number($('.commodity_price').eq(i).html());
-                                                     item_count=Number($('.count').eq(i).html());
+
+                                                 $('.count_j').eq(n).off("click").on("click",function(){
+                                                     var danjia=Number($('.commodity_price').eq(n).html());
+                                                     item_count=Number($('.count').eq(n).html());
                                                      item_count--;
                                                      if(item_count<1){
                                                          item_count=1;
                                                          return ;
                                                      }
-                                                     $('.count').eq(i).html(item_count);
-                                                     $('.commodity_price_sum').eq(i).html((item_count*danjia).toFixed(2));
+                                                     $('.count').eq(n).html(item_count);
+                                                     $('.commodity_price_sum').eq(n).html((item_count*danjia).toFixed(2));
                                                      act_rmb-=danjia;
                                                      act_count--;
                                                      show_hiden();
@@ -626,7 +629,7 @@
                                                          url:'/cart/update.do',
                                                          data:{
                                                              'count':item_count,
-                                                             'productId':Number($('.details_item').eq(i).attr('id'))
+                                                             'productId':Number($('.details_item').eq(n).attr('id'))
                                                          },
                                                          type:'post',
                                                          success:function(res){
@@ -639,13 +642,13 @@
                                                          }
                                                      });
                                                  });
-                                                 $('.count_z').eq(i).off("click").on("click",function(){
-                                                     var danjia=Number($('.commodity_price').eq(i).html());
-                                                     item_count=Number($('.count').eq(i).html());
+                                                 $('.count_z').eq(n).off("click").on("click",function(){
+                                                     var danjia=Number($('.commodity_price').eq(n).html());
+                                                     item_count=Number($('.count').eq(n).html());
                                                      item_count++;
 
-                                                     $('.count').eq(i).html(item_count);
-                                                     $('.commodity_price_sum').eq(i).html((item_count*danjia).toFixed(2));
+                                                     $('.count').eq(n).html(item_count);
+                                                     $('.commodity_price_sum').eq(n).html((item_count*danjia).toFixed(2));
                                                      act_rmb+=danjia;
                                                      act_count++;
                                                      show_hiden();
@@ -658,7 +661,7 @@
                                                          url:'/cart/update.do',
                                                          data:{
                                                              'count':item_count,
-                                                             'productId':Number($('.details_item').eq(i).attr('id'))
+                                                             'productId':Number($('.details_item').eq(n).attr('id'))
                                                          },
                                                          type:'post',
                                                          success:function(res){
@@ -671,9 +674,9 @@
                                                          }
                                                      });
                                                  });
-											 act_count+=Number($('.count').eq(i).html());
+											 act_count+=Number($('.count').eq(n).html());
 											 show_hiden();
-											 act_rmb+=Number($('.count').eq(index).html())*$('.commodity_price').eq(i).html();
+											 act_rmb+=Number($('.count').eq(n).html())*$('.commodity_price').eq(n).html();
 											 //设置总数  选中个数  总价
 
 											 $('.selected_amount').html(act_count);
@@ -683,7 +686,7 @@
 											 $.ajax({
 											 url:'/cart/select.do',
 											 data:{
-											 'productId':Number($('.details_item').eq(i).attr('id'))
+											 'productId':Number($('.details_item').eq(n).attr('id'))
 											 },
 											 type:'post',
 											 success:function(res){
@@ -696,11 +699,11 @@
 											 });
 											 }else{
 											 //解除改变数量函数
-											 $('.count_j').eq(index).off("click");
-											 $('.count_z').eq(index).off("click");
-											 act_count-=Number($('.count').eq(i).html());
+											 $('.count_j').eq(n).off("click");
+											 $('.count_z').eq(n).off("click");
+											 act_count-=Number($('.count').eq(n).html());
 											 show_hiden();
-											 act_rmb-=Number($('.count').eq(i).html())*Number($('.commodity_price').eq(i).html());
+											 act_rmb-=Number($('.count').eq(n).html())*Number($('.commodity_price').eq(n).html());
 											 //设置选中个数与总价
 											 $('.selected_amount').html(act_count);
 											 $('.total_prices_count').html(act_rmb.toFixed(2));
@@ -708,7 +711,7 @@
 											 $.ajax({
 											 url:'/cart/un_select.do',
 											 data:{
-											 'productId':Number($('.details_item').eq(i).attr('id'))
+											 'productId':Number($('.details_item').eq(n).attr('id'))
 											 },
 											 type:'post',
 											 success:function(res){
@@ -765,6 +768,7 @@
                         });
                         $('.selected_amount').html(act_count);
                         $('.total_prices_count').html(act_rmb.toFixed(2));
+                        show_hiden();
                         //调全部选中接口
                         $.ajax({
                             url:'/cart/select_all.do',
@@ -802,19 +806,13 @@
 					}
 
 				});
+
+
             },
             error:function(){
 
             }
         });
-
-
-
-
-
-
-
-
 	</script>
 	
 </body>
