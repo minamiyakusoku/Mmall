@@ -431,7 +431,7 @@
                     //index 索引
                     //val每一项的值
 					//console.log(val.quantity*val.productPrice);
-                    $('.details').append('<ul id="'+val.productId+'" class="details_item clearfix"><li class="check_sp fl"><input class="checkbox" type="checkbox" name="check_commodity" value=""><div class="img_box"><img src="'+(imageHost+val.productMainImage)+'" height="60" width="60" alt=""></div></li><li class="name_sp fl">'+val.productName+'</li><li class="price_sp fl"><span class="commodity_price">'+val.productPrice+'</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">'+val.quantity+'</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> '+(val.productTotalPrice)+'</span>元</li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
+                    $('.details').append('<ul id="'+val.productId+'" class="details_item clearfix"><li class="check_sp fl"><input class="checkbox" type="checkbox" name="check_commodity" value=""><div class="img_box"><img src="'+(imageHost+val.productMainImage)+'" height="60" width="60" alt=""></div></li><li class="name_sp fl">'+val.productName+'</li><li class="price_sp fl"><span class="commodity_price">'+val.productPrice+'</span>元</li><li class="det_sp fl"><ul><li class="det_sp_item fl"><div class="count_box clearfix"><span class="count_box_item fl count_j">-</span><span class="count_box_item fl count">'+val.quantity+'</span><span class="count_box_item fl count_z">+</span></div></li><li class="det_sp_item fl"><span class="commodity_price_sum"> '+(val.productTotalPrice.toFixed(2))+'</span>元</li><li class="det_sp_item fl"><span class="delete_sp"></span></li></ul></li></ul>');
                     //根据是否选中添加状态和绑定改变数量的函数
                     if(val.productChecked){
 						$('input:checkbox[name="check_commodity"]').eq(index).attr("checked",true);
@@ -983,7 +983,21 @@
                             act_count+=Number($('.count').eq(index).html());
                             act_rmb+=Number($('.count').eq(index).html())*Number($('.commodity_price').eq(index).html());
                         });
-
+                        //根据选中情况 绑定 更改数量的函数
+                        $('input:checkbox[name="check_commodity"]').each(function(i,el){
+                            if($(this).attr("checked")){
+                                //绑定改变数量函数
+                                $('.count_j').eq(i).off("click").on("click",function () {
+                                    count_reduce(i);
+                                });
+                                $('.count_z').eq(i).off("click").on("click",function(){
+                                    count_add(i);
+                                });
+                            }else{
+                                $('.count_j').eq(i).off("click");
+                                $('.count_z').eq(i).off("click");
+                            }
+                        });
                         sj_taggo();
                         show_hiden();
                         //调全部选中接口
@@ -1007,7 +1021,21 @@
                             //element每一个元素
                             $(this).attr("checked",false);
                         });
-
+                        //根据选中情况 绑定 更改数量的函数
+                        $('input:checkbox[name="check_commodity"]').each(function(i,el){
+                            if($(this).attr("checked")){
+                                //绑定改变数量函数
+                                $('.count_j').eq(i).off("click").on("click",function () {
+                                    count_reduce(i);
+                                });
+                                $('.count_z').eq(i).off("click").on("click",function(){
+                                    count_add(i);
+                                });
+                            }else{
+                                $('.count_j').eq(i).off("click");
+                                $('.count_z').eq(i).off("click");
+                            }
+                        });
                         sj_taggo();
                         //调全部反选接口
                         $.ajax({
