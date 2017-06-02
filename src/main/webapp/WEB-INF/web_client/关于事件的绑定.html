@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>艾家艾产品线上销售平台</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <script src="../them/jquery/jquery-1.7.2.js"></script>
+
+    <style>
+        ul{
+            width:100%;
+
+        }
+        li{
+            height:30px;
+            margin-bottom:20px;
+            background: red;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <input class="btn" type="button" value="添加一个li">
+    <ul class="box">
+        <li class="act"></li>
+    </ul>
+<script>
+    //第一步
+   /* $('.btn').click(function(){
+        $('.box').append('<li></li>');
+    });
+
+    $('.act').click(function(){
+        alert(1);
+    });*/
+    //第二步
+//    $('.btn').click(function(){
+//        $('.box').append('<li class="act"></li>');
+//        $('.act').click(function(){
+//            alert(1);
+//        });
+//    });
+//
+//    $('.act').click(function(){
+//        alert(1);
+//    });
+
+    //第三步
+    $('.btn').click(function(){
+        $('.box').append('<li class="act"></li>');
+        $('.act').off("click").on("click",function(){
+            alert(1);
+        });
+    });
+
+    $('.act').off("click").on("click",function(){
+        alert(1);
+    });
+</script>
+
+</body>
+</html>

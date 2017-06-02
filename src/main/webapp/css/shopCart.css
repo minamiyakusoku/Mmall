@@ -378,7 +378,7 @@
 			background: url(../img/xj.png) no-repeat;
 		}
 		.delete_box{
-			position: absolute;
+			position: fixed;
 			left: 0;
 			top: 0;
 			width: 100%;
