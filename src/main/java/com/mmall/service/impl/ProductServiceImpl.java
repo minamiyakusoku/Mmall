@@ -18,6 +18,7 @@ import com.mmall.vo.ProductDetailVo;
 import com.mmall.vo.ProductListVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -122,7 +123,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
 
-
+    @Cacheable("getProductList")
     public ServerResponse<PageInfo> getProductList(int pageNum,int pageSize){
 
         //startPage--start
@@ -156,6 +157,7 @@ public class ProductServiceImpl implements IProductService {
 
 
 
+    @Cacheable("searchProduct")
     public ServerResponse<PageInfo> searchProduct(String productName,Integer productId,int pageNum,int pageSize){
         PageHelper.startPage(pageNum,pageSize);
         if(StringUtils.isNotBlank(productName)){

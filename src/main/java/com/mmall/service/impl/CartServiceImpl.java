@@ -149,6 +149,7 @@ public class CartServiceImpl implements ICartService {
                         cartForQuantity.setQuantity(buyLimitCount);
                         cartMapper.updateByPrimaryKeySelective(cartForQuantity);
                     }
+
                     cartProductVo.setQuantity(buyLimitCount);
                     //计算总价
                     cartProductVo.setProductTotalPrice(BigDecimalUtil.mul(product.getPrice().doubleValue(),cartProductVo.getQuantity()));
