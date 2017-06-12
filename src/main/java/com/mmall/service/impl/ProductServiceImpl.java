@@ -188,6 +188,7 @@ public class ProductServiceImpl implements IProductService {
             return ServerResponse.createByErrorMessage("产品已下架或者删除");
         }
         ProductDetailVo productDetailVo = assembleProductDetailVo(product);
+        Object object = new Object();
         return ServerResponse.createBySuccess(productDetailVo);
     }
 
